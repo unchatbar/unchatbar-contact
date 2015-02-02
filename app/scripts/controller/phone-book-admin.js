@@ -166,7 +166,7 @@ angular.module('unchatbar-phone-book').controller('phoneBookAdmin', [
          */
         $scope.streamToClient = function (peerId) {
             $modal.open({
-                templateUrl: 'views/peer/modal/streamOption.html',
+                templateUrl: 'views/unchatbar-phone-book/streamOption.html',
                 controller: 'modalStreamOption',
                 size: 'sm'
             }).result.then(function (streamOption) {
@@ -189,7 +189,7 @@ angular.module('unchatbar-phone-book').controller('phoneBookAdmin', [
          */
         $scope.streamToConferenceByGroupId = function (roomId) {
             $modal.open({
-                templateUrl: 'views/peer/modal/streamOption.html',
+                templateUrl: 'views/unchatbar-phone-book/streamOption.html',
                 controller: 'modalStreamOption',
                 size: 'sm'
             }).result.then(function (streamOption) {

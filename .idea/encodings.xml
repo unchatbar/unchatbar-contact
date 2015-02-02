@@ -3,6 +3,6 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/app/views/unchatbar-phone-book/active-user.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/unchatbar-phone-book/book.html" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/views/unchatbar-phone-book/dialer.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/unchatbar-phone-book/streamOption.html" charset="UTF-8" />
   </component>
 </project>

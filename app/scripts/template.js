@@ -72,4 +72,26 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
     "</div>\n"
   );
 
+
+  $templateCache.put('views/unchatbar-phone-book/streamOption.html',
+    "<div class=\"modal-header\">\n" +
+    "  <h3 class=\"modal-title\">call option</h3>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-xs-6 text-left\">\n" +
+    "      <button type=\"button\" class=\"btn btn-default btn-lg\" aria-label=\"Left Align\" ng-click=\"videoCall()\">\n" +
+    "        <i class=\"glyphicon glyphicon-facetime-video\"></i>Video\n" +
+    "      </button>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-xs-6 text-right\">\n" +
+    "      <button type=\"button\" class=\"btn btn-default btn-lg\" ng-click=\"audiCall()\" aria-label=\"Left Align\"\n" +
+    "              ng-click=\"videoCall()\">\n" +
+    "        <i class=\"glyphicon glyphicon-earphone\"></i>Audio\n" +
+    "      </button>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n"
+  );
+
 }]);
