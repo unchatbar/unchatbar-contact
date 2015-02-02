@@ -7,7 +7,7 @@
  *
  * Main module of the application.
  */
-angular.module('unchatbar-phone-book-connection').run(['$rootScope', 'PhoneBook',
+angular.module('unchatbar-phone-book').run(['$rootScope', 'PhoneBook',
     function ($rootScope, PhoneBook) {
         $rootScope.$on('ConnectionGetMessageprofile', function (event, data) {
             PhoneBook.updateClient(data.peerId, data.message.profile.label || '');
