@@ -15,5 +15,5 @@ Peer to peer chat application using WebRTC technologies
 * Run `bower install` to install required Bower components
 ## Get Started
 ```javascript
-angular.module('app', ['unchatbar-connection'])
+angular.module('app', ['unchatbar-phone-book'])
 ```
