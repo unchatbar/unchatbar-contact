@@ -22,8 +22,14 @@ angular.module('unchatbar-phone-book')
                     }
                     //templateUrl: 'views/peer/layout/chat/header.html'
                 })
+                //deprecated
                 .state('chat.user', {
                     url: '/user/{peerId}',
+                    parent: 'chat'
+
+                })
+                .state('chat.client', {
+                    url: '/user/{clientId}',
                     parent: 'chat'
 
                 })

@@ -1,5 +1,5 @@
 'use strict';
-
+//Deprecated
 /**
  * @ngdoc controller
  * @name  unchatbar-phone-book.controller:phoneBook
