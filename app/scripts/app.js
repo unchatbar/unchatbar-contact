@@ -12,7 +12,9 @@ angular.module('unchatbar-phone-book', [
     'constants',
     'ui.router',
     'ui.bootstrap',
+    'angularjs-dropdown-multiselect',
     'ngStorage',
     'unchatbar-connection',
     'unchatbar-user'
 ]);
+

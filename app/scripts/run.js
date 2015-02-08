@@ -9,6 +9,7 @@
  */
 angular.module('unchatbar-phone-book').run(['$rootScope', 'PhoneBook',
     function ($rootScope, PhoneBook) {
+        PhoneBook.initStorage();
         $rootScope.$on('ConnectionGetMessageprofile', function (event, data) {
             PhoneBook.updateClient(data.peerId, data.message.profile.label || '');
         });

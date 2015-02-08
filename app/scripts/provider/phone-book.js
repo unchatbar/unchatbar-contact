@@ -90,6 +90,7 @@ angular.module('unchatbar-phone-book')
                         if(!this._storagePhoneBook.user[id] &&
                             id !== Broker.getPeerId()) {
                             profile.id = id;
+
                             this._storagePhoneBook.user[id] = profile;
                             addUser = true;
                         }

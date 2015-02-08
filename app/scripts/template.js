@@ -73,6 +73,90 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
+  $templateCache.put('views/unchatbar-phone-book/layout/chat/content.html',
+    "<div class=\"col-xs-12 col-sm-9\">\n" +
+    "\n" +
+    "  <div class=\"jumbotron\">\n" +
+    "    <active-user></active-user>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-xs-12 col-lg-12\">\n" +
+    "      <h2>Video/Audio</h2>\n" +
+    "      <stream></stream>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-xs-12 col-lg-12\">\n" +
+    "      <h2>Chat</h2>\n" +
+    "      <text-message-list></text-message-list>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/layout/chat/footer.html',
+    "<footer>\n" +
+    "    <p>&copy; Company 2014</p>\n" +
+    "</footer>\n"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/layout/chat/header.html',
+    "<nav class=\"navbar navbar-fixed-top navbar-inverse\">\n" +
+    "    Contact\n" +
+    "</nav>\n"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/layout/chat/index.html',
+    "<div data-ui-view=\"header\"></div>\n" +
+    "<div class=\"container\" data-ng-init=\"offcanvas=false\">\n" +
+    "\n" +
+    "  <div class=\"row row-offcanvas row-offcanvas-left\" data-ng-class=\"{'active': offcanvas}\">\n" +
+    "    <p class=\"pull-left visible-xs\">\n" +
+    "      <i data-ng-click=\"offcanvas=!offcanvas\" class=\"fa fa-book fa-4x\"></i>\n" +
+    "    </p>\n" +
+    "\n" +
+    "    <div data-ui-view=\"sidebar\"></div>\n" +
+    "    <div data-ui-view=\"content\"></div>\n" +
+    "  </div>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/layout/chat/sidebar.html',
+    "<div class=\"col-xs-6 col-sm-3 sidebar-offcanvas active\" >\n" +
+    "    <div class=\"list-group\">\n" +
+    "        <dialer></dialer>\n" +
+    "        <phone-book></phone-book>\n" +
+    "    </div>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/layout/login.html',
+    "<div class=\"container\" data-ng-controller=\"broker\">\n" +
+    "\n" +
+    "  <form class=\"form-signin\">\n" +
+    "    <h2 class=\"form-signin-heading\">Please sign in</h2>\n" +
+    "    <label for=\"peerId\" class=\"sr-only\">your Phonenumber</label>\n" +
+    "    <input type=\"text\" id=\"peerId\" class=\"form-control\"\n" +
+    "           data-ng-model=\"peerId\"\n" +
+    "           placeholder=\"Username\" required autofocus>\n" +
+    "    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\"\n" +
+    "            data-ng-click=\"login();\">Sign in\n" +
+    "    </button>\n" +
+    "  </form>\n" +
+    "\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('views/unchatbar-phone-book/streamOption.html',
     "<div class=\"modal-header\">\n" +
     "  <h3 class=\"modal-title\">call option</h3>\n" +

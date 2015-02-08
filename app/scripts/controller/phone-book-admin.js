@@ -119,6 +119,7 @@ angular.module('unchatbar-phone-book').controller('phoneBookAdmin', [
                 var users = $scope.groupMap[$scope.selectedGroup].users;
                 MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$scope.selectedGroup]);
                 PhoneBook.updateGroup($scope.selectedGroup,$scope.groupMap[$scope.selectedGroup]);
+
             }
         };
 
