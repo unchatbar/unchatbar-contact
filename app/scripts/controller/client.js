@@ -6,13 +6,15 @@
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
+ * @require MessageText
  * @description
  *
  * select client/room for connection
  *
  */
 angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', '$stateParams', 'PhoneBook',
-    function ($scope, $stateParams, PhoneBook) {
+    'MessageText',
+    function ($scope, $stateParams, PhoneBook,MessageText) {
 
         $scope.form = {};
 
@@ -62,6 +64,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
          *
          */
         $scope.setClient = function (peerId) {
+            MessageText.setRoom('user', peerId);
             $scope.selectedUser = peerId;
         };
 

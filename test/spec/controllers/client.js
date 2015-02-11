@@ -4,18 +4,19 @@ describe('Controller: phoneBook', function () {
 
     beforeEach(module('unchatbar-phone-book'));
 
-    var phoneBookCTRL, stateParams, scope, PhoneBookService;
+    var phoneBookCTRL, stateParams, scope, PhoneBookService, MessageTextService;
 
-    beforeEach(inject(function ($controller, $rootScope, PhoneBook) {
+    beforeEach(inject(function ($controller, $rootScope, PhoneBook,MessageText) {
         PhoneBookService = PhoneBook;
         stateParams = {};
         scope = $rootScope.$new();
-
+        MessageTextService = MessageText;
         phoneBookCTRL = function () {
             $controller('unContactClient', {
                 $scope: scope,
                 $stateParams: stateParams,
-                PhoneBook: PhoneBookService
+                PhoneBook: PhoneBookService,
+                MessageText: MessageTextService,
             });
         };
     }));
@@ -71,8 +72,18 @@ describe('Controller: phoneBook', function () {
         });
 
         describe('setClient', function () {
-            it('should set `$scope.selectedUser` object from `$scope.clientMap` ', function () {
+            beforeEach(function(){
+                spyOn(MessageTextService, 'setRoom').and.returnValue(true);
+                scope.clientMap = {'peerId': {label: 'test'}};
                 phoneBookCTRL();
+            });
+            it('should call `MessageText.setRoom` with `user` and peerId', function () {
+                scope.setClient('peerId');
+
+                expect(MessageTextService.setRoom).toHaveBeenCalledWith('user', 'peerId');
+            });
+            it('should set `$scope.selectedUser` object from `$scope.clientMap` ', function () {
+
 
                 scope.setClient('peerId');
 

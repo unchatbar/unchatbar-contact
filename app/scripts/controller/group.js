@@ -6,13 +6,14 @@
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
+ * @require MessageText
  * @description
  *
  * select client/room for connection
  *
  */
-angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '$stateParams','PhoneBook',
-    function ($scope,$stateParams, PhoneBook) {
+angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '$state','$stateParams','PhoneBook','MessageText',
+    function ($scope,$state,$stateParams, PhoneBook,MessageText) {
         $scope.form = {};
 
         /**
@@ -59,6 +60,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          *
          */
         $scope.setGroup = function (roomId) {
+            MessageText.setRoom('group', roomId);
             $scope.selectedGroup = roomId;
         };
 
@@ -88,7 +90,9 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          *
          */
         $scope.removeGroup = function (roomId) {
+            MessageText.sendRemoveGroup(roomId,PhoneBook.getGroup(roomId).users);
             PhoneBook.removeGroup(roomId);
+            $state.go('chat');
         };
 
         //____
@@ -104,6 +108,8 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          */
         $scope.addUserToGroup = function(){
             if($scope.selectedGroup) {
+                var users = $scope.groupMap[$scope.selectedGroup].users;
+                MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$scope.selectedGroup]);
                 PhoneBook.updateGroup($scope.selectedGroup,$scope.groupMap[$scope.selectedGroup]);
             }
         };
@@ -120,6 +126,8 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          */
         $scope.removeUserFromGroup = function(){
             if($scope.selectedGroup) {
+                var users = PhoneBook.getGroup($scope.selectedGroup).users;
+                MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$scope.selectedGroup]);
                 PhoneBook.updateGroup($scope.selectedGroup,$scope.groupMap[$scope.selectedGroup]);
             }
         };
