@@ -3,7 +3,7 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:phoneBook
+ * @name unchatbar-phone-book.directive:unContactGroupList
  * @restrict E
  * @description
  *
@@ -13,7 +13,7 @@
 angular.module('unchatbar-phone-book').directive('unContactGroupList', [
     function () {
         return {
-            restrict: 'E', //E = element, A = attribute, C = class, M = comment
+            restrict: 'E',
             replace: true,
             templateUrl:'views/unchatbar-phone-book/group/list.html',
             controller: 'unContactGroup',
@@ -24,8 +24,11 @@ angular.module('unchatbar-phone-book').directive('unContactGroupList', [
                  * @propertyOf unchatbar-phone-book.controller:unContactGroup
                  * @returns {Object} map of groups
                  */
-                scope.groupMap = scope.getGroupMap();
+                scope.groupMap = [];
 
+                scope.init = function(){
+                    scope.groupMap = scope.getGroupMap();
+                };
 
                 scope.$on('$stateChangeSuccess',function(){
                     scope.groupMap = scope.getGroupMap();

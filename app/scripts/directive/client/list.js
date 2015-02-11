@@ -13,12 +13,22 @@
 angular.module('unchatbar-phone-book').directive('unContactClientList', [
     function () {
         return {
-            restrict: 'E', //E = element, A = attribute, C = class, M = comment
+            restrict: 'E',
             replace: true,
             templateUrl:'views/unchatbar-phone-book/client/list.html',
             controller: 'unContactClient',
             link : function(scope){
-                scope.clientMap = scope.getClientMap();
+                /**
+                 * @ngdoc property
+                 * @name clientMap
+                 * @propertyOf unchatbar-phone-book.directive:unContactClientList
+                 * @returns {Array} list of clients
+                 */
+                scope.clientMap = {};
+
+                scope.init = function(){
+                    scope.clientMap = scope.getClientMap();
+                };
 
                 scope.$on('$stateChangeSuccess', function () {
                     scope.clientMap = scope.getClientMap();

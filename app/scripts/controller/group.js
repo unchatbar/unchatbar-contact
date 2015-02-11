@@ -51,7 +51,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          *
          */
         $scope.createGroup = function () {
-            PhoneBook.addGroup($scope.form.newGroupName);
+            PhoneBook.addGroup($scope.newGroupName);
         };
 
 
@@ -82,9 +82,10 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          */
         $scope.addUserToGroup = function(){
             if($stateParams.groupId) {
-                var users = $scope.groupMap[$stateParams.groupId].users;
-                MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$stateParams.groupId]);
-                PhoneBook.updateGroup($stateParams.groupId,$scope.groupMap[$stateParams.groupId]);
+                var groups = $scope.getGroupMap();
+                var users =groups[$stateParams.groupId].users;
+                MessageText.sendGroupUpdateToUsers(users,groups[$stateParams.groupId]);
+                PhoneBook.updateGroup($stateParams.groupId,groups[$stateParams.groupId]);
             }
         };
 
@@ -100,9 +101,10 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          */
         $scope.removeUserFromGroup = function(){
             if($stateParams.groupId) {
+                var groups = $scope.getGroupMap();
                 var users = PhoneBook.getGroup($stateParams.groupId).users;
-                MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$stateParams.groupId]);
-                PhoneBook.updateGroup($stateParams.groupId,$scope.groupMap[$stateParams.groupId]);
+                MessageText.sendGroupUpdateToUsers(users,groups[$stateParams.groupId]);
+                PhoneBook.updateGroup($stateParams.groupId,groups[$stateParams.groupId]);
             }
         };
 

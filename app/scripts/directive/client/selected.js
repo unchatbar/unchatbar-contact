@@ -19,7 +19,11 @@ angular.module('unchatbar-phone-book').directive('unContactClientSelected', [
             controller: 'unContactClient',
             link : function(scope){
 
-                scope.client = scope.getClient();
+                scope.client = {};
+
+                scope.init = function(){
+                    scope.client = scope.getClient();
+                };
 
                 scope.$on('$stateChangeSuccess', function () {
                     scope.client = scope.getClient();

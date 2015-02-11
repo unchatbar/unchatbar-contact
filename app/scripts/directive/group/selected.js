@@ -13,26 +13,27 @@
 angular.module('unchatbar-phone-book').directive('unContactGroupSelected', [
     function () {
         return {
-            restrict: 'E', //E = element, A = attribute, C = class, M = comment
+            restrict: 'E',
             replace: true,
             templateUrl:'views/unchatbar-phone-book/group/selected.html',
             controller: 'unContactGroup',
             link : function(scope){
-                /**
-                 * @ngdoc property
-                 * @name groupMap
-                 * @propertyOf unchatbar-phone-book.controller:unContactGroup
-                 * @returns {Object} map of groups
-                 */
-                scope.group = scope.getGroup();
+                scope.groupItem = {};
 
-                scope.clientMap = scope.getClientMap();
+                scope.clientMap = {};
+
+                scope.init =  function(){
+                    scope.groupItem = scope.getGroup();
+                    scope.clientMap = scope.getClientMap();
+                };
+
                 scope.$on('$stateChangeSuccess',function(){
-                    scope.group = scope.getGroup();
+                    scope.groupItem = scope.getGroup();
+                    scope.clientMap = scope.getClientMap();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.group = scope.getGroup();
+                    scope.groupItem = scope.getGroup();
                     scope.clientMap = scope.getClientMap();
                 });
             }
