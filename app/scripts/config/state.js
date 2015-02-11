@@ -9,18 +9,20 @@ angular.module('unchatbar-phone-book')
                     templateUrl: 'views/unchatbar-phone-book/index.html'
 
                 })
-                .state('chat', {
+                .state('contact', {
                     parent: 'layoutChat',
-                    url: '/chat'
+                    url: '/contact'
                 })
-                .state('chat.client', {
-                    url: '/user/{clientId}',
-                    parent: 'chat'
+                .state('contact.client', {
+                    parent: 'contact',
+                    url: '/user/{clientId}'
+
 
                 })
-                .state('chat.group', {
-                    url: '/group/{groupId}',
-                    parent: 'chat'
+                .state('contact.group', {
+                    parent: 'contact',
+                    url: '/group/{groupId}'
+
                 });
         }
     ]);

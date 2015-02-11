@@ -19,7 +19,7 @@
     <!-- endbuild -->
 </head>
 <body>
-<dialer></dialer>
+
 <div ui-view></div>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -75,18 +75,13 @@
 <!-- Controller -->
 <script src="scripts/controller/client.js"></script>
 <script src="scripts/controller/group.js"></script>
-<script src="scripts/controller/modal-stream-option.js"></script>
-<script src="scripts/controller/phone-book.js"></script>
-<script src="scripts/controller/phone-book-admin.js"></script>
 <!-- directive -->
-<script src="scripts/directive/active-user.js"></script>
-<script src="scripts/directive/book.js"></script>
-<script src="scripts/directive/book-admin.js"></script>
-<script src="scripts/directive/book-stream.js"></script>
-<script src="scripts/directive/new-group.js"></script>
-
 <script src="scripts/directive/client/list.js"></script>
 <script src="scripts/directive/client/selected.js"></script>
+<script src="scripts/directive/group/list.js"></script>
+<script src="scripts/directive/group/add.js"></script>
+<script src="scripts/directive/group/selected.js"></script>
+
 <!-- run -->
 <script src="scripts/run.js"></script>
 <!-- endbuild -->
@@ -96,7 +91,7 @@
     angular.module('unchatbar-phone-book').run(['$state','Broker',
         function ($state, Broker) {
             Broker.connectServer();
-            $state.go('chat');
+            $state.go('contact');
         }]);
 </script>
 </body>

@@ -3,11 +3,11 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:phoneBook
+ * @name unchatbar-phone-book.directive:unContactClientList
  * @restrict E
  * @description
  *
- * save client connections , for recall
+ * client list
  *
  */
 angular.module('unchatbar-phone-book').directive('unContactClientList', [
@@ -15,8 +15,19 @@ angular.module('unchatbar-phone-book').directive('unContactClientList', [
         return {
             restrict: 'E', //E = element, A = attribute, C = class, M = comment
             replace: true,
-            templateUrl:'../../../views/unchatbar-phone-book/client/list.html',
-            controller: 'unContactClient'
+            templateUrl:'views/unchatbar-phone-book/client/list.html',
+            controller: 'unContactClient',
+            link : function(scope){
+                scope.clientMap = scope.getClientMap();
+
+                scope.$on('$stateChangeSuccess', function () {
+                    scope.clientMap = scope.getClientMap();
+                });
+
+                scope.$on('PhoneBookUpdate', function () {
+                    scope.clientMap = scope.getClientMap();
+                });
+            }
         };
     }
 ]);

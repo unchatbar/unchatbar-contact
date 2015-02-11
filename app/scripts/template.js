@@ -75,10 +75,76 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
 
 
   $templateCache.put('views/unchatbar-phone-book/client/list.html',
-    "<div>\n" +
-    "    <div ng-repeat=\"(peerId,connection) in clientMap\">\n" +
-    "        <a ui-sref-active=\"active\" ui-sref='chat.user({peerId: peerId})'\n" +
-    "           class=\"list-group-item\">{{connection.label}}</a>\n" +
+    "<div data-ng-init=\"init()\">\n" +
+    "    <div ng-repeat=\"(clientId,client) in clientMap\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-9\">\n" +
+    "                <a ui-sref-active=\"active\" ui-sref='chat.client({clientId: clientId})'\n" +
+    "                   class=\"list-group-item\">{{client.label}}\n" +
+    "                </a>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-3\">\n" +
+    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/client/selected.html',
+    "<div data-ng-init=\"init()\">\n" +
+    "    <span>\n" +
+    "        <b>{{client.label}}</b>\n" +
+    "    </span>\n" +
+    "    <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/group/add.html',
+    "<div data-ng-click=\"createGroup()\" class=\"input-group-addon\">\n" +
+    "    <i class=\"fa fa-check fa-1x\"></i>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/group/list.html',
+    "<div data-ng-init=\"init()\">\n" +
+    "    <div ng-repeat=\"(groupId,group) in groupMap\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-9\">\n" +
+    "                <a ui-sref-active=\"active\" ui-sref='chat.group({groupId: groupId})'\n" +
+    "                   class=\"list-group-item\">{{group.label}}\n" +
+    "                </a>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-3\">\n" +
+    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(groupId)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('views/unchatbar-phone-book/index.html',
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "        <h2>Client List</h2>\n" +
+    "        <un-contact-client-list></un-contact-client-list>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "        <h2>Selected Client</h2>\n" +
+    "        <un-contact-client-selected></un-contact-client-selected>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "        <h2>Group List</h2>\n" +
+    "        <un-contact-group-add></un-contact-group-add>\n" +
+    "        <un-contact-group-list></un-contact-group-list>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "        <h2>Selected Client</h2>\n" +
+    "        <un-contact-group-selected></un-contact-group-selected>\n" +
     "    </div>\n" +
     "</div>"
   );
