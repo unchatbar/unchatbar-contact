@@ -30,6 +30,7 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
     "      <i class=\" fa fa-trash fa-3x\"></i>\n" +
     "    </div>\n" +
     "    <div class=\"btn btn-success call\" ng-if=\"groupMap[selectedGroup].editable === true\">\n" +
+    "\n" +
     "      <span ng-dropdown-multiselect=\"\"\n" +
     "            extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
     "            events=\"{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}\"\n" +
@@ -73,6 +74,16 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
+  $templateCache.put('views/unchatbar-phone-book/client/list.html',
+    "<div>\n" +
+    "    <div ng-repeat=\"(peerId,connection) in clientMap\">\n" +
+    "        <a ui-sref-active=\"active\" ui-sref='chat.user({peerId: peerId})'\n" +
+    "           class=\"list-group-item\">{{connection.label}}</a>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('views/unchatbar-phone-book/layout/chat/content.html',
     "<div class=\"col-xs-12 col-sm-9\">\n" +
     "\n" +
@@ -95,20 +106,6 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
     "  </div>\n" +
     "\n" +
     "</div>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/layout/chat/footer.html',
-    "<footer>\n" +
-    "    <p>&copy; Company 2014</p>\n" +
-    "</footer>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/layout/chat/header.html',
-    "<nav class=\"navbar navbar-fixed-top navbar-inverse\">\n" +
-    "    Contact\n" +
-    "</nav>\n"
   );
 
 
@@ -135,24 +132,6 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
     "        <dialer></dialer>\n" +
     "        <phone-book></phone-book>\n" +
     "    </div>\n" +
-    "</div>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/layout/login.html',
-    "<div class=\"container\" data-ng-controller=\"broker\">\n" +
-    "\n" +
-    "  <form class=\"form-signin\">\n" +
-    "    <h2 class=\"form-signin-heading\">Please sign in</h2>\n" +
-    "    <label for=\"peerId\" class=\"sr-only\">your Phonenumber</label>\n" +
-    "    <input type=\"text\" id=\"peerId\" class=\"form-control\"\n" +
-    "           data-ng-model=\"peerId\"\n" +
-    "           placeholder=\"Username\" required autofocus>\n" +
-    "    <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\"\n" +
-    "            data-ng-click=\"login();\">Sign in\n" +
-    "    </button>\n" +
-    "  </form>\n" +
-    "\n" +
     "</div>\n"
   );
 

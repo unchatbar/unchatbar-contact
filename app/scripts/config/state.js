@@ -6,27 +6,12 @@ angular.module('unchatbar-phone-book')
             $stateProvider
                 .state('layoutChat', {
                     abstract: true,
-                    templateUrl: 'views/unchatbar-phone-book/layout/chat/index.html'
+                    templateUrl: 'views/unchatbar-phone-book/index.html'
+
                 })
                 .state('chat', {
                     parent: 'layoutChat',
-                    url: '/chat',
-                    views: {
-                        sidebar: {
-                            templateUrl: 'views/unchatbar-phone-book/layout/chat/sidebar.html'
-                        },
-                        content: {
-                            templateUrl: 'views/unchatbar-phone-book/layout/chat/content.html'
-                        }
-
-                    }
-                    //templateUrl: 'views/peer/layout/chat/header.html'
-                })
-                //deprecated
-                .state('chat.user', {
-                    url: '/user/{peerId}',
-                    parent: 'chat'
-
+                    url: '/chat'
                 })
                 .state('chat.client', {
                     url: '/user/{clientId}',
@@ -36,27 +21,6 @@ angular.module('unchatbar-phone-book')
                 .state('chat.group', {
                     url: '/group/{groupId}',
                     parent: 'chat'
-                })
-                .state('chat.profile', {
-                    url: '/profile',
-                    parent: 'layoutChat',
-                    views: {
-                        header: {
-                            templateUrl: 'views/unchatbar-phone-book/layout/chat/header.html'
-                        },
-                        sidebar: {
-                            templateUrl: 'views/unchatbar-phone-book/layout/chat/sidebar.html'
-                        },
-                        content: {
-                            templateUrl: 'views/unchatbar-phone-book/profile-admin.html'
-                        },
-                        footer: {
-                            templateUrl: 'views/unchatbar-phone-book/layout/chat/footer.html'
-                        }
-                    }
-
                 });
-
-
         }
     ]);

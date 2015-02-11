@@ -12,9 +12,9 @@
  * select client/room for connection
  *
  */
-angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', '$stateParams', 'PhoneBook',
+angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',
     'MessageText',
-    function ($scope, $stateParams, PhoneBook,MessageText) {
+    function ($scope,$state, $stateParams, PhoneBook,MessageText) {
 
         $scope.form = {};
 
@@ -28,6 +28,14 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
 
         /**
          * @ngdoc property
+         * @name clientMap
+         * @propertyOf unchatbar-phone-book.controller:unContactClient
+         * @returns {Object} map of all client
+         */
+        $scope.client = {};
+
+        /**
+         * @ngdoc property
          * @name selectedUser
          * @propertyOf unchatbar-phone-book.controller:unContactClient
          * @returns {String} name of selcted user
@@ -37,7 +45,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
 
         /**
          * @ngdoc methode
-         * @name getClient
+         * @name getClientMap
          * @methodOf unchatbar-phone-book.controller:unContactClient
          * @params {String} peerId id of client
          * @description
@@ -45,11 +53,24 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
          * get user and groups
          *
          */
-        $scope.getClient = function () {
+        $scope.getClientMap = function () {
             $scope.clientMap = PhoneBook.getClientMap();
             if ($scope.selectedUser && !$scope.clientMap[$scope.selectedUser]) {
                 $scope.setClient('');
             }
+        };
+
+        /**
+         * @ngdoc methode
+         * @name getClient
+         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @description
+         *
+         * get client data
+         *
+         */
+        $scope.getClient = function () {
+            $scope.client = PhoneBook.getClient($scope.selectedUser);
         };
 
 
@@ -66,6 +87,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
         $scope.setClient = function (peerId) {
             MessageText.setRoom('user', peerId);
             $scope.selectedUser = peerId;
+            $scope.getClient();
         };
 
         /**
@@ -80,6 +102,9 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
          */
         $scope.removeClient = function (peerId) {
             PhoneBook.removeClient(peerId);
+            if($scope.selectedUser === peerId) {
+                $state.go('chat');
+            }
         };
 
         /**
@@ -92,7 +117,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
          *
          */
         $scope.init = function () {
-            $scope.getClient();
+            $scope.getClientMap();
             $scope.selectedUser = $stateParams.clientId || '';
             if ($stateParams.clientId) {
                 $scope.setClient($stateParams.clientId);
@@ -104,6 +129,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope', 
         });
 
         $scope.$on('PhoneBookUpdate', function () {
+            $scope.getClientMap();
             $scope.getClient();
         });
     }
