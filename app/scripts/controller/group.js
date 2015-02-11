@@ -38,7 +38,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          *
          */
         $scope.getGroup = function () {
-            return PhoneBook.getGroupMap($stateParams.groupId);
+            return PhoneBook.getGroup($stateParams.groupId);
         };
 
         /**

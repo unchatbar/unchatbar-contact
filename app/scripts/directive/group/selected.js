@@ -25,9 +25,8 @@ angular.module('unchatbar-phone-book').directive('unContactGroupSelected', [
                  * @returns {Object} map of groups
                  */
                 scope.group = scope.getGroup();
-
+console.log(scope.group);
                 scope.clientMap = scope.getClientMap();
-
                 scope.$on('$stateChangeSuccess',function(){
                     scope.group = scope.getGroup();
                 });

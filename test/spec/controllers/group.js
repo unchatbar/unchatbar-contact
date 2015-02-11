@@ -43,7 +43,7 @@ describe('Controller: phoneBook', function () {
         describe('getGroup', function () {
             beforeEach(function () {
                 phoneBookCTRL();
-                spyOn(PhoneBookService, 'getGroupMap').and.returnValue(
+                spyOn(PhoneBookService, 'getGroup').and.returnValue(
                     {'userGroupId': 'test'}
                 );
                 stateParams.groupId = 'groupId';
@@ -52,7 +52,7 @@ describe('Controller: phoneBook', function () {
             it('should call `PhoneBook.getGroupMap` with `$stateParams.groupId`', function () {
                 scope.getGroup();
 
-                expect(PhoneBookService.getGroupMap).toHaveBeenCalledWith('groupId');
+                expect(PhoneBookService.getGroup).toHaveBeenCalledWith('groupId');
             });
 
             it('should return value from `PhoneBook.getGroupMap`', function () {
