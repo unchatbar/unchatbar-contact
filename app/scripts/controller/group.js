@@ -91,7 +91,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.removeGroup = function (roomId) {
-            _.forEach(PhoneBook.getGroup(roomId).users, function (user) {
+            _.forEach( PhoneBook.getGroup(roomId).users, function (user) {
                 DataConnection.send(user.id, '', 'removeGroup', {roomId: roomId});
             });
             PhoneBook.removeGroup(roomId);

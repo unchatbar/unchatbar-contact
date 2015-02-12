@@ -14,7 +14,7 @@ angular.module('unchatbar-contact').run(['$rootScope', 'PhoneBook',
             PhoneBook.updateClient(data.peerId, data.message.profile.label || '');
         });
 
-        $rootScope.$on('ConnectionGetMessage_updateUserGroup', function (event, data) {
+        $rootScope.$on('ConnectionGetMessage_updateGroup', function (event, data) {
             PhoneBook.copyGroupFromPartner(data.message.meta.roomId, data.message.meta.group);
         });
 
