@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="unchatbar-phone-book">
+<html class="no-js" ng-app="unchatbar-contact">
 <head>
     <meta charset="utf-8">
     <base href="/">
@@ -88,7 +88,7 @@
 
 
 <script>
-    angular.module('unchatbar-phone-book').run(['$state','Broker',
+    angular.module('unchatbar-contact').run(['$state','Broker',
         function ($state, Broker) {
             Broker.connectServer();
             $state.go('contact');

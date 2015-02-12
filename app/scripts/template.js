@@ -1,4 +1,4 @@
-angular.module('unchatbar-phone-book').run(['$templateCache', function($templateCache) {
+angular.module('unchatbar-contact').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/unchatbar-contact/client/list.html',
