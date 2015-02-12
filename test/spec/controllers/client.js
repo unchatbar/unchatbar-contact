@@ -4,21 +4,21 @@ describe('Controller: phoneBook', function () {
 
     beforeEach(module('unchatbar-contact'));
 
-    var phoneBookCTRL, stateParams, scope, PhoneBookService, MessageTextService,state;
+    var phoneBookCTRL, stateParams, scope, PhoneBookService,state;
 
-    beforeEach(inject(function ($controller, $rootScope,$state, PhoneBook,MessageText) {
+    beforeEach(inject(function ($controller, $rootScope,$state, PhoneBook) {
         PhoneBookService = PhoneBook;
         stateParams = {};
         state = $state;
         scope = $rootScope.$new();
-        MessageTextService = MessageText;
+
         phoneBookCTRL = function () {
             $controller('unContactClient', {
                 $scope: scope,
                 $stateParams: stateParams,
                 $state : state,
-                PhoneBook: PhoneBookService,
-                MessageText: MessageTextService,
+                PhoneBook: PhoneBookService
+
             });
         };
     }));

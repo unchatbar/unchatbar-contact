@@ -39,11 +39,10 @@ module.exports = function (config) {
             'bower_components/unchatbar-connection/app/scripts/run.js',
             'bower_components/unchatbar-connection/app/scripts/template.js',
             'bower_components/unchatbar-connection/app/scripts/provider/broker.js',
-            'bower_components/unchatbar-connection/app/scripts/provider/message-text.js',
-            'bower_components/unchatbar-connection/app/scripts/service/connection.js',
+            'bower_components/unchatbar-connection/app/scripts/provider/data-connection.js',
             'bower_components/unchatbar-connection/app/scripts/service/peer.js',
-            'bower_components/unchatbar-connection/app/scripts/service/stream.js',
             'bower_components/unchatbar-connection/app/scripts/directive/dialer.js',
+            'bower_components/unchatbar-connection/app/scripts/directive/peerId.js',
             'bower_components/unchatbar-connection/app/scripts/controller/dialer.js',
             // endbower
             'bower_components/angular-mocks/angular-mocks.js',

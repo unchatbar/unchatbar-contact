@@ -13,8 +13,8 @@
     "components-font-awesome": "~4.2.0",
     "angularjs-dropdown-multiselect": "~1.5.2",
     "angular-bootstrap": "~0.12.0",
-    "unchatbar-connection" : "https://github.com/unchatbar/unchatbar-connection.git",
-    "unchatbar-user" : "https://github.com/unchatbar/unchatbar-user.git"
+    "unchatbar-user" : "https://github.com/unchatbar/unchatbar-user.git",
+    "unchatbar-connection" : "https://github.com/unchatbar/unchatbar-connection.git#refaktor"
   },
   "main": [
     "app/scripts/app.js",

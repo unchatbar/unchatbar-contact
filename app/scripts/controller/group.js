@@ -6,14 +6,14 @@
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
- * @require MessageText
+ * @require DataConnection
  * @description
  *
  * group controller
  *
  */
-angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$state','$stateParams','PhoneBook','MessageText',
-    function ($scope,$state,$stateParams, PhoneBook,MessageText) {
+angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$state', '$stateParams', 'PhoneBook', 'DataConnection',
+    function ($scope, $state, $stateParams, PhoneBook, DataConnection) {
 
         /**
          * @ngdoc methode
@@ -66,7 +66,9 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.removeGroup = function (roomId) {
-            MessageText.sendRemoveGroup(roomId,PhoneBook.getGroup(roomId).users);
+            _.forEach(PhoneBook.getGroup(roomId).users, function (user) {
+                DataConnection.send(user.id, '', 'removeGroup', {roomId: roomId});
+            });
             PhoneBook.removeGroup(roomId);
             $state.go('contact');
         };
@@ -80,12 +82,13 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          * add new user to group
          *
          */
-        $scope.addUserToGroup = function(){
-            if($stateParams.groupId) {
-                var groups = $scope.getGroupMap();
-                var users =groups[$stateParams.groupId].users;
-                MessageText.sendGroupUpdateToUsers(users,groups[$stateParams.groupId]);
-                PhoneBook.updateGroup($stateParams.groupId,groups[$stateParams.groupId]);
+        $scope.addUserToGroup = function () {
+            if ($stateParams.groupId) {
+                var group = $scope.groupMap[$stateParams.groupId];
+                _.forEach(group.users, function (user) {
+                    DataConnection.send(user.id, '', 'updateGroup', {roomId: $stateParams.groupId});
+                });
+                PhoneBook.updateGroup($stateParams.groupId, group);
             }
         };
 
@@ -99,12 +102,13 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          * remove user from group
          *
          */
-        $scope.removeUserFromGroup = function(){
-            if($stateParams.groupId) {
-                var groups = $scope.getGroupMap();
-                var users = PhoneBook.getGroup($stateParams.groupId).users;
-                MessageText.sendGroupUpdateToUsers(users,groups[$stateParams.groupId]);
-                PhoneBook.updateGroup($stateParams.groupId,groups[$stateParams.groupId]);
+        $scope.removeUserFromGroup = function () {
+            if ($stateParams.groupId) {
+                var group = $scope.groupMap[$stateParams.groupId];
+                _.forEach(group.users, function (user) {
+                    DataConnection.send(user.id, '', 'updateGroup', {roomId: $stateParams.groupId});
+                });
+                PhoneBook.updateGroup($stateParams.groupId, group);
             }
         };
 

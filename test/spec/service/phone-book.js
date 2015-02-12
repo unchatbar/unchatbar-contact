@@ -5,7 +5,7 @@ describe('Serivce: phoneBook', function () {
     beforeEach(module('unchatbar-contact'));
 
 
-    beforeEach(inject(function ($rootScope, MessageText, Broker, $sessionStorage, PhoneBook) {
+    beforeEach(inject(function ($rootScope, Broker, $sessionStorage, PhoneBook) {
         rootScope = $rootScope;
         BrokerService = Broker;
         sessionStorage = $sessionStorage;
