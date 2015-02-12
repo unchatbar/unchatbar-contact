@@ -32,8 +32,36 @@ Peer to peer chat application using WebRTC technologies
 angular.module('app', ['unchatbar-contact'])
 ```
 
+configure route see below
+
+
+
 
 ## Configure
+* necessary routing configuration
+```javascript
+        .state('layoutChat', {
+            abstract: true,
+            templateUrl: 'views/unchatbar-contact/index.html'
+
+        })
+        .state('contact', {
+            parent: 'layoutChat',
+            url: '/contact'
+        })
+        .state('contact.client', {
+            parent: 'contact',
+            url: '/user/{clientId}'
+
+
+        })
+        .state('contact.group', {
+            parent: 'contact',
+            url: '/group/{groupId}'
+
+        });
+```
+
 * store PhoneBook Data in local Storage
 
 >
@@ -47,42 +75,42 @@ PhoneBookProvider.setLocalStorage([TRUE/FALSE]);
 
 >
 ```javascript
-Profile.getClient([PEERID]);
+PhoneBook.getClient([PEERID]);
 ```
 
 * get all clients
 
 >
 ```javascript
-Profile.getClientMap();
+PhoneBook.getClientMap();
 ```
 
 * get new client
 
 >
 ```javascript
-Profile.addClient([PEERID],[PROFILE]);
+PhoneBook.addClient([PEERID],[PROFILE]);
 ```
 
 * update client
 
 >
 ```javascript
-Profile.updateClient([PEERID],[Label]);
+PhoneBook.updateClient([PEERID],[Label]);
 ```
 
 * remove client
 
 >
 ```javascript
-Profile.removeClient([PEERID]);
+PhoneBook.removeClient([PEERID]);
 ```
 
 * get a group by groupid
 
 >
 ```javascript
-Profile.getGroup([GROUPID]);
+PhoneBook.getGroup([GROUPID]);
 ```
 
 
@@ -90,7 +118,7 @@ Profile.getGroup([GROUPID]);
 
 >
 ```javascript
-Profile.getGroupMap();
+PhoneBook.getGroupMap();
 ```
 
 
@@ -98,14 +126,14 @@ Profile.getGroupMap();
 
 >
 ```javascript
-Profile.copyGroupFromPartner([PEERID],[NEWGROUP]);
+PhoneBook.copyGroupFromPartner([PEERID],[NEWGROUP]);
 ```
 
 * add a own new group
 
 >
 ```javascript
-Profile.addGroup([GROUPNAME]);
+PhoneBook.addGroup([GROUPNAME]);
 ```
 
 
@@ -113,21 +141,21 @@ Profile.addGroup([GROUPNAME]);
 
 >
 ```javascript
-Profile.updateGroup([GROUPID],[GROUP]);
+PhoneBook.updateGroup([GROUPID],[GROUP]);
 ```
 
 * remove a group by groupid
 
 >
 ```javascript
-Profile.removeGroup([GROUPID]);
+PhoneBook.removeGroup([GROUPID]);
 ```
 
 * remove a client from group
 
 >
 ```javascript
-Profile.removeGroupByClient([PEERID],[GROUP]);
+PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 ```
 
 ## Directive
