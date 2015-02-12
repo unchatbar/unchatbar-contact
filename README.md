@@ -39,6 +39,8 @@ configure route see below
 
 ## Configure
 * necessary routing configuration
+
+>
 ```javascript
 .state('layoutChat', {
     abstract: true,
