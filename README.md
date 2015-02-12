@@ -40,26 +40,26 @@ configure route see below
 ## Configure
 * necessary routing configuration
 ```javascript
-        .state('layoutChat', {
-            abstract: true,
-            templateUrl: 'views/unchatbar-contact/index.html'
+.state('layoutChat', {
+    abstract: true,
+    templateUrl: 'views/unchatbar-contact/index.html'
 
-        })
-        .state('contact', {
-            parent: 'layoutChat',
-            url: '/contact'
-        })
-        .state('contact.client', {
-            parent: 'contact',
-            url: '/user/{clientId}'
+})
+.state('contact', {
+    parent: 'layoutChat',
+    url: '/contact'
+})
+.state('contact.client', {
+    parent: 'contact',
+    url: '/user/{clientId}'
 
 
-        })
-        .state('contact.group', {
-            parent: 'contact',
-            url: '/group/{groupId}'
+})
+.state('contact.group', {
+    parent: 'contact',
+    url: '/group/{groupId}'
 
-        });
+});
 ```
 
 * store PhoneBook Data in local Storage
