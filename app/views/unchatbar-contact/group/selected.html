@@ -1,17 +1,15 @@
-<div>
-    <div data-ng-init="init()" data-ng-show="groupItem">
-        <p>{{groupItem.label}}</p>
-    <span class="btn btn-success call" data-ng-click="removeGroup(groupItem)">
+<div data-ng-show="group">
+    <p>{{group.label}}</p>
+    <span class="btn btn-success call" data-ng-click="removeGroup(group)">
         <i class=" fa fa-trash fa-3x"></i>
     </span>
-    <span ng-if="groupItem.editable === true">
+    <span ng-if="group.editable === true">
       <span ng-dropdown-multiselect=""
             extra-settings="{showCheckAll:false,showUncheckAll : false}"
             events="{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}"
             options="clientMap | filter:ownPeerId"
             translation-texts="{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}"
-            selected-model="groupItem.users"></span>
+            selected-model="group.users"></span>
     </span>
 
-    </div>
 </div>

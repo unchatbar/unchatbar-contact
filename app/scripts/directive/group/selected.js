@@ -14,48 +14,25 @@ angular.module('unchatbar-contact').directive('unContactGroupSelected', [
     function () {
         return {
             restrict: 'E',
-            replace: true,
-            templateUrl:'views/unchatbar-contact/group/selected.html',
+            replace: false,
+            templateUrl: 'views/unchatbar-contact/group/selected.html',
             controller: 'unContactGroup',
-            link : function(scope){
+            link: function (scope) {
 
-                /**
-                 * @ngdoc property
-                 * @name groupItem
-                 * @propertyOf unchatbar-contact.directive:unContactGroupSelected
-                 * @returns {Object} selected group
-                 */
-                scope.groupItem = {};
+                function updateScope() {
+                    scope.getGroup();
+                    scope.getClientMap();
+                }
 
-                /**
-                 * @ngdoc property
-                 * @name clientMap
-                 * @propertyOf unchatbar-contact.directive:unContactGroupSelected
-                 * @returns {Object} map of all clients
-                 */
-                scope.clientMap = {};
-
-                /**
-                 * @ngdoc methode
-                 * @name init
-                 * @methodOf unchatbar-contact.directive:unContactGroupSelected
-                 * @description
-                 *
-                 * init directive
-                 *
-                 */
-                scope.init =  function(){
-                    scope.groupItem = scope.getGroup();
-                    scope.clientMap = scope.getClientMap();
-                };
-
-                scope.$on('$stateChangeSuccess',function(){
-                    scope.init();
+                scope.$on('$stateChangeSuccess', function () {
+                    updateScope();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.init();
+                    updateScope();
                 });
+
+                updateScope();
             }
         };
     }

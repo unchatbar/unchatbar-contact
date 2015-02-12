@@ -16,62 +16,21 @@ describe('Directive: unContactClientSelected', function () {
             return element;
         };
     }));
-    describe('check init', function () {
-        it('it should be an empty object', function () {
-            expect(build().scope().client).toEqual({});
-        });
-    });
 
     describe('check html', function () {
         var element;
         beforeEach(function () {
             element = build();
-            spyOn(element.scope(), 'getClient').and.returnValue({label: 'userA'});
+            element.scope().client = {id: 'XX',label: 'userA'};
+
         });
         it('should contain label of user', inject(function ($rootScope) {
-            element.scope().init();
+
             $rootScope.$digest();
             expect(element.html()).toContain("userA");
         }));
     });
 
-    describe('check methode', function () {
-        var element;
-        beforeEach(function () {
-            element = build();
-        });
-        describe('init', function () {
-            it('should set set value from `scope.getClient` to `scope.client`', function () {
-                spyOn(element.scope(), 'getClient').and.returnValue({label: 'userA'});
 
-                element.scope().init();
 
-                expect(element.scope().client).toEqual({label: 'userA'});
-            });
-        });
-    });
-    describe('check events', function () {
-        var element;
-        beforeEach(function () {
-            element = build();
-        });
-        describe('$stateChangeSuccess', function () {
-            it('should call `scope.init()` ', function () {
-                spyOn(element.scope(), 'init').and.returnValue(true);
-
-                element.scope().$broadcast('$stateChangeSuccess', {});
-
-                expect(element.scope().init).toHaveBeenCalled();
-            });
-        });
-        describe('PhoneBookUpdate', function () {
-            it('should call `scope.init()` ', function () {
-                spyOn(element.scope(), 'init').and.returnValue(true);
-
-                element.scope().$broadcast('$stateChangeSuccess', {});
-
-                expect(element.scope().init).toHaveBeenCalled();
-            });
-        });
-    });
 });

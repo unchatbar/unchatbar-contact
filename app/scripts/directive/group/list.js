@@ -14,38 +14,21 @@ angular.module('unchatbar-contact').directive('unContactGroupList', [
     function () {
         return {
             restrict: 'E',
-            replace: true,
+            replace: false,
             templateUrl:'views/unchatbar-contact/group/list.html',
             controller: 'unContactGroup',
             link : function(scope){
-                /**
-                 * @ngdoc property
-                 * @name groupMap
-                 * @propertyOf unchatbar-contact.directive:unContactGroupList
-                 * @returns {Object} map of groups
-                 */
-                scope.groupMap = {};
-
-                /**
-                 * @ngdoc methode
-                 * @name init
-                 * @methodOf unchatbar-contact.directive:unContactGroupList
-                 * @description
-                 *
-                 * init directive
-                 *
-                 */
-                scope.init = function(){
-                    scope.groupMap = scope.getGroupMap();
-                };
 
                 scope.$on('$stateChangeSuccess',function(){
-                    scope.init();
+                    scope.getGroupMap();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.init();
+                    scope.getGroupMap();
+
                 });
+
+                scope.getGroupMap();
             }
         };
     }

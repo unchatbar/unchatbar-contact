@@ -15,6 +15,22 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$st
     function ($scope,$state, $stateParams, PhoneBook) {
 
         /**
+         * @ngdoc property
+         * @name clientMap
+         * @propertyOf unchatbar-contact.controller:unContactClient
+         * @returns {Object} list of clients
+         */
+        $scope.clientMap = $scope.clientMap || {};
+
+        /**
+         * @ngdoc property
+         * @name client
+         * @propertyOf unchatbar-contact.directive:unContactClientSelected
+         * @returns {Object} selected aclient
+         */
+        $scope.client = $scope.client || {};
+
+        /**
          * @ngdoc methode
          * @name getClientMap
          * @methodOf unchatbar-contact.controller:unContactClient
@@ -25,7 +41,7 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$st
          *
          */
         $scope.getClientMap = function () {
-            return PhoneBook.getClientMap();
+            $scope.clientMap = PhoneBook.getClientMap();
         };
 
         /**
@@ -38,7 +54,7 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$st
          *
          */
         $scope.getClient = function () {
-            return PhoneBook.getClient($stateParams.clientId);
+            $scope.client = PhoneBook.getClient($stateParams.clientId);
         };
 
 

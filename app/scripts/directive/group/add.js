@@ -14,7 +14,7 @@ angular.module('unchatbar-contact').directive('unContactGroupAdd', [
     function () {
         return {
             restrict: 'E',
-            replace: true,
+            replace: false,
             templateUrl:'views/unchatbar-contact/group/add.html',
             controller: 'unContactGroup'
         };

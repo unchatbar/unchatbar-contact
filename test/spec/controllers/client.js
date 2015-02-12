@@ -32,8 +32,8 @@ describe('Controller: phoneBook', function () {
                 spyOn(PhoneBookService, 'getClientMap').and.returnValue(
                     {'peerIdUser': 'test'}
                 );
-
-                expect(scope.getClientMap()).toEqual({'peerIdUser': 'test'});
+                scope.getClientMap();
+                expect(scope.clientMap).toEqual({'peerIdUser': 'test'});
             });
         });
 
@@ -51,7 +51,8 @@ describe('Controller: phoneBook', function () {
                 expect(PhoneBookService.getClient).toHaveBeenCalledWith('clientId');
             });
             it('should return value from `PhoneBook.getClientMap`', function () {
-                expect(scope.getClient()).toEqual({'peerIdUser': 'test'});
+                scope.getClient();
+                expect(scope.client).toEqual({'peerIdUser': 'test'});
             });
         });
 

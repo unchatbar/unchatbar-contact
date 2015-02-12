@@ -16,6 +16,31 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
     function ($scope, $state, $stateParams, PhoneBook, DataConnection) {
 
         /**
+         * @ngdoc property
+         * @name groupMap
+         * @propertyOf unchatbar-contact.controller:unContactGroup
+         * @returns {Object} map of groups
+         */
+        $scope.groupMap = $scope.groupMap || {};
+
+        /**
+         * @ngdoc property
+         * @name groupItem
+         * @propertyOf unchatbar-contact.controller:unContactGroup
+         * @returns {Object} selected group
+         */
+        $scope.group = $scope.group || {};
+
+
+        /**
+         * @ngdoc property
+         * @name clientMap
+         * @propertyOf unchatbar-contact.controller:unContactGroup
+         * @returns {Object} map of all clients
+         */
+        $scope.clientMap = $scope.clientMap || {};
+
+        /**
          * @ngdoc methode
          * @name getGroup
          * @methodOf unchatbar-contact.controller:unContactGroup
@@ -25,7 +50,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.getGroupMap = function () {
-            return PhoneBook.getGroupMap();
+            $scope.groupMap = PhoneBook.getGroupMap();
         };
 
         /**
@@ -38,7 +63,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.getGroup = function () {
-            return PhoneBook.getGroup($stateParams.groupId);
+            $scope.group = PhoneBook.getGroup($stateParams.groupId);
         };
 
         /**
@@ -84,9 +109,15 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          */
         $scope.addUserToGroup = function () {
             if ($stateParams.groupId) {
-                var group = $scope.groupMap[$stateParams.groupId];
+                var group = $scope.group;
                 _.forEach(group.users, function (user) {
-                    DataConnection.send(user.id, '', 'updateGroup', {roomId: $stateParams.groupId});
+                    DataConnection.send(user.id, '', 'updateGroup',
+                        {
+                            roomId: $stateParams.groupId,
+                            group: group
+
+                        }
+                    );
                 });
                 PhoneBook.updateGroup($stateParams.groupId, group);
             }
@@ -104,9 +135,15 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          */
         $scope.removeUserFromGroup = function () {
             if ($stateParams.groupId) {
-                var group = $scope.groupMap[$stateParams.groupId];
+                var group = $scope.group;
                 _.forEach(group.users, function (user) {
-                    DataConnection.send(user.id, '', 'updateGroup', {roomId: $stateParams.groupId});
+                    DataConnection.send(user.id, '', 'updateGroup',
+                        {
+                            roomId: $stateParams.groupId,
+                            group: group
+
+                        }
+                    );
                 });
                 PhoneBook.updateGroup($stateParams.groupId, group);
             }
@@ -122,7 +159,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.getClientMap = function () {
-            return PhoneBook.getClientMap();
+            $scope.clientMap = PhoneBook.getClientMap();
         };
     }
 ]);

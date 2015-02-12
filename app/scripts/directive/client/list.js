@@ -14,17 +14,11 @@ angular.module('unchatbar-contact').directive('unContactClientList', [
     function () {
         return {
             restrict: 'E',
-            replace: true,
+            replace: false,
             templateUrl:'views/unchatbar-contact/client/list.html',
             controller: 'unContactClient',
             link : function(scope){
-                /**
-                 * @ngdoc property
-                 * @name clientMap
-                 * @propertyOf unchatbar-contact.directive:unContactClientList
-                 * @returns {Object} list of clients
-                 */
-                scope.clientMap = {};
+
 
                 /**
                  * @ngdoc methode
@@ -35,17 +29,19 @@ angular.module('unchatbar-contact').directive('unContactClientList', [
                  * init directive
                  *
                  */
-                scope.init = function(){
-                    scope.clientMap = scope.getClientMap();
-                };
+                function updateScope (){
+                    scope.getClientMap();
+                }
 
                 scope.$on('$stateChangeSuccess', function () {
-                    scope.init();
+                    updateScope();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.init();
+                    updateScope();
                 });
+
+                updateScope();
             }
         };
     }
