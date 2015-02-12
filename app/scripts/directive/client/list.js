@@ -40,11 +40,11 @@ angular.module('unchatbar-contact').directive('unContactClientList', [
                 };
 
                 scope.$on('$stateChangeSuccess', function () {
-                    scope.clientMap = scope.getClientMap();
+                    scope.init();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.clientMap = scope.getClientMap();
+                    scope.init();
                 });
             }
         };

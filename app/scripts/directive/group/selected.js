@@ -50,13 +50,11 @@ angular.module('unchatbar-contact').directive('unContactGroupSelected', [
                 };
 
                 scope.$on('$stateChangeSuccess',function(){
-                    scope.groupItem = scope.getGroup();
-                    scope.clientMap = scope.getClientMap();
+                    scope.init();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.groupItem = scope.getGroup();
-                    scope.clientMap = scope.getClientMap();
+                    scope.init();
                 });
             }
         };

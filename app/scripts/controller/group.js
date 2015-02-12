@@ -9,7 +9,7 @@
  * @require MessageText
  * @description
  *
- * select client/room for connection
+ * group controller
  *
  */
 angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$state','$stateParams','PhoneBook','MessageText',

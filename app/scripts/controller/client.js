@@ -8,7 +8,7 @@
  * @require PhoneBook
  * @description
  *
- * select client/room for connection
+ * client controller
  *
  */
 angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',

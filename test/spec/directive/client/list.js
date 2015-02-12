@@ -66,21 +66,21 @@ describe('Directive: unContactClientList', function () {
             element = build();
         });
         describe('$stateChangeSuccess', function () {
-            it('should set set value from `scope.getClientMap` to `scope.clientMap`', function () {
-                spyOn(element.scope(), 'getClientMap').and.returnValue([{label: 'userA'}, {label: 'userB'}]);
+            it('should call `scope.init()` ', function () {
+                spyOn(element.scope(), 'init').and.returnValue(true);
 
                 element.scope().$broadcast('$stateChangeSuccess', {});
 
-                expect(element.scope().clientMap).toEqual([{label: 'userA'}, {label: 'userB'}]);
+                expect(element.scope().init).toHaveBeenCalled();
             });
         });
         describe('PhoneBookUpdate', function () {
-            it('should set set value from `scope.getClientMap` to `scope.clientMap`', function () {
-                spyOn(element.scope(), 'getClientMap').and.returnValue([{label: 'userA'}, {label: 'userB'}]);
+            it('should call `scope.init()` ', function () {
+                spyOn(element.scope(), 'init').and.returnValue(true);
 
-                element.scope().$broadcast('PhoneBookUpdate', {});
+                element.scope().$broadcast('$stateChangeSuccess', {});
 
-                expect(element.scope().clientMap).toEqual([{label: 'userA'}, {label: 'userB'}]);
+                expect(element.scope().init).toHaveBeenCalled();
             });
         });
     });

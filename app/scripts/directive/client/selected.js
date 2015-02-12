@@ -40,11 +40,11 @@ angular.module('unchatbar-contact').directive('unContactClientSelected', [
                 };
 
                 scope.$on('$stateChangeSuccess', function () {
-                    scope.client = scope.getClient();
+                    scope.init();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.client = scope.getClient();
+                    scope.init();
                 });
             }
         };

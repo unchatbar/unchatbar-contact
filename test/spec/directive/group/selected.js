@@ -98,29 +98,21 @@ describe('Directive: unContactGroupSelected', function () {
                 spyOn(element.scope(), 'getGroup').and.returnValue({label: 'userA'});
                 spyOn(element.scope(), 'getClientMap').and.returnValue({userA: 'data', userB: 'data'});
             });
-            it('should set set value from `scope.getGroup` to `scope.group`', function () {
+            it('should call `scope.init()` ', function () {
+                spyOn(element.scope(), 'init').and.returnValue(true);
+
                 element.scope().$broadcast('$stateChangeSuccess', {});
 
-                expect(element.scope().groupItem).toEqual({label: 'userA'});
-            });
-
-            it('should set set value from `scope.getClientMap` to `scope.clientMap`', function () {
-                element.scope().$broadcast('$stateChangeSuccess', {});
-
-                expect(element.scope().clientMap).toEqual({userA: 'data', userB: 'data'});
+                expect(element.scope().init).toHaveBeenCalled();
             });
         });
         describe('PhoneBookUpdate', function () {
-            it('should set set value from `scope.getGroup` to `scope.group`', function () {
-                element.scope().$broadcast('PhoneBookUpdate', {});
+            iit('should call `scope.init()` ', function () {
+                spyOn(element.scope(), 'init').and.returnValue(true);
 
-                expect(element.scope().groupItem).toEqual({label: 'userA'});
-            });
+                element.scope().$broadcast('$stateChangeSuccess', {});
 
-            it('should set set value from `scope.getClientMap` to `scope.clientMap`', function () {
-                element.scope().$broadcast('PhoneBookUpdate', {});
-
-                expect(element.scope().clientMap).toEqual({userA: 'data', userB: 'data'});
+                expect(element.scope().init).toHaveBeenCalled();
             });
         });
     });
