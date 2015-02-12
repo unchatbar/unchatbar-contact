@@ -88,7 +88,7 @@ describe('Directive: unContactGroupSelected', function () {
         });
     });
 
-    xdescribe('check events', function () {
+    describe('check events', function () {
         var element;
         beforeEach(function () {
             element = build();
@@ -107,7 +107,7 @@ describe('Directive: unContactGroupSelected', function () {
             });
         });
         describe('PhoneBookUpdate', function () {
-            iit('should call `scope.init()` ', function () {
+            it('should call `scope.init()` ', function () {
                 spyOn(element.scope(), 'init').and.returnValue(true);
 
                 element.scope().$broadcast('$stateChangeSuccess', {});
