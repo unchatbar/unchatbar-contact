@@ -140,11 +140,12 @@ angular.module('unchatbar-contact')
                      * update client
                      *
                      */
-                    updateClient: function (id, label) {
-                        this._storagePhoneBook.user[id] = {
-                            label: label || id,
-                            id: id
-                        };
+                    updateClient: function (id, profile) {
+                        this._storagePhoneBook.user[id] = profile;
+                        this._storagePhoneBook.user[id].id = id;
+                        if(!this._storagePhoneBook.user[id].label) {
+                            this._storagePhoneBook.user[id].label = id;
+                        }
                         this._sendUpdateEvent();
                     },
 

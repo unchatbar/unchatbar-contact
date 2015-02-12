@@ -73,7 +73,7 @@ describe('Serivce: phoneBook', function () {
             it('should change  label from `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {'peerId': {label: 'changeMe'}};
 
-                PhoneBookService.updateClient('peerId', 'testLabel');
+                PhoneBookService.updateClient('peerId', {label:'testLabel'});
 
                 expect(PhoneBookService._storagePhoneBook.user).toEqual(
                     {
