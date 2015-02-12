@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name  unchatbar-phone-book.controller:unContactClient
+ * @name  unchatbar-contact.controller:unContactClient
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
@@ -11,13 +11,13 @@
  * select client/room for connection
  *
  */
-angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',
+angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',
     function ($scope,$state, $stateParams, PhoneBook) {
 
         /**
          * @ngdoc methode
          * @name getClientMap
-         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @methodOf unchatbar-contact.controller:unContactClient
          * @params {String} peerId id of client
          * @description
          *
@@ -31,7 +31,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope','
         /**
          * @ngdoc methode
          * @name getClient
-         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @methodOf unchatbar-contact.controller:unContactClient
          * @description
          *
          * get client data
@@ -45,7 +45,7 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope','
         /**
          * @ngdoc methode
          * @name removeClient
-         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @methodOf unchatbar-contact.controller:unContactClient
          * @params  {String} peerId id of client
          * @description
          *

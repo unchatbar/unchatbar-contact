@@ -3,19 +3,19 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:phoneBook
+ * @name unchatbar-contact.directive:unContactGroupAdd
  * @restrict E
  * @description
  *
- * save client connections , for recall
+ * add new group
  *
  */
-angular.module('unchatbar-phone-book').directive('unContactGroupAdd', [
+angular.module('unchatbar-contact').directive('unContactGroupAdd', [
     function () {
         return {
-            restrict: 'E', //E = element, A = attribute, C = class, M = comment
+            restrict: 'E',
             replace: true,
-            templateUrl:'views/unchatbar-phone-book/group/add.html',
+            templateUrl:'views/unchatbar-contact/group/add.html',
             controller: 'unContactGroup'
         };
     }

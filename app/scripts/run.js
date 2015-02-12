@@ -1,13 +1,13 @@
 'use strict';
 /**
  * @ngdoc overview
- * @name unchatbar-phone-book-connection
+ * @name unchatbar-contact
  * @description
- * # unchatbar-phone-book-connection
+ * # unchatbar-contact-connection
  *
  * Main module of the application.
  */
-angular.module('unchatbar-phone-book').run(['$rootScope', 'PhoneBook',
+angular.module('unchatbar-contact').run(['$rootScope', 'PhoneBook',
     function ($rootScope, PhoneBook) {
         PhoneBook.initStorage();
         $rootScope.$on('ConnectionGetMessageprofile', function (event, data) {

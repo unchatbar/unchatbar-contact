@@ -1,7 +1,7 @@
 angular.module('unchatbar-phone-book').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('views/unchatbar-phone-book/client/list.html',
+  $templateCache.put('views/unchatbar-contact/client/list.html',
     "<div ng-init=\"init()\">\n" +
     "    <div ng-repeat=\"(clientId,clientItem) in clientMap\">\n" +
     "        <div class=\"row\">\n" +
@@ -19,7 +19,7 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/client/selected.html',
+  $templateCache.put('views/unchatbar-contact/client/selected.html',
     "<div data-ng-init=\"init()\" data-ng-show=\"client.id\">\n" +
     "    <span>\n" +
     "        <b>{{client.label}}</b>\n" +
@@ -32,7 +32,7 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/group/add.html',
+  $templateCache.put('views/unchatbar-contact/group/add.html',
     "<div class=\"input-group\">\n" +
     "    <input type=\"text\" class=\"form-control\" data-ng-model=\"newGroupName\"\n" +
     "           placeholder=\"Groupname\">\n" +
@@ -44,7 +44,7 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/group/list.html',
+  $templateCache.put('views/unchatbar-contact/group/list.html',
     "<div>\n" +
     "    <div data-ng-init=\"init()\" ng-repeat=\"(groupId,group) in groupMap\">\n" +
     "        <div class=\"row\">\n" +
@@ -62,7 +62,7 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/group/selected.html',
+  $templateCache.put('views/unchatbar-contact/group/selected.html',
     "<div>\n" +
     "    <div data-ng-init=\"init()\" data-ng-show=\"groupItem\">\n" +
     "        <p>{{groupItem.label}}</p>\n" +
@@ -83,7 +83,7 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/index.html',
+  $templateCache.put('views/unchatbar-contact/index.html',
     "<div>\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-6\">\n" +

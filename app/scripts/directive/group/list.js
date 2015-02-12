@@ -3,29 +3,38 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:unContactGroupList
+ * @name unchatbar-contact.directive:unContactGroupList
  * @restrict E
  * @description
  *
- * save client connections , for recall
+ * list of all groups
  *
  */
-angular.module('unchatbar-phone-book').directive('unContactGroupList', [
+angular.module('unchatbar-contact').directive('unContactGroupList', [
     function () {
         return {
             restrict: 'E',
             replace: true,
-            templateUrl:'views/unchatbar-phone-book/group/list.html',
+            templateUrl:'views/unchatbar-contact/group/list.html',
             controller: 'unContactGroup',
             link : function(scope){
                 /**
                  * @ngdoc property
                  * @name groupMap
-                 * @propertyOf unchatbar-phone-book.controller:unContactGroup
+                 * @propertyOf unchatbar-contact.directive:unContactGroupList
                  * @returns {Object} map of groups
                  */
-                scope.groupMap = [];
+                scope.groupMap = {};
 
+                /**
+                 * @ngdoc methode
+                 * @name init
+                 * @methodOf unchatbar-contact.directive:unContactGroupList
+                 * @description
+                 *
+                 * init directive
+                 *
+                 */
                 scope.init = function(){
                     scope.groupMap = scope.getGroupMap();
                 };

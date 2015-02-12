@@ -2,7 +2,7 @@
 
 describe('Controller: phoneBook', function () {
 
-    beforeEach(module('unchatbar-phone-book'));
+    beforeEach(module('unchatbar-contact'));
 
     var phoneBookCTRL, stateParams, scope, PhoneBookService, MessageTextService,state;
 

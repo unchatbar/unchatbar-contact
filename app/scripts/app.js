@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc overview
- * @name unchatbar-phone-book-connection-connection
+ * @name unchatbar-contact
  * @description
- * # unchatbar-phone-book-connection
+ * # unchatbar-contact-connection
  *
- * unchatbar-phone-book-connection connections (broker/data/stream connections)
+ * unchatbar-contact-connection connections (broker/data/stream connections)
  */
-angular.module('unchatbar-phone-book', [
+angular.module('unchatbar-contact', [
     'constants',
     'ui.router',
     'ui.bootstrap',

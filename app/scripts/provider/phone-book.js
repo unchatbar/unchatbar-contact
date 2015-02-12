@@ -3,19 +3,19 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc service
- * @name unchatbar-phone-book.PhoneBookProvider
+ * @name unchatbar-contact.PhoneBookProvider
  * @description
  * # peer
  * config peer connection
  */
-angular.module('unchatbar-phone-book')
+angular.module('unchatbar-contact')
     .provider('PhoneBook', function () {
         var useLocalStorage = false;
 
         /**
          * @ngdoc methode
          * @name setLocalStorage
-         * @methodOf unchatbar-phone-book.PhoneBookProvider
+         * @methodOf unchatbar-contact.PhoneBookProvider
          * @description
          *
          * use local storage for store peerId
@@ -28,7 +28,7 @@ angular.module('unchatbar-phone-book')
 
         /**
          * @ngdoc service
-         * @name unchatbar-phone-book.PhoneBook
+         * @name unchatbar-contact.PhoneBook
          * @require $rootScope
          * @require $sessionStorage
          * @require $localStorage
@@ -45,7 +45,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name _storagePhoneBook
-                     * @propertyOf unchatbar-phone-book.PhoneBook
+                     * @propertyOf unchatbar-contact.PhoneBook
                      * @private
                      * @returns {Object} user/group storage
                      *
@@ -58,7 +58,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name initStorage
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @description
                      *
                      * init storage
@@ -76,8 +76,38 @@ angular.module('unchatbar-phone-book')
 
                     /**
                      * @ngdoc methode
+                     * @name getClient
+                     * @methodOf unchatbar-contact.PhoneBook
+                     * @params {String} clientId peerId from client
+                     * @return {Object} client object
+                     * @description
+                     *
+                     * get client by peerId
+                     *
+                     */
+                    getClient: function (clientId) {
+                        return this._storagePhoneBook.user[clientId] || '';
+                    },
+
+                    /**
+                     * @ngdoc methode
+                     * @name getClientMap
+                     * @methodOf unchatbar-contact.PhoneBook
+                     * @return {Object} map of all clients
+                     * @description
+                     *
+                     * get map of all clients
+                     *
+                     */
+                    getClientMap: function () {
+                        return this._storagePhoneBook.user;
+                    },
+
+
+                    /**
+                     * @ngdoc methode
                      * @name addClient
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} id peerId from client
                      * @paranm {String} label name of client
                      * @description
@@ -102,7 +132,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name updateClient
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} id peerId from client
                      * @paranm {String} label name of client
                      * @description
@@ -118,39 +148,11 @@ angular.module('unchatbar-phone-book')
                         this._sendUpdateEvent();
                     },
 
-                    /**
-                     * @ngdoc methode
-                     * @name getClient
-                     * @methodOf unchatbar-phone-book.PhoneBook
-                     * @params {String} clientId peerId from client
-                     * @return {Object} client object
-                     * @description
-                     *
-                     * get client by peerId
-                     *
-                     */
-                    getClient: function (clientId) {
-                        return this._storagePhoneBook.user[clientId] || '';
-                    },
 
                     /**
                      * @ngdoc methode
                      * @name getClientMap
-                     * @methodOf unchatbar-phone-book.PhoneBook
-                     * @return {Object} map of all clients
-                     * @description
-                     *
-                     * get map of all clients
-                     *
-                     */
-                    getClientMap: function () {
-                        return this._storagePhoneBook.user;
-                    },
-
-                    /**
-                     * @ngdoc methode
-                     * @name getClientMap
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} id peerId from client
                      * @return {Object} map of all clients
                      * @description
@@ -166,7 +168,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name copyGroupFromPartner
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} id id of room
                      * @return {Object} option room info
                      * @description
@@ -196,7 +198,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name addGroup
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} name name of group
                      * @description
                      *
@@ -222,7 +224,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name updateGroup
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} id id from group
                      * @paranm {Object} option group options
                      * @description
@@ -238,7 +240,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name createNewGroupId
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @description
                      *
                      * create new unique group id
@@ -250,7 +252,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name getGroup
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} groupId id of group
                      * @description
                      *
@@ -264,7 +266,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name removeGroup
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} roomId id of room
                      * @description
                      *
@@ -279,7 +281,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name removeGroupByClient
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} clientPeer client peer id
                      * @params {String} roomId id of room
                      * @description
@@ -303,7 +305,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name getGroupMap
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @return {Object} get a map of all groups from phonebook
                      * @description
                      *
@@ -317,7 +319,7 @@ angular.module('unchatbar-phone-book')
                     /**
                      * @ngdoc methode
                      * @name _sendUpdateEvent
-                     * @methodOf unchatbar-phone-book.PhoneBook
+                     * @methodOf unchatbar-contact.PhoneBook
                      * @description
                      *
                      * broadcast an update event
@@ -327,7 +329,7 @@ angular.module('unchatbar-phone-book')
                         /**
                          * @ngdoc event
                          * @name PhoneBookUpdate
-                         * @eventOf unchatbar-phone-book.PhoneBook
+                         * @eventOf unchatbar-contact.PhoneBook
                          * @eventType broadcast on root scope
                          * @description
                          *

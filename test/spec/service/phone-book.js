@@ -2,7 +2,7 @@
 
 describe('Serivce: phoneBook', function () {
     var BrokerService, rootScope, sessionStorage, PhoneBookService;
-    beforeEach(module('unchatbar-phone-book'));
+    beforeEach(module('unchatbar-contact'));
 
 
     beforeEach(inject(function ($rootScope, MessageText, Broker, $sessionStorage, PhoneBook) {

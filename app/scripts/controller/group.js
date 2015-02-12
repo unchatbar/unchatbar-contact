@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name  unchatbar-phone-book.controller:unContactGroup
+ * @name  unchatbar-contact.controller:unContactGroup
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
@@ -12,13 +12,13 @@
  * select client/room for connection
  *
  */
-angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '$state','$stateParams','PhoneBook','MessageText',
+angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$state','$stateParams','PhoneBook','MessageText',
     function ($scope,$state,$stateParams, PhoneBook,MessageText) {
 
         /**
          * @ngdoc methode
          * @name getGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get all groups
@@ -31,7 +31,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name getGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get selected group
@@ -44,7 +44,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name createGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * add new group
@@ -58,7 +58,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name removeGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @params  {String} roomId id of room
          * @description
          *
@@ -74,7 +74,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name addUserToGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * add new user to group
@@ -92,7 +92,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name addUserToGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @params {String} user id of client
          * @description
          *
@@ -111,7 +111,7 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name getClientMap
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get all clients
