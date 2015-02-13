@@ -49,7 +49,6 @@ configure route see below
 .state('contact.client', {
     parent: 'contact',
     url: '/user/{clientId}'
-
 })
 .state('contact.group', {
     parent: 'contact',
