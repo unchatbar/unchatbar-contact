@@ -7,8 +7,8 @@
  *
  * Main module of the application.
  */
-angular.module('unchatbar-contact').run(['$rootScope', 'PhoneBook', 'Profile',
-    function ($rootScope, PhoneBook, Profile) {
+angular.module('unchatbar-contact').run(['$rootScope', 'PhoneBook', 'Profile','DataConnection',
+    function ($rootScope, PhoneBook, Profile,DataConnection) {
         PhoneBook.initStorage();
         $rootScope.$on('ConnectionGetMessage_updateProfile', function (event, data) {
             PhoneBook.updateClient(data.peerId, data.message.meta.profile);
@@ -27,6 +27,19 @@ angular.module('unchatbar-contact').run(['$rootScope', 'PhoneBook', 'Profile',
                 DataConnection.send(data.connection.peer, '', 'updateProfile', {profile: Profile.get()});
             }
         });
+
+        $rootScope.$on('profileUpdate', function (event, data) {
+            _.forEach( PhoneBook.getClientMap(), function (user) {
+                DataConnection.send(user.id, '', 'updateProfile', {profile: Profile.get()});
+            });
+        });
+
+        $rootScope.$on('BrokerPeerOpen', function (event, data) {
+            _.forEach( PhoneBook.getClientMap(), function (user) {
+                DataConnection.send(user.id, '', 'ping', {profile: Profile.get()});
+            });
+        });
+
 
         $rootScope.$on('BrokerPeerCall', function (event, data) {
             PhoneBook.addClient(data.client.peer, data.client.metadata.profile);

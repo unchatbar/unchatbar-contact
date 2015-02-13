@@ -38,6 +38,7 @@ configure route see below
 
 
 ## Configure
+
 * necessary routing configuration
 
 >
@@ -45,7 +46,6 @@ configure route see below
 .state('layoutChat', {
     abstract: true,
     templateUrl: 'views/unchatbar-contact/index.html'
-
 })
 .state('contact', {
     parent: 'layoutChat',
@@ -55,12 +55,10 @@ configure route see below
     parent: 'contact',
     url: '/user/{clientId}'
 
-
 })
 .state('contact.group', {
     parent: 'contact',
     url: '/group/{groupId}'
-
 });
 ```
 
