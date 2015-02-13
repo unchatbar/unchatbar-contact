@@ -43,7 +43,6 @@ configure route see below
 
 >
 ```javascript
-
 .state('contact', {
     url: '/contact'
 })
