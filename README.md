@@ -43,12 +43,8 @@ configure route see below
 
 >
 ```javascript
-.state('layoutChat', {
-    abstract: true,
-    templateUrl: 'views/unchatbar-contact/index.html'
-})
+
 .state('contact', {
-    parent: 'layoutChat',
     url: '/contact'
 })
 .state('contact.client', {

@@ -5,13 +5,7 @@ angular.module('unchatbar-contact')
             $locationProvider.html5Mode(true);
 
             $stateProvider
-                .state('layoutChat', {
-                    abstract: true,
-                  //  templateUrl: 'views/unchatbar-contact/index.html'
-
-                })
                 .state('contact', {
-                    parent: 'layoutChat',
                     url: '/contact'
                 })
                 .state('contact.client', {
