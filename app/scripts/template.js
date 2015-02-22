@@ -77,34 +77,4 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "</div>\n"
   );
 
-
-  $templateCache.put('views/unchatbar-contact/index.html',
-    "<div>\n" +
-    "\n" +
-    "    <un-connection-peer-id></un-connection-peer-id>\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-6\">\n" +
-    "            <h2>Client List</h2>\n" +
-    "            <un-connection-dialer></un-connection-dialer>\n" +
-    "            <un-contact-client-list></un-contact-client-list>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-md-6\">\n" +
-    "            <h2>Selected Client</h2>\n" +
-    "            <un-contact-client-selected></un-contact-client-selected>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-6\">\n" +
-    "            <h2>Group Group</h2>\n" +
-    "            <un-contact-group-add></un-contact-group-add>\n" +
-    "            <un-contact-group-list></un-contact-group-list>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-md-6\">\n" +
-    "            <h2>Selected Group</h2>\n" +
-    "            <un-contact-group-selected></un-contact-group-selected>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
 }]);
