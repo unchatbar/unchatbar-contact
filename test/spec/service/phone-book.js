@@ -2,10 +2,10 @@
 
 describe('Serivce: phoneBook', function () {
     var BrokerService, rootScope, sessionStorage, PhoneBookService;
-    beforeEach(module('unchatbar-phone-book'));
+    beforeEach(module('unchatbar-contact'));
 
 
-    beforeEach(inject(function ($rootScope, MessageText, Broker, $sessionStorage, PhoneBook) {
+    beforeEach(inject(function ($rootScope, Broker, $sessionStorage, PhoneBook) {
         rootScope = $rootScope;
         BrokerService = Broker;
         sessionStorage = $sessionStorage;
@@ -73,7 +73,7 @@ describe('Serivce: phoneBook', function () {
             it('should change  label from `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {'peerId': {label: 'changeMe'}};
 
-                PhoneBookService.updateClient('peerId', 'testLabel');
+                PhoneBookService.updateClient('peerId', {label:'testLabel'});
 
                 expect(PhoneBookService._storagePhoneBook.user).toEqual(
                     {

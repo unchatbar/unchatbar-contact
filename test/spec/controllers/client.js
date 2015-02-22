@@ -2,23 +2,23 @@
 
 describe('Controller: phoneBook', function () {
 
-    beforeEach(module('unchatbar-phone-book'));
+    beforeEach(module('unchatbar-contact'));
 
-    var phoneBookCTRL, stateParams, scope, PhoneBookService, MessageTextService,state;
+    var phoneBookCTRL, stateParams, scope, PhoneBookService,state;
 
-    beforeEach(inject(function ($controller, $rootScope,$state, PhoneBook,MessageText) {
+    beforeEach(inject(function ($controller, $rootScope,$state, PhoneBook) {
         PhoneBookService = PhoneBook;
         stateParams = {};
         state = $state;
         scope = $rootScope.$new();
-        MessageTextService = MessageText;
+
         phoneBookCTRL = function () {
             $controller('unContactClient', {
                 $scope: scope,
                 $stateParams: stateParams,
                 $state : state,
-                PhoneBook: PhoneBookService,
-                MessageText: MessageTextService,
+                PhoneBook: PhoneBookService
+
             });
         };
     }));
@@ -32,8 +32,8 @@ describe('Controller: phoneBook', function () {
                 spyOn(PhoneBookService, 'getClientMap').and.returnValue(
                     {'peerIdUser': 'test'}
                 );
-
-                expect(scope.getClientMap()).toEqual({'peerIdUser': 'test'});
+                scope.getClientMap();
+                expect(scope.clientMap).toEqual({'peerIdUser': 'test'});
             });
         });
 
@@ -51,7 +51,8 @@ describe('Controller: phoneBook', function () {
                 expect(PhoneBookService.getClient).toHaveBeenCalledWith('clientId');
             });
             it('should return value from `PhoneBook.getClientMap`', function () {
-                expect(scope.getClient()).toEqual({'peerIdUser': 'test'});
+                scope.getClient();
+                expect(scope.client).toEqual({'peerIdUser': 'test'});
             });
         });
 

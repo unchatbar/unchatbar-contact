@@ -3,31 +3,34 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:unContactClientSelected
+ * @name unchatbar-contact.directive:unContactClientSelected
  * @restrict E
  * @description
  *
  * selected client
  *
  */
-angular.module('unchatbar-phone-book').directive('unContactClientSelected', [
+angular.module('unchatbar-contact').directive('unContactClientSelected', [
     function () {
         return {
             restrict: 'E',
-            replace: true,
-            templateUrl:'views/unchatbar-phone-book/client/selected.html',
+            replace: false,
+            templateUrl:'views/unchatbar-contact/client/selected.html',
             controller: 'unContactClient',
             link : function(scope){
 
-                scope.client = scope.getClient();
+                function updateScope (){
+                    scope.getClient();
+                }
 
                 scope.$on('$stateChangeSuccess', function () {
-                    scope.client = scope.getClient();
+                    updateScope();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.client = scope.getClient();
+                    updateScope();
                 });
+                updateScope();
             }
         };
     }

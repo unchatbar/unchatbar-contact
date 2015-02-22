@@ -39,17 +39,17 @@ module.exports = function (config) {
             'bower_components/unchatbar-connection/app/scripts/run.js',
             'bower_components/unchatbar-connection/app/scripts/template.js',
             'bower_components/unchatbar-connection/app/scripts/provider/broker.js',
-            'bower_components/unchatbar-connection/app/scripts/provider/message-text.js',
-            'bower_components/unchatbar-connection/app/scripts/service/connection.js',
+            'bower_components/unchatbar-connection/app/scripts/provider/data-connection.js',
             'bower_components/unchatbar-connection/app/scripts/service/peer.js',
-            'bower_components/unchatbar-connection/app/scripts/service/stream.js',
             'bower_components/unchatbar-connection/app/scripts/directive/dialer.js',
+            'bower_components/unchatbar-connection/app/scripts/directive/peerId.js',
             'bower_components/unchatbar-connection/app/scripts/controller/dialer.js',
             // endbower
             'bower_components/angular-mocks/angular-mocks.js',
+            '!app/scripts/template.js',
             'app/scripts/constants.js',
             'app/scripts/**/*.js',
-            'test/mock/**/*.js',
+            'test/mock/views/**/*.html',
             'test/spec/**/*.js',
 
         ],
@@ -59,6 +59,7 @@ module.exports = function (config) {
             'app/scripts/run.js',
             'app/scripts/config/*.js'
         ],
+
 
         // web server port
         port: 9000,
@@ -79,9 +80,15 @@ module.exports = function (config) {
         plugins: [
             'karma-phantomjs-launcher',
             'karma-jasmine',
-            'karma-coverage'
+            'karma-coverage',
+            'karma-ng-html2js-preprocessor'
         ],
 
+        /*ngHtml2JsPreprocessor: {
+            // setting this option will create only a single module that contains templates
+            // from all the files, so you can load them all with module('foo')
+            moduleName: 'unchatbar-phone-book'
+        },*/
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
         singleRun: true,
@@ -98,7 +105,8 @@ module.exports = function (config) {
             // source files, that you wanna generate coverage for
             // do not include tests or libraries
             // (these files will be instrumented by Istanbul)
-            'app/scripts/**/*.js': ['coverage']
+            'app/scripts/**/*.js': ['coverage'],
+            'test/mock/views/**/*.html': ['ng-html2js']
         },
 
         // optionally, configure the reporter

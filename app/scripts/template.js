@@ -1,120 +1,52 @@
-angular.module('unchatbar-phone-book').run(['$templateCache', function($templateCache) {
+angular.module('unchatbar-contact').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('views/unchatbar-phone-book/active-user.html',
-    "<div data-ng-init=\"getClientAndGroups()\">\n" +
-    "\n" +
-    "  <div data-ng-show=\"selectedUser\">\n" +
-    "\n" +
-    "    <i data-ng-click=\"offcanvas=!offcanvas\" class=\"fa fa-user fa-4x\"></i>\n" +
-    "\n" +
-    "    <p>{{clientMap[selectedUser].label}}</p>\n" +
-    "    <div class=\"btn btn-success call\" data-ng-click=\"streamToClient(selectedUser)\">\n" +
-    "      <i class=\"fa fa-phone fa-3x\"></i>\n" +
+  $templateCache.put('views/unchatbar-contact/client/list.html',
+    "<div ng-repeat=\"(clientId,clientItem) in clientMap\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-9\">\n" +
+    "            <a ui-sref-active=\"active\" ui-sref='contact.client({clientId: clientId})'\n" +
+    "               class=\"list-group-item\">{{clientItem.label}}\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-md-3\">\n" +
+    "            <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "\n" +
-    "    <div class=\"btn btn-success call\" data-ng-click=\"removeClient(selectedUser)\">\n" +
-    "      <i class=\" fa fa-trash fa-3x\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "  </div>\n" +
-    "  <div data-ng-show=\"selectedGroup\">\n" +
-    "    <i data-ng-click=\"offcanvas=!offcanvas\" class=\"fa fa-users fa-4x\"></i>\n" +
-    "\n" +
-    "    <p>{{groupMap[selectedGroup].label}}</p>\n" +
-    "    <div class=\"btn btn-success call\" data-ng-click=\"streamToConferenceByGroupId(selectedGroup)\">\n" +
-    "      <i class=\"fa fa-phone fa-3x\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"btn btn-success call\" data-ng-click=\"removeGroup(selectedGroup)\">\n" +
-    "      <i class=\" fa fa-trash fa-3x\"></i>\n" +
-    "    </div>\n" +
-    "    <div class=\"btn btn-success call\" ng-if=\"groupMap[selectedGroup].editable === true\">\n" +
-    "\n" +
-    "      <span ng-dropdown-multiselect=\"\"\n" +
-    "            extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
-    "            events=\"{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}\"\n" +
-    "            options=\"clientMap | filter:ownPeerId\"\n" +
-    "            translation-texts=\"{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}\"\n" +
-    "            selected-model=\"groupMap[selectedGroup].users\"></span>\n" +
-    "    </div>\n" +
-    "\n" +
-    "  </div>\n" +
-    "\n" +
     "</div>\n"
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/book.html',
-    "<div data-ng-init=\"init()\">\n" +
-    "  <tabset justified=\"true\">\n" +
-    "    <tab heading=\"user\" active=\"selectedUser\">\n" +
-    "\n" +
-    "\n" +
-    "      <div ng-repeat=\"(peerId,connection) in clientMap\">\n" +
-    "        <a ui-sref-active=\"active\" ui-sref='chat.user({peerId: peerId})'\n" +
-    "           class=\"list-group-item\">{{connection.label}}</a>\n" +
-    "      </div>\n" +
-    "    </tab>\n" +
-    "    <tab heading=\"Groupps\" active=\"selectedGroup\">\n" +
-    "      <div class=\"input-group dialer\">\n" +
-    "        <input type=\"text\" class=\"form-control\" data-ng-model=\"form.newGroupName\"\n" +
-    "               placeholder=\"Groupname\">\n" +
-    "\n" +
-    "        <div data-ng-click=\"createGroup()\" class=\"input-group-addon\">\n" +
-    "          <i class=\"fa fa-check fa-1x\"></i>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "      <div ng-repeat=\"(groupId,group) in groupMap\">\n" +
-    "        <a ui-sref-active=\"active\" ui-sref='chat.group({groupId: groupId})' class=\"list-group-item\">{{group.label}}</a>\n" +
-    "      </div>\n" +
-    "    </tab>\n" +
-    "  </tabset>\n" +
-    "</div>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/client/list.html',
-    "<div data-ng-init=\"init()\">\n" +
-    "    <div ng-repeat=\"(clientId,client) in clientMap\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-md-9\">\n" +
-    "                <a ui-sref-active=\"active\" ui-sref='chat.client({clientId: clientId})'\n" +
-    "                   class=\"list-group-item\">{{client.label}}\n" +
-    "                </a>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/client/selected.html',
-    "<div data-ng-init=\"init()\">\n" +
+  $templateCache.put('views/unchatbar-contact/client/selected.html',
+    "<div data-ng-show=\"client.id\">\n" +
     "    <span>\n" +
     "        <b>{{client.label}}</b>\n" +
     "    </span>\n" +
-    "    <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
+    "    <span>\n" +
+    "        <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
+    "    </span>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('views/unchatbar-contact/group/add.html',
+    "<div class=\"input-group\">\n" +
+    "    <input type=\"text\" class=\"form-control\" data-ng-model=\"newGroupName\"\n" +
+    "           placeholder=\"Groupname\">\n" +
+    "\n" +
+    "    <div data-ng-click=\"createGroup();newGroupName='';\" class=\"input-group-addon\">\n" +
+    "        <i class=\"fa fa-check fa-1x\"></i>\n" +
+    "    </div>\n" +
     "</div>"
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/group/add.html',
-    "<div data-ng-click=\"createGroup()\" class=\"input-group-addon\">\n" +
-    "    <i class=\"fa fa-check fa-1x\"></i>\n" +
-    "</div>"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/group/list.html',
-    "<div data-ng-init=\"init()\">\n" +
+  $templateCache.put('views/unchatbar-contact/group/list.html',
+    "<div>\n" +
     "    <div ng-repeat=\"(groupId,group) in groupMap\">\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-9\">\n" +
-    "                <a ui-sref-active=\"active\" ui-sref='chat.group({groupId: groupId})'\n" +
+    "                <a ui-sref-active=\"active\" ui-sref='contact.group({groupId: groupId})'\n" +
     "                   class=\"list-group-item\">{{group.label}}\n" +
     "                </a>\n" +
     "            </div>\n" +
@@ -127,99 +59,21 @@ angular.module('unchatbar-phone-book').run(['$templateCache', function($template
   );
 
 
-  $templateCache.put('views/unchatbar-phone-book/index.html',
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "        <h2>Client List</h2>\n" +
-    "        <un-contact-client-list></un-contact-client-list>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "        <h2>Selected Client</h2>\n" +
-    "        <un-contact-client-selected></un-contact-client-selected>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "        <h2>Group List</h2>\n" +
-    "        <un-contact-group-add></un-contact-group-add>\n" +
-    "        <un-contact-group-list></un-contact-group-list>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "        <h2>Selected Client</h2>\n" +
-    "        <un-contact-group-selected></un-contact-group-selected>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/layout/chat/content.html',
-    "<div class=\"col-xs-12 col-sm-9\">\n" +
+  $templateCache.put('views/unchatbar-contact/group/selected.html',
+    "<div data-ng-show=\"group\">\n" +
+    "    <p>{{group.label}}</p>\n" +
+    "    <span class=\"btn btn-success call\" data-ng-click=\"removeGroup(group.id)\">\n" +
+    "        <i class=\" fa fa-trash fa-3x\"></i>\n" +
+    "    </span>\n" +
+    "    <span ng-if=\"group.editable === true\">\n" +
+    "      <span ng-dropdown-multiselect=\"\"\n" +
+    "            extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
+    "            events=\"{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}\"\n" +
+    "            options=\"clientMap | filter:ownPeerId\"\n" +
+    "            translation-texts=\"{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}\"\n" +
+    "            selected-model=\"group.users\"></span>\n" +
+    "    </span>\n" +
     "\n" +
-    "  <div class=\"jumbotron\">\n" +
-    "    <active-user></active-user>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-xs-12 col-lg-12\">\n" +
-    "      <h2>Video/Audio</h2>\n" +
-    "      <stream></stream>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-xs-12 col-lg-12\">\n" +
-    "      <h2>Chat</h2>\n" +
-    "      <text-message-list></text-message-list>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
-    "\n" +
-    "</div>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/layout/chat/index.html',
-    "<div data-ui-view=\"header\"></div>\n" +
-    "<div class=\"container\" data-ng-init=\"offcanvas=false\">\n" +
-    "\n" +
-    "  <div class=\"row row-offcanvas row-offcanvas-left\" data-ng-class=\"{'active': offcanvas}\">\n" +
-    "    <p class=\"pull-left visible-xs\">\n" +
-    "      <i data-ng-click=\"offcanvas=!offcanvas\" class=\"fa fa-book fa-4x\"></i>\n" +
-    "    </p>\n" +
-    "\n" +
-    "    <div data-ui-view=\"sidebar\"></div>\n" +
-    "    <div data-ui-view=\"content\"></div>\n" +
-    "  </div>\n" +
-    "\n" +
-    "</div>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/layout/chat/sidebar.html',
-    "<div class=\"col-xs-6 col-sm-3 sidebar-offcanvas active\" >\n" +
-    "    <div class=\"list-group\">\n" +
-    "        <dialer></dialer>\n" +
-    "        <phone-book></phone-book>\n" +
-    "    </div>\n" +
-    "</div>\n"
-  );
-
-
-  $templateCache.put('views/unchatbar-phone-book/streamOption.html',
-    "<div class=\"modal-header\">\n" +
-    "  <h3 class=\"modal-title\">call option</h3>\n" +
-    "</div>\n" +
-    "<div class=\"modal-body\">\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-xs-6 text-left\">\n" +
-    "      <button type=\"button\" class=\"btn btn-default btn-lg\" aria-label=\"Left Align\" ng-click=\"videoCall()\">\n" +
-    "        <i class=\"glyphicon glyphicon-facetime-video\"></i>Video\n" +
-    "      </button>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-xs-6 text-right\">\n" +
-    "      <button type=\"button\" class=\"btn btn-default btn-lg\" ng-click=\"audiCall()\" aria-label=\"Left Align\"\n" +
-    "              ng-click=\"videoCall()\">\n" +
-    "        <i class=\"glyphicon glyphicon-earphone\"></i>Audio\n" +
-    "      </button>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
     "</div>\n"
   );
 

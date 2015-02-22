@@ -2,63 +2,88 @@
 
 /**
  * @ngdoc controller
- * @name  unchatbar-phone-book.controller:unContactGroup
+ * @name  unchatbar-contact.controller:unContactGroup
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
- * @require MessageText
+ * @require DataConnection
  * @description
  *
- * select client/room for connection
+ * group controller
  *
  */
-angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '$state','$stateParams','PhoneBook','MessageText',
-    function ($scope,$state,$stateParams, PhoneBook,MessageText) {
+angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$state', '$stateParams', 'PhoneBook', 'DataConnection',
+    function ($scope, $state, $stateParams, PhoneBook, DataConnection) {
+
+        /**
+         * @ngdoc property
+         * @name groupMap
+         * @propertyOf unchatbar-contact.controller:unContactGroup
+         * @returns {Object} map of groups
+         */
+        $scope.groupMap = $scope.groupMap || {};
+
+        /**
+         * @ngdoc property
+         * @name groupItem
+         * @propertyOf unchatbar-contact.controller:unContactGroup
+         * @returns {Object} selected group
+         */
+        $scope.group = $scope.group || {};
+
+
+        /**
+         * @ngdoc property
+         * @name clientMap
+         * @propertyOf unchatbar-contact.controller:unContactGroup
+         * @returns {Object} map of all clients
+         */
+        $scope.clientMap = $scope.clientMap || {};
 
         /**
          * @ngdoc methode
          * @name getGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get all groups
          *
          */
         $scope.getGroupMap = function () {
-            return PhoneBook.getGroupMap();
+            $scope.groupMap = PhoneBook.getGroupMap();
         };
 
         /**
          * @ngdoc methode
          * @name getGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get selected group
          *
          */
         $scope.getGroup = function () {
-            return PhoneBook.getGroup($stateParams.groupId);
+            $scope.group = PhoneBook.getGroup($stateParams.groupId);
         };
 
         /**
          * @ngdoc methode
          * @name createGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * add new group
          *
          */
         $scope.createGroup = function () {
-            PhoneBook.addGroup($scope.form.newGroupName);
+            PhoneBook.addGroup($scope.newGroupName);
         };
 
 
         /**
          * @ngdoc methode
          * @name removeGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @params  {String} roomId id of room
          * @description
          *
@@ -66,7 +91,9 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
          *
          */
         $scope.removeGroup = function (roomId) {
-            MessageText.sendRemoveGroup(roomId,PhoneBook.getGroup(roomId).users);
+            _.forEach( PhoneBook.getGroup(roomId).users, function (user) {
+                DataConnection.send(user.id, '', 'removeGroup', {roomId: roomId});
+            });
             PhoneBook.removeGroup(roomId);
             $state.go('contact');
         };
@@ -74,49 +101,65 @@ angular.module('unchatbar-phone-book').controller('unContactGroup', ['$scope', '
         /**
          * @ngdoc methode
          * @name addUserToGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * add new user to group
          *
          */
-        $scope.addUserToGroup = function(){
-            if($stateParams.groupId) {
-                var users = $scope.groupMap[$stateParams.groupId].users;
-                MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$stateParams.groupId]);
-                PhoneBook.updateGroup($stateParams.groupId,$scope.groupMap[$stateParams.groupId]);
+        $scope.addUserToGroup = function () {
+            if ($stateParams.groupId) {
+                var group = $scope.group;
+                _.forEach(group.users, function (user) {
+                    DataConnection.send(user.id, '', 'updateGroup',
+                        {
+                            roomId: $stateParams.groupId,
+                            group: group
+
+                        }
+                    );
+                });
+                PhoneBook.updateGroup($stateParams.groupId, group);
             }
         };
 
         /**
          * @ngdoc methode
          * @name addUserToGroup
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @params {String} user id of client
          * @description
          *
          * remove user from group
          *
          */
-        $scope.removeUserFromGroup = function(){
-            if($stateParams.groupId) {
-                var users = PhoneBook.getGroup($stateParams.groupId).users;
-                MessageText.sendGroupUpdateToUsers(users,$scope.groupMap[$stateParams.groupId]);
-                PhoneBook.updateGroup($stateParams.groupId,$scope.groupMap[$stateParams.groupId]);
+        $scope.removeUserFromGroup = function () {
+            if ($stateParams.groupId) {
+                var group = $scope.group;
+                _.forEach(group.users, function (user) {
+                    DataConnection.send(user.id, '', 'updateGroup',
+                        {
+                            roomId: $stateParams.groupId,
+                            group: group
+
+                        }
+                    );
+                });
+                PhoneBook.updateGroup($stateParams.groupId, group);
             }
         };
 
         /**
          * @ngdoc methode
          * @name getClientMap
-         * @methodOf unchatbar-phone-book.controller:unContactGroup
+         * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get all clients
          *
          */
         $scope.getClientMap = function () {
-            return PhoneBook.getClientMap();
+            $scope.clientMap = PhoneBook.getClientMap();
         };
     }
 ]);

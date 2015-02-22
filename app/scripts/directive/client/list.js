@@ -3,30 +3,45 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:unContactClientList
+ * @name unchatbar-contact.directive:unContactClientList
  * @restrict E
  * @description
  *
  * client list
  *
  */
-angular.module('unchatbar-phone-book').directive('unContactClientList', [
+angular.module('unchatbar-contact').directive('unContactClientList', [
     function () {
         return {
-            restrict: 'E', //E = element, A = attribute, C = class, M = comment
-            replace: true,
-            templateUrl:'views/unchatbar-phone-book/client/list.html',
+            restrict: 'E',
+            replace: false,
+            templateUrl:'views/unchatbar-contact/client/list.html',
             controller: 'unContactClient',
             link : function(scope){
-                scope.clientMap = scope.getClientMap();
+
+
+                /**
+                 * @ngdoc methode
+                 * @name init
+                 * @methodOf unchatbar-contact.directive:unContactClientList
+                 * @description
+                 *
+                 * init directive
+                 *
+                 */
+                function updateScope (){
+                    scope.getClientMap();
+                }
 
                 scope.$on('$stateChangeSuccess', function () {
-                    scope.clientMap = scope.getClientMap();
+                    updateScope();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.clientMap = scope.getClientMap();
+                    updateScope();
                 });
+
+                updateScope();
             }
         };
     }

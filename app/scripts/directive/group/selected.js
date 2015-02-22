@@ -3,38 +3,36 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-phone-book.directive:phoneBook
+ * @name unchatbar-contact.directive:unContactGroupSelected
  * @restrict E
  * @description
  *
- * save client connections , for recall
+ * selected group
  *
  */
-angular.module('unchatbar-phone-book').directive('unContactGroupSelected', [
+angular.module('unchatbar-contact').directive('unContactGroupSelected', [
     function () {
         return {
-            restrict: 'E', //E = element, A = attribute, C = class, M = comment
-            replace: true,
-            templateUrl:'views/unchatbar-phone-book/group/selected.html',
+            restrict: 'E',
+            replace: false,
+            templateUrl: 'views/unchatbar-contact/group/selected.html',
             controller: 'unContactGroup',
-            link : function(scope){
-                /**
-                 * @ngdoc property
-                 * @name groupMap
-                 * @propertyOf unchatbar-phone-book.controller:unContactGroup
-                 * @returns {Object} map of groups
-                 */
-                scope.group = scope.getGroup();
+            link: function (scope) {
 
-                scope.clientMap = scope.getClientMap();
-                scope.$on('$stateChangeSuccess',function(){
-                    scope.group = scope.getGroup();
+                function updateScope() {
+                    scope.getGroup();
+                    scope.getClientMap();
+                }
+
+                scope.$on('$stateChangeSuccess', function () {
+                    updateScope();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.group = scope.getGroup();
-                    scope.clientMap = scope.getClientMap();
+                    updateScope();
                 });
+
+                updateScope();
             }
         };
     }

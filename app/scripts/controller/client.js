@@ -2,22 +2,38 @@
 
 /**
  * @ngdoc controller
- * @name  unchatbar-phone-book.controller:unContactClient
+ * @name  unchatbar-contact.controller:unContactClient
  * @require $scope
  * @require $stateParams
  * @require PhoneBook
  * @description
  *
- * select client/room for connection
+ * client controller
  *
  */
-angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',
+angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',
     function ($scope,$state, $stateParams, PhoneBook) {
+
+        /**
+         * @ngdoc property
+         * @name clientMap
+         * @propertyOf unchatbar-contact.controller:unContactClient
+         * @returns {Object} list of clients
+         */
+        $scope.clientMap = $scope.clientMap || {};
+
+        /**
+         * @ngdoc property
+         * @name client
+         * @propertyOf unchatbar-contact.directive:unContactClientSelected
+         * @returns {Object} selected aclient
+         */
+        $scope.client = $scope.client || {};
 
         /**
          * @ngdoc methode
          * @name getClientMap
-         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @methodOf unchatbar-contact.controller:unContactClient
          * @params {String} peerId id of client
          * @description
          *
@@ -25,27 +41,27 @@ angular.module('unchatbar-phone-book').controller('unContactClient', ['$scope','
          *
          */
         $scope.getClientMap = function () {
-            return PhoneBook.getClientMap();
+            $scope.clientMap = PhoneBook.getClientMap();
         };
 
         /**
          * @ngdoc methode
          * @name getClient
-         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @methodOf unchatbar-contact.controller:unContactClient
          * @description
          *
          * get client data
          *
          */
         $scope.getClient = function () {
-            return PhoneBook.getClient($stateParams.clientId);
+            $scope.client = PhoneBook.getClient($stateParams.clientId);
         };
 
 
         /**
          * @ngdoc methode
          * @name removeClient
-         * @methodOf unchatbar-phone-book.controller:unContactClient
+         * @methodOf unchatbar-contact.controller:unContactClient
          * @params  {String} peerId id of client
          * @description
          *
