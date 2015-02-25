@@ -1,15 +1,16 @@
 'use strict';
 
 describe('Serivce: phoneBook', function () {
-    var BrokerService, rootScope, sessionStorage, PhoneBookService;
+    var BrokerService, rootScope, sessionStorage, PhoneBookService, ProfileService;
     beforeEach(module('unchatbar-contact'));
 
 
-    beforeEach(inject(function ($rootScope, Broker, $sessionStorage, PhoneBook) {
+    beforeEach(inject(function ($rootScope, Broker, $sessionStorage, PhoneBook, Profile) {
         rootScope = $rootScope;
         BrokerService = Broker;
         sessionStorage = $sessionStorage;
         PhoneBookService = PhoneBook;
+        ProfileService = Profile;
     }));
 
     describe('check methode', function () {
@@ -35,7 +36,10 @@ describe('Serivce: phoneBook', function () {
         });
 
         describe('addClient', function () {
-            it('should set id and label to `_storagePhoneBook.user`', function () {
+            beforeEach(function(){
+                spyOn(ProfileService,'_getIdenticons').and.returnValue('identicon');
+            });
+            it('should set id , image from `_getIdenticons` and label to `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {};
 
                 PhoneBookService.addClient('peerId', {label: 'testLabel'});
@@ -44,11 +48,30 @@ describe('Serivce: phoneBook', function () {
                     {
                         peerId: {
                             id: 'peerId',
+                            image : 'identicon',
                             label: 'testLabel'
                         }
                     }
                 );
             });
+
+            it('should set id , image from profile and label to `_storagePhoneBook.user`', function () {
+                PhoneBookService._storagePhoneBook.user = {};
+
+                PhoneBookService.addClient('peerId', {label: 'testLabel',image: 'ownImage'});
+
+                expect(PhoneBookService._storagePhoneBook.user).toEqual(
+                    {
+                        peerId: {
+                            id: 'peerId',
+                            image : 'ownImage',
+                            label: 'testLabel'
+                        }
+                    }
+                );
+            });
+
+
             it('should not set id and label to `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {peerId: 'user'};
 
@@ -73,7 +96,7 @@ describe('Serivce: phoneBook', function () {
             it('should change  label from `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {'peerId': {label: 'changeMe'}};
 
-                PhoneBookService.updateClient('peerId', {label:'testLabel'});
+                PhoneBookService.updateClient('peerId', {label: 'testLabel'});
 
                 expect(PhoneBookService._storagePhoneBook.user).toEqual(
                     {
@@ -165,7 +188,7 @@ describe('Serivce: phoneBook', function () {
                 spyOn(PhoneBookService, 'addClient').and.returnValue(false);
                 spyOn(PhoneBookService, '_sendUpdateEvent').and.returnValue(true);
 
-                PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'peerId'},{id : 'peerId'}]});
+                PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'peerId'}, {id: 'peerId'}]});
 
                 expect(PhoneBookService._sendUpdateEvent).toHaveBeenCalled();
             });
@@ -175,29 +198,29 @@ describe('Serivce: phoneBook', function () {
                     spyOn(PhoneBookService, '_sendUpdateEvent').and.returnValue(true);
 
                 });
-                it('should call `PhoneBook.addClient` with user id' , function(){
+                it('should call `PhoneBook.addClient` with user id', function () {
                     spyOn(PhoneBookService, 'addClient').and.returnValue(false);
-                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'},{id : 'peerId'}]});
-                    expect(PhoneBookService.addClient).toHaveBeenCalledWith('userId',{});
+                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'}, {id: 'peerId'}]});
+                    expect(PhoneBookService.addClient).toHaveBeenCalledWith('userId', {});
                 });
-                it('should not call `Broker.connect` with user id, when user was in phonebook' , function(){
+                it('should not call `Broker.connect` with user id, when user was in phonebook', function () {
                     spyOn(PhoneBookService, 'addClient').and.returnValue(false);
                     spyOn(BrokerService, 'connect').and.returnValue(true);
 
-                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'},{id : 'peerId'}]});
+                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'}, {id: 'peerId'}]});
                     expect(BrokerService.connect).not.toHaveBeenCalled();
                 });
-                it('should call `Broker.connect` with user id, when user was not in phonebook' , function(){
+                it('should call `Broker.connect` with user id, when user was not in phonebook', function () {
                     spyOn(PhoneBookService, 'addClient').and.returnValue(true);
                     spyOn(BrokerService, 'connect').and.returnValue(true);
 
-                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'},{id : 'peerId'}]});
+                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'}, {id: 'peerId'}]});
                     expect(BrokerService.connect).toHaveBeenCalled();
                 });
             });
         });
 
-        describe('copyGroupFromPartner', function () {
+        describe('addGroup', function () {
             describe('client has no peer id', function () {
                 beforeEach(function () {
                     spyOn(BrokerService, 'getPeerId').and.returnValue('');
@@ -214,7 +237,7 @@ describe('Serivce: phoneBook', function () {
                 beforeEach(function () {
                     spyOn(BrokerService, 'getPeerId').and.returnValue('peerId');
                     spyOn(PhoneBookService, 'createNewGroupId').and.returnValue('groupId');
-
+                    spyOn(ProfileService,'_getIdenticons').and.returnValue('identicon');
                 });
 
                 it('should set id and label to `_storagePhoneBook.user`', function () {
@@ -227,6 +250,7 @@ describe('Serivce: phoneBook', function () {
                             groupId: {
                                 label: 'groupName',
                                 users: [{id: 'peerId'}],
+                                image : 'identicon',
                                 owner: 'peerId',
                                 editable: true,
                                 id: 'groupId'

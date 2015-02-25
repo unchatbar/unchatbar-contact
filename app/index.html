@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
     <link rel="stylesheet" href="bower_components/unchatbar-user/app/styles/custom.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -27,9 +28,6 @@
                 <un-profile-admin></un-profile-admin>
             </div>
         </div>
-
-        <br><br>
-        <un-connection-peer-id></un-connection-peer-id>
         <div class="row">
             <div class="col-md-6">
                 <h2>Client List</h2>
@@ -78,13 +76,7 @@
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/app.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/run.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/template.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/provider/profile.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/controller/profile.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/directive/profile-admin.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/directive/profile.js"></script>
+<script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/app.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/run.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/template.js"></script>
@@ -92,8 +84,18 @@
 <script src="bower_components/unchatbar-connection/app/scripts/provider/data-connection.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/service/peer.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/directive/dialer.js"></script>
+<script src="bower_components/unchatbar-connection/app/scripts/directive/login.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/directive/peerId.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/controller/dialer.js"></script>
+<script src="bower_components/blockies/blockies.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/app.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/run.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/template.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/provider/profile.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/controller/profile.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/directive/fileModel.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/directive/profile-admin.js"></script>
+<script src="bower_components/unchatbar-user/app/scripts/directive/profile.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -124,6 +126,7 @@
     angular.module('unchatbar-contact').run(['$state','Broker',
         function ($state, Broker) {
             Broker.connectServer();
+
             $state.go('contact');
         }]);
 </script>

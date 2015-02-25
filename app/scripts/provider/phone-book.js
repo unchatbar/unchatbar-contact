@@ -38,8 +38,8 @@ angular.module('unchatbar-contact')
          * phonebook
          *
          */
-        this.$get = ['$rootScope', '$sessionStorage', '$localStorage', 'Broker',
-            function ($rootScope, $sessionStorage, $localStorage, Broker) {
+        this.$get = ['$rootScope', '$sessionStorage', '$localStorage', 'Broker','Profile',
+            function ($rootScope, $sessionStorage, $localStorage, Broker,Profile) {
 
                 var api =  {
                     /**
@@ -122,6 +122,9 @@ angular.module('unchatbar-contact')
                             profile.id = id;
 
                             this._storagePhoneBook.user[id] = profile;
+                            if(!this._storagePhoneBook.user[id].image) {
+                                this._storagePhoneBook.user[id].image = Profile._getIdenticons(id);
+                            }
                             addUser = true;
                         }
                         this._sendUpdateEvent();
@@ -214,6 +217,7 @@ angular.module('unchatbar-contact')
                             this._storagePhoneBook.groups[id] = {
                                 label: name,
                                 users: user,
+                                image : Profile._getIdenticons(id),
                                 owner: peerId,
                                 editable: true,
                                 id: id

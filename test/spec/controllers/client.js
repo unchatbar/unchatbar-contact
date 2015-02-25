@@ -4,11 +4,12 @@ describe('Controller: phoneBook', function () {
 
     beforeEach(module('unchatbar-contact'));
 
-    var phoneBookCTRL, stateParams, scope, PhoneBookService,state;
+    var phoneBookCTRL, stateParams, scope, PhoneBookService, state,DataConnectionService;
 
-    beforeEach(inject(function ($controller, $rootScope,$state, PhoneBook) {
+    beforeEach(inject(function ($controller, $rootScope, $state, PhoneBook,DataConnection) {
         PhoneBookService = PhoneBook;
         stateParams = {};
+        DataConnectionService = DataConnection;
         state = $state;
         scope = $rootScope.$new();
 
@@ -16,7 +17,7 @@ describe('Controller: phoneBook', function () {
             $controller('unContactClient', {
                 $scope: scope,
                 $stateParams: stateParams,
-                $state : state,
+                $state: state,
                 PhoneBook: PhoneBookService
 
             });
@@ -26,14 +27,29 @@ describe('Controller: phoneBook', function () {
     describe('check methode', function () {
 
         describe('getClientMap', function () {
-            it('should return from `PhoneBook.getClientMap`', function () {
+            beforeEach(function () {
                 phoneBookCTRL();
 
                 spyOn(PhoneBookService, 'getClientMap').and.returnValue(
+                    {
+                        peerIdUser: 'test',
+                        peerIdUserA: 'test2'
+                    }
+                );
+
+                spyOn(DataConnectionService, 'getOpenConnectionMap').and.returnValue(
                     {'peerIdUser': 'test'}
                 );
+
+            });
+            it('should set `$scope.clientMap` to return value from `PhoneBook.getClientMap`', function () {
                 scope.getClientMap();
-                expect(scope.clientMap).toEqual({'peerIdUser': 'test'});
+                expect(scope.clientMap).toEqual({peerIdUser: 'test', peerIdUserA: 'test2'});
+            });
+
+            it('should set `$scope.clientOnlineMap` to return value from `PhoneBook.getClientOnlineMap`', function () {
+                scope.getClientMap();
+                expect(scope.clientOnlineMap).toEqual({'peerIdUser': 'test'});
             });
         });
 
@@ -57,7 +73,7 @@ describe('Controller: phoneBook', function () {
         });
 
         describe('removeClient', function () {
-            beforeEach(function(){
+            beforeEach(function () {
                 phoneBookCTRL();
                 spyOn(PhoneBookService, 'removeClient').and.returnValue(true);
                 spyOn(state, 'go').and.returnValue(true);

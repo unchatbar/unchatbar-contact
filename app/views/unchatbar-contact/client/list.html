@@ -1,9 +1,15 @@
 <div ng-repeat="(clientId,clientItem) in clientMap">
-    <div class="row">
-        <div class="col-md-9">
+    <div class="row alert">
+        <div class="col-xs-12 col-md-12">
             <a ui-sref-active="active" ui-sref='contact.client({clientId: clientId})'
-               class="list-group-item">{{clientItem.label}}
+               class="list-group-item">
+                <img class="profile-image" data-ng-src="{{clientItem.image}}" data-ng-show="profile.image"/>
+                {{clientItem.label}}
             </a>
+
+            <div data-ng-show="clientOnlineMap[clientId]">
+                online
+            </div>
         </div>
         <div class="col-md-3">
             <i class=" fa fa-trash fa-2x" data-ng-click="removeClient(clientId)"></i>

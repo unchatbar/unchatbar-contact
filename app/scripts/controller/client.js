@@ -11,8 +11,9 @@
  * client controller
  *
  */
-angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$state', '$stateParams', 'PhoneBook',
-    function ($scope,$state, $stateParams, PhoneBook) {
+angular.module('unchatbar-contact').controller('unContactClient', ['$scope', '$state', '$stateParams',
+    'PhoneBook', 'DataConnection',
+    function ($scope, $state, $stateParams, PhoneBook, DataConnection) {
 
         /**
          * @ngdoc property
@@ -21,6 +22,14 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$st
          * @returns {Object} list of clients
          */
         $scope.clientMap = $scope.clientMap || {};
+
+        /**
+         * @ngdoc property
+         * @name clientOnlineMap
+         * @propertyOf unchatbar-contact.controller:unContactClient
+         * @returns {Object} map of online clients
+         */
+        $scope.clientOnlineMap = $scope.clientOnlineMap || {};
 
         /**
          * @ngdoc property
@@ -42,6 +51,7 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$st
          */
         $scope.getClientMap = function () {
             $scope.clientMap = PhoneBook.getClientMap();
+            $scope.clientOnlineMap = DataConnection.getOpenConnectionMap();
         };
 
         /**
@@ -71,7 +81,7 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope','$st
         $scope.removeClient = function (peerId) {
             var redirect = $stateParams.clientId === peerId ? true : false;
             PhoneBook.removeClient(peerId);
-            if(redirect) {
+            if (redirect) {
                 $state.go('contact');
             }
         };

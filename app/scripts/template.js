@@ -8,6 +8,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "            <a ui-sref-active=\"active\" ui-sref='contact.client({clientId: clientId})'\n" +
     "               class=\"list-group-item\">{{clientItem.label}}\n" +
     "            </a>\n" +
+    "            is ONLINE{{clientOnlineMap}}<br>\n" +
     "        </div>\n" +
     "        <div class=\"col-md-3\">\n" +
     "            <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
