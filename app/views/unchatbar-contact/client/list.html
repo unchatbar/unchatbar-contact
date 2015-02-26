@@ -1,7 +1,7 @@
 <div class="list-group">
     <a ui-sref='contact.client({clientId: clientId})' class="list-group-item"
        ng-repeat="(clientId,clientItem) in clientMap" ui-sref-active="active">
-    <img class="profile-image" data-ng-src="{{clientItem.image}}" data-ng-show="profile.image"/>
+        <img class="profile-image" data-ng-src="{{clientItem.image}}" />
         {{clientItem.label}}
         <span data-ng-show="clientOnlineMap[clientId]">
             online

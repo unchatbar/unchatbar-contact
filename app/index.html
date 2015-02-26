@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width">
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
-    <link rel="stylesheet" href="bower_components/unchatbar-user/app/styles/custom.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.css"/>
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css"/>
+    <link rel="stylesheet" href="bower_components/unchatbar-user/app/styles/custom.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -19,40 +19,65 @@
     <link rel="stylesheet" href="styles/custom.css">
     <!-- endbuild -->
 </head>
-<body>
-<div ui-view>
-    <div>
-        PROFILE
-        <div class="row">
-            <div class="cold-sd-12 col-md-12">
-                <un-profile-admin></un-profile-admin>
-            </div>
+<body ng-init="showAdminProfile=false;offcanvas= false">
+<nav class="navbar navbar-fixed-top navbar-inverse">
+
+    <div class="pull-left">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-ng-click="offcanvas=!offcanvas"
+                    data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Client List</h2>
-                <un-connection-dialer></un-connection-dialer>
-                <un-contact-client-list></un-contact-client-list>
-            </div>
-            <div class="col-md-6">
-                <h2>Selected Client</h2>
+        <!-- /.nav-collapse -->
+    </div>
+    <div class="pull-right">
+        <un-profile-label data-ng-click="showAdminProfile=!showAdminProfile;offcanvas=false"></un-profile-label>
+    </div>
+
+    <!-- /.container -->
+</nav>
+<!-- /.navbar -->
+<div>
+
+
+    <div class="row contacts">
+        <div class="col-xs-12  col-sm-2" data-ng-class="{'hidden-xs': !offcanvas}">
+            <h3>users</h3>
+            <un-connection-dialer></un-connection-dialer>
+            <br/>
+            <un-contact-client-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-client-list>
+            <br />
+            <h3>groups</h3>
+            <un-contact-group-add ></un-contact-group-add> <br />
+            <un-contact-group-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-group-list>
+        </div>
+        <div class="col-xs-12 col-sm-9" data-ng-hide="offcanvas || showAdminProfile">
+            <div class="jumbotron">
+
                 <un-contact-client-selected></un-contact-client-selected>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Group Group</h2>
-                <un-contact-group-add></un-contact-group-add>
-                <un-contact-group-list></un-contact-group-list>
-            </div>
-            <div class="col-md-6">
-                <h2>Selected Group</h2>
                 <un-contact-group-selected></un-contact-group-selected>
             </div>
         </div>
+        <div lass="col-xs-12 col-sm-9" data-ng-show="showAdminProfile">
+            <div class="jumbotron">
+                <un-profile-admin></un-profile-admin>
+            </div>
+        </div>
     </div>
-
 </div>
+<!--/row-->
+
+<hr>
+
+<footer>
+    <p>&copy; unchatbar 2015</p>
+</footer>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -123,11 +148,10 @@
 
 
 <script>
-    angular.module('unchatbar-contact').run(['$state','Broker',
+    angular.module('unchatbar-contact').run(['$state', 'Broker',
         function ($state, Broker) {
             Broker.connectServer();
 
-            $state.go('contact');
         }]);
 </script>
 </body>

@@ -1,14 +1,8 @@
-<div>
-    <div ng-repeat="(groupId,group) in groupMap">
-        <div class="row">
-            <div class="col-md-9">
-                <a ui-sref-active="active" ui-sref='contact.group({groupId: groupId})'
-                   class="list-group-item">{{group.label}}
-                </a>
-            </div>
-            <div class="col-md-3">
-                <i class=" fa fa-trash fa-2x" data-ng-click="removeGroup(groupId)"></i>
-            </div>
-        </div>
-    </div>
+<div class="list-group">
+    <a ui-sref-active="active" ui-sref='contact.group({groupId: groupId})' class="list-group-item"
+       ng-repeat="(groupId,group) in groupMap" ui-sref-active="active">
+        <img class="profile-image" data-ng-src="{{group.image}}"/>
+        {{group.label}}
+    </a>
 </div>
+

@@ -1,9 +1,12 @@
 <div data-ng-show="group">
-    <p>{{group.label}}</p>
-    <span class="btn btn-success call" data-ng-click="removeGroup(group.id)">
-        <i class=" fa fa-trash fa-3x"></i>
+     <span>
+        <img class="profile-image" data-ng-src="{{group.image}}" />
+        <br />
+        <b>{{group.label}}</b> <i class=" fa fa-trash fa-2x" data-ng-click="removeGroup(group.id)"></i>
     </span>
+
     <span ng-if="group.editable === true">
+        <br />
       <span ng-dropdown-multiselect=""
             extra-settings="{showCheckAll:false,showUncheckAll : false}"
             events="{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}"

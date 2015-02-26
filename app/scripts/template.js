@@ -2,18 +2,15 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
   'use strict';
 
   $templateCache.put('views/unchatbar-contact/client/list.html',
-    "<div ng-repeat=\"(clientId,clientItem) in clientMap\">\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-9\">\n" +
-    "            <a ui-sref-active=\"active\" ui-sref='contact.client({clientId: clientId})'\n" +
-    "               class=\"list-group-item\">{{clientItem.label}}\n" +
-    "            </a>\n" +
-    "            is ONLINE{{clientOnlineMap}}<br>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-md-3\">\n" +
-    "            <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
+    "<div class=\"list-group\">\n" +
+    "    <a ui-sref='contact.client({clientId: clientId})' class=\"list-group-item\"\n" +
+    "       ng-repeat=\"(clientId,clientItem) in clientMap\" ui-sref-active=\"active\">\n" +
+    "    <img class=\"profile-image\" data-ng-src=\"{{clientItem.image}}\" data-ng-show=\"profile.image\"/>\n" +
+    "        {{clientItem.label}}\n" +
+    "        <span data-ng-show=\"clientOnlineMap[clientId]\">\n" +
+    "            online\n" +
+    "        </span>\n" +
+    "    </a>\n" +
     "</div>\n"
   );
 
@@ -21,7 +18,8 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
   $templateCache.put('views/unchatbar-contact/client/selected.html',
     "<div data-ng-show=\"client.id\">\n" +
     "    <span>\n" +
-    "        <b>{{client.label}}</b>\n" +
+    "        <img class=\"profile-image\" data-ng-src=\"{{client.image}}\" data-ng-show=\"client.image\"/>\n" +
+    "        <b>{{client.label}}</b><br>\n" +
     "    </span>\n" +
     "    <span>\n" +
     "        <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
