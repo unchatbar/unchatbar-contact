@@ -5,11 +5,14 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "<div class=\"list-group\">\n" +
     "    <a ui-sref='contact.client({clientId: clientId})' class=\"list-group-item\"\n" +
     "       ng-repeat=\"(clientId,clientItem) in clientMap\" ui-sref-active=\"active\">\n" +
-    "        <img class=\"profile-image\" data-ng-src=\"{{clientItem.image}}\" />\n" +
-    "        {{clientItem.label}}\n" +
-    "        <span data-ng-show=\"clientOnlineMap[clientId]\">\n" +
-    "            online\n" +
+    "        <span ><img class=\"profile-image\" data-ng-src=\"{{clientItem.image}}\" /></span>\n" +
+    "        <span >\n" +
+    "            <span class=\"contact-online\" data-ng-show=\"clientOnlineMap[clientId]\">online</span>\n" +
+    "            <br>\n" +
+    "            <span>{{clientItem.label}}</span>\n" +
     "        </span>\n" +
+    "\n" +
+    "\n" +
     "    </a>\n" +
     "</div>\n"
   );

@@ -1,10 +1,13 @@
 <div class="list-group">
     <a ui-sref='contact.client({clientId: clientId})' class="list-group-item"
        ng-repeat="(clientId,clientItem) in clientMap" ui-sref-active="active">
-        <img class="profile-image" data-ng-src="{{clientItem.image}}" />
-        {{clientItem.label}}
-        <span data-ng-show="clientOnlineMap[clientId]">
-            online
+        <span ><img class="profile-image" data-ng-src="{{clientItem.image}}" /></span>
+        <span >
+            <span class="contact-online" data-ng-show="clientOnlineMap[clientId]">online</span>
+            <br>
+            <span>{{clientItem.label}}</span>
         </span>
+
+
     </a>
 </div>
