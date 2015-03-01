@@ -17,4 +17,14 @@ float:left;
 .contact-online{
     color:forestgreen;
 }
+
+.removeUser {
+    border-radius: 100px;
+    box-shadow: 0 0 2px #888;
+    color: darkred;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 5px 10px;
+}
 input:focus { font-size: 16px!important}

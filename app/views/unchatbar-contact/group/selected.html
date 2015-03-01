@@ -1,18 +1,27 @@
 <div data-ng-show="group">
-     <span>
-        <img class="profile-image" data-ng-src="{{group.image}}" />
-        <br />
-        <b>{{group.label}}</b> <i class=" fa fa-trash fa-2x" data-ng-click="removeGroup(group.id)"></i>
-    </span>
+    <div class="row">
+        <div class="col-xs-2">
+            <img class="profile-image" data-ng-src="{{group.image}}"/>
+        </div>
+        <div class="col-xs-3 text-left">
+            {{group.label}}
+        </div>
+        <div class="col-xs-2">
+            <div class="removeUser">
+                <i class=" fa fa-trash fa-2x" data-ng-click="removeGroup(group.id)"></i>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <span ng-if="group.editable === true">
+                  <span ng-dropdown-multiselect=""
+                        extra-settings="{showCheckAll:false,showUncheckAll : false}"
+                        events="{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}"
+                        options="clientMap | filter:ownPeerId"
+                        translation-texts="{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}"
+                        selected-model="group.users">
 
-    <span ng-if="group.editable === true">
-        <br />
-      <span ng-dropdown-multiselect=""
-            extra-settings="{showCheckAll:false,showUncheckAll : false}"
-            events="{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}"
-            options="clientMap | filter:ownPeerId"
-            translation-texts="{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}"
-            selected-model="group.users"></span>
-    </span>
-
+                  </span>
+                </span>
+        </div>
+    </div>
 </div>

@@ -20,15 +20,20 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
   $templateCache.put('views/unchatbar-contact/client/selected.html',
     "<div data-ng-show=\"client.id\">\n" +
-    "    <span>\n" +
-    "        <img class=\"profile-image\" data-ng-src=\"{{client.image}}\" />\n" +
-    "        <br />\n" +
-    "        <b>{{client.label}}</b> <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
-    "    </span>\n" +
-    "    <span>\n" +
-    "\n" +
-    "    </span>\n" +
-    "</div>\n"
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-xs-2\">\n" +
+    "            <img class=\"profile-image\" data-ng-src=\"{{client.image}}\"/>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-6 text-left\">\n" +
+    "            {{client.label}}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-4\">\n" +
+    "            <div class=\"removeUser\">\n" +
+    "            <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
   );
 
 
@@ -58,23 +63,32 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
   $templateCache.put('views/unchatbar-contact/group/selected.html',
     "<div data-ng-show=\"group\">\n" +
-    "     <span>\n" +
-    "        <img class=\"profile-image\" data-ng-src=\"{{group.image}}\" />\n" +
-    "        <br />\n" +
-    "        <b>{{group.label}}</b> <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(group.id)\"></i>\n" +
-    "    </span>\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-xs-2\">\n" +
+    "            <img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-3 text-left\">\n" +
+    "            {{group.label}}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-2\">\n" +
+    "            <div class=\"removeUser\">\n" +
+    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(group.id)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-4\">\n" +
+    "            <span ng-if=\"group.editable === true\">\n" +
+    "                  <span ng-dropdown-multiselect=\"\"\n" +
+    "                        extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
+    "                        events=\"{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}\"\n" +
+    "                        options=\"clientMap | filter:ownPeerId\"\n" +
+    "                        translation-texts=\"{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}\"\n" +
+    "                        selected-model=\"group.users\">\n" +
     "\n" +
-    "    <span ng-if=\"group.editable === true\">\n" +
-    "        <br />\n" +
-    "      <span ng-dropdown-multiselect=\"\"\n" +
-    "            extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
-    "            events=\"{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}\"\n" +
-    "            options=\"clientMap | filter:ownPeerId\"\n" +
-    "            translation-texts=\"{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}\"\n" +
-    "            selected-model=\"group.users\"></span>\n" +
-    "    </span>\n" +
-    "\n" +
-    "</div>\n"
+    "                  </span>\n" +
+    "                </span>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
   );
 
 }]);
