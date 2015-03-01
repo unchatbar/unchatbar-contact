@@ -1,4 +1,4 @@
-## 0.0.2
+## 0.0.3
 Bugfix:
 * fix layout selected user/group
 
