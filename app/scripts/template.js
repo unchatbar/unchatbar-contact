@@ -3,17 +3,25 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
   $templateCache.put('views/unchatbar-contact/client/list.html',
     "<div class=\"list-group\">\n" +
-    "    <a ui-sref='contact.client({clientId: clientId})' class=\"list-group-item\"\n" +
-    "       ng-repeat=\"(clientId,clientItem) in clientMap\" ui-sref-active=\"active\">\n" +
-    "        <span ><img class=\"profile-image\" data-ng-src=\"{{clientItem.image}}\" /></span>\n" +
-    "        <span >\n" +
-    "            <span class=\"contact-online\" data-ng-show=\"clientOnlineMap[clientId]\">online</span>\n" +
-    "            <br>\n" +
-    "            <span>{{clientItem.label}}</span>\n" +
-    "        </span>\n" +
-    "\n" +
-    "\n" +
-    "    </a>\n" +
+    "    <div class=\"row list-group-item\"\n" +
+    "         ng-repeat=\"(clientId,clientItem) in clientMap\" ui-sref-active=\"active\">\n" +
+    "        <div class=\"col-xs-9\">\n" +
+    "            <a ui-sref='contact.client({clientId: clientId})'>\n" +
+    "                <div class=\"pull-left\"><img class=\"profile-image\" data-ng-src=\"{{clientItem.image}}\"/></div>\n" +
+    "                <div class=\"pull-left list-contact\">\n" +
+    "                    <span class=\"contact-online\" data-ng-show=\"clientOnlineMap[clientId]\">online</span>\n" +
+    "                    <br>\n" +
+    "                    <span>{{clientItem.label}}</span>\n" +
+    "                </div>\n" +
+    "                <div class=\"clearfix\"></div>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-3\">\n" +
+    "            <div class=\"removeUser\">\n" +
+    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n"
   );
 
@@ -21,16 +29,9 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
   $templateCache.put('views/unchatbar-contact/client/selected.html',
     "<div data-ng-show=\"client.id\">\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-xs-2\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
     "            <img class=\"profile-image\" data-ng-src=\"{{client.image}}\"/>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-6 text-left\">\n" +
-    "            {{client.label}}\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-4\">\n" +
-    "            <div class=\"removeUser\">\n" +
-    "            <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
-    "            </div>\n" +
+    "            <small>{{client.label}}</small>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>"
@@ -51,31 +52,36 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
   $templateCache.put('views/unchatbar-contact/group/list.html',
     "<div class=\"list-group\">\n" +
-    "    <a ui-sref-active=\"active\" ui-sref='contact.group({groupId: groupId})' class=\"list-group-item\"\n" +
-    "       ng-repeat=\"(groupId,group) in groupMap\" ui-sref-active=\"active\">\n" +
-    "        <img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/>\n" +
-    "        {{group.label}}\n" +
-    "    </a>\n" +
-    "</div>\n" +
-    "\n"
+    "    <div class=\"row list-group-item\"\n" +
+    "         ng-repeat=\"(groupId,group) in groupMap\" ui-sref-active=\"active\">\n" +
+    "        <div class=\"col-xs-9\">\n" +
+    "            <a ui-sref='contact.group({groupId: groupId})'>\n" +
+    "                <div class=\"pull-left\"><img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/></div>\n" +
+    "                <div class=\"pull-left list-contact\">\n" +
+    "                    <br>\n" +
+    "                    <span>{{group.label}}</span>\n" +
+    "                </div>\n" +
+    "                <div class=\"clearfix\"></div>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-3\">\n" +
+    "            <div class=\"removeUser\">\n" +
+    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(groupId)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n"
   );
 
 
   $templateCache.put('views/unchatbar-contact/group/selected.html',
     "<div data-ng-show=\"group\">\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-xs-2\">\n" +
+    "        <div class=\"col-xs-7\">\n" +
     "            <img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/>\n" +
+    "            <small>{{group.label}}</small>\n" +
     "        </div>\n" +
-    "        <div class=\"col-xs-3 text-left\">\n" +
-    "            {{group.label}}\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-2\">\n" +
-    "            <div class=\"removeUser\">\n" +
-    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(group.id)\"></i>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-4\">\n" +
+    "        <div class=\"col-xs-5\">\n" +
     "            <span ng-if=\"group.editable === true\">\n" +
     "                  <span ng-dropdown-multiselect=\"\"\n" +
     "                        extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +

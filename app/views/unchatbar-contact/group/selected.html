@@ -1,17 +1,10 @@
 <div data-ng-show="group">
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-xs-7">
             <img class="profile-image" data-ng-src="{{group.image}}"/>
+            <small>{{group.label}}</small>
         </div>
-        <div class="col-xs-3 text-left">
-            {{group.label}}
-        </div>
-        <div class="col-xs-2">
-            <div class="removeUser">
-                <i class=" fa fa-trash fa-2x" data-ng-click="removeGroup(group.id)"></i>
-            </div>
-        </div>
-        <div class="col-xs-4">
+        <div class="col-xs-5">
             <span ng-if="group.editable === true">
                   <span ng-dropdown-multiselect=""
                         extra-settings="{showCheckAll:false,showUncheckAll : false}"

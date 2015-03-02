@@ -1,15 +1,8 @@
 <div data-ng-show="client.id">
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-xs-12">
             <img class="profile-image" data-ng-src="{{client.image}}"/>
-        </div>
-        <div class="col-xs-6 text-left">
-            {{client.label}}
-        </div>
-        <div class="col-xs-4">
-            <div class="removeUser">
-            <i class=" fa fa-trash fa-2x" data-ng-click="removeClient(client.id)"></i>
-            </div>
+            <small>{{client.label}}</small>
         </div>
     </div>
 </div>
