@@ -1,3 +1,7 @@
+## 0.0.4
+Bugfix:
+* optimize ui for selected/list (user and group)
+
 ## 0.0.3
 Bugfix:
 * fix layout selected user/group
