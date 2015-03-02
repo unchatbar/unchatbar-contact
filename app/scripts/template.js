@@ -11,8 +11,12 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "            <br>\n" +
     "            <span>{{clientItem.label}}</span>\n" +
     "        </span>\n" +
-    "\n" +
-    "\n" +
+    "        <div class=\"pull-right\">\n" +
+    "            <div class=\"removeUser\">\n" +
+    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"clearfix\"></div>\n" +
     "    </a>\n" +
     "</div>\n"
   );
@@ -26,11 +30,6 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "        </div>\n" +
     "        <div class=\"col-xs-6 text-left\">\n" +
     "            {{client.label}}\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-4\">\n" +
-    "            <div class=\"removeUser\">\n" +
-    "            <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(client.id)\"></i>\n" +
-    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>"
