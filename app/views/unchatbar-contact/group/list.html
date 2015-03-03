@@ -1,7 +1,7 @@
 <div class="list-group">
     <div class="row list-group-item"
          ng-repeat="(groupId,group) in groupMap" ui-sref-active="active">
-        <div class="col-xs-9">
+        <div class="col-xs-8">
             <a ui-sref='contact.group({groupId: groupId})'>
                 <div class="pull-left"><img class="profile-image" data-ng-src="{{group.image}}"/></div>
                 <div class="pull-left list-contact">
@@ -11,7 +11,7 @@
                 <div class="clearfix"></div>
             </a>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-4">
             <div class="removeUser">
                 <i class=" fa fa-trash fa-2x" data-ng-click="removeGroup(groupId)"></i>
             </div>
