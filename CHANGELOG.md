@@ -1,6 +1,7 @@
 ## 0.0.4
 Bugfix:
 * optimize ui for selected/list (user and group)
+* fix layout in list view
 
 ## 0.0.3
 Bugfix:

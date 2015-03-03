@@ -5,7 +5,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "<div class=\"list-group\">\n" +
     "    <div class=\"row list-group-item\"\n" +
     "         ng-repeat=\"(clientId,clientItem) in clientMap\" ui-sref-active=\"active\">\n" +
-    "        <div class=\"col-xs-9\">\n" +
+    "        <div class=\"col-xs-8\">\n" +
     "            <a ui-sref='contact.client({clientId: clientId})'>\n" +
     "                <div class=\"pull-left\"><img class=\"profile-image\" data-ng-src=\"{{clientItem.image}}\"/></div>\n" +
     "                <div class=\"pull-left list-contact\">\n" +
@@ -16,7 +16,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "                <div class=\"clearfix\"></div>\n" +
     "            </a>\n" +
     "        </div>\n" +
-    "        <div class=\"col-xs-3\">\n" +
+    "        <div class=\"col-xs-4\">\n" +
     "            <div class=\"removeUser\">\n" +
     "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeClient(clientId)\"></i>\n" +
     "            </div>\n" +
@@ -54,7 +54,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "<div class=\"list-group\">\n" +
     "    <div class=\"row list-group-item\"\n" +
     "         ng-repeat=\"(groupId,group) in groupMap\" ui-sref-active=\"active\">\n" +
-    "        <div class=\"col-xs-9\">\n" +
+    "        <div class=\"col-xs-8\">\n" +
     "            <a ui-sref='contact.group({groupId: groupId})'>\n" +
     "                <div class=\"pull-left\"><img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/></div>\n" +
     "                <div class=\"pull-left list-contact\">\n" +
@@ -64,7 +64,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "                <div class=\"clearfix\"></div>\n" +
     "            </a>\n" +
     "        </div>\n" +
-    "        <div class=\"col-xs-3\">\n" +
+    "        <div class=\"col-xs-4\">\n" +
     "            <div class=\"removeUser\">\n" +
     "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(groupId)\"></i>\n" +
     "            </div>\n" +
