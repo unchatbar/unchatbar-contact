@@ -1,3 +1,7 @@
+## 0.0.5
+Feature:
+* add local server for development
+
 ## 0.0.4
 Bugfix:
 * optimize ui for selected/list (user and group)
