@@ -151,10 +151,10 @@ describe('Serivce: phoneBook', function () {
         describe('copyGroupFromPartner', function () {
             beforeEach(function () {
                 spyOn(BrokerService, 'getPeerId').and.returnValue('peerId');
+                spyOn(BrokerService, 'connect').and.returnValue(true);
 
             });
             it('should remove group, when user is not in userGroup list', function () {
-                spyOn(PhoneBookService, 'addClient').and.returnValue(false);
                 PhoneBookService._storagePhoneBook.groups = {
                     peerId: {
                         editable: false,
@@ -198,21 +198,9 @@ describe('Serivce: phoneBook', function () {
                     spyOn(PhoneBookService, '_sendUpdateEvent').and.returnValue(true);
 
                 });
-                it('should call `PhoneBook.addClient` with user id', function () {
-                    spyOn(PhoneBookService, 'addClient').and.returnValue(false);
-                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'}, {id: 'peerId'}]});
-                    expect(PhoneBookService.addClient).toHaveBeenCalledWith('userId', {});
-                });
-                it('should not call `Broker.connect` with user id, when user was in phonebook', function () {
-                    spyOn(PhoneBookService, 'addClient').and.returnValue(false);
-                    spyOn(BrokerService, 'connect').and.returnValue(true);
 
-                    PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'}, {id: 'peerId'}]});
-                    expect(BrokerService.connect).not.toHaveBeenCalled();
-                });
                 it('should call `Broker.connect` with user id, when user was not in phonebook', function () {
                     spyOn(PhoneBookService, 'addClient').and.returnValue(true);
-                    spyOn(BrokerService, 'connect').and.returnValue(true);
 
                     PhoneBookService.copyGroupFromPartner('peerId', {users: [{id: 'userId'}, {id: 'peerId'}]});
                     expect(BrokerService.connect).toHaveBeenCalled();

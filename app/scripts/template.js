@@ -39,14 +39,16 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
 
   $templateCache.put('views/unchatbar-contact/group/add.html',
-    "<div class=\"input-group\">\n" +
-    "    <input type=\"text\" class=\"form-control\" data-ng-model=\"newGroupName\"\n" +
-    "           placeholder=\"Groupname\">\n" +
+    "<form ng-submit=\"createGroup()\">\n" +
+    "    <div class=\"input-group\">\n" +
+    "        <input type=\"text\" class=\"form-control\" data-ng-model=\"newGroupName\"\n" +
+    "               placeholder=\"Groupname\">\n" +
     "\n" +
-    "    <div data-ng-click=\"createGroup();newGroupName='';\" class=\"input-group-addon\">\n" +
-    "        <i class=\"fa fa-check fa-1x\"></i>\n" +
+    "        <div data-ng-click=\"createGroup();newGroupName='';\" class=\"input-group-addon\">\n" +
+    "            <i class=\"fa fa-check fa-1x\"></i>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "</div>"
+    "</form>"
   );
 
 
@@ -77,11 +79,11 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
   $templateCache.put('views/unchatbar-contact/group/selected.html',
     "<div data-ng-show=\"group\">\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-xs-7\">\n" +
+    "        <div class=\"col-xs-5\">\n" +
     "            <img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/>\n" +
     "            <small>{{group.label}}</small>\n" +
     "        </div>\n" +
-    "        <div class=\"col-xs-5\">\n" +
+    "        <div class=\"col-xs-7\">\n" +
     "            <span ng-if=\"group.editable === true\">\n" +
     "                  <span ng-dropdown-multiselect=\"\"\n" +
     "                        extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
@@ -91,7 +93,19 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "                        selected-model=\"group.users\">\n" +
     "\n" +
     "                  </span>\n" +
-    "                </span>\n" +
+    "            </span>\n" +
+    "            <span ng-if=\"group.editable === false\">\n" +
+    "                <div class=\"btn-group\" dropdown is-open=\"status.isopen\">\n" +
+    "                    <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" dropdown-toggle ng-disabled=\"disabled\">\n" +
+    "                        users <span class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "                    <ul class=\"dropdown-menu\" role=\"menu\" >\n" +
+    "                        <li data-ng-repeat=\"user in clientMap\">\n" +
+    "                            <img class=\"profile-image\" data-ng-src=\"{{user.image}}\"/> {{user.label}}\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
+    "            </span>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>"

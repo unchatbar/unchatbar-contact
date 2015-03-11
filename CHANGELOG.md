@@ -1,3 +1,12 @@
+## 0.0.6
+Bugfix:
+* listen on connection close/open
+* synchronisation from group members
+
+Feature:
+* add group by enter event
+
+
 ## 0.0.5
 Feature:
 * add local server for development

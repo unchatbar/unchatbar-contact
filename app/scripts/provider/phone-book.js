@@ -185,8 +185,7 @@ angular.module('unchatbar-contact')
                             option.editable = false;
                             this._storagePhoneBook.groups[id] = option;
                             _.forEach(this._storagePhoneBook.groups[id].users, function(user){
-                                if(Broker.getPeerId() !== user.id &&
-                                     this.addClient(user.id,{})) {
+                                if(Broker.getPeerId() !== user.id) {
                                     Broker.connect(user.id);
                                 }
                             }.bind(this));
