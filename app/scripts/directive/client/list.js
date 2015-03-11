@@ -41,6 +41,14 @@ angular.module('unchatbar-contact').directive('unContactClientList', [
                     updateScope();
                 });
 
+                scope.$on('dataConnectionOpen', function () {
+                    updateScope();
+                });
+
+                scope.$on('dataConnectionClose', function () {
+                    updateScope();
+                });
+
                 updateScope();
             }
         };
