@@ -1,3 +1,7 @@
+## 0.0.7
+Feature:
+* show phonenumber in clientlist, if is ne user.label
+
 ## 0.0.6
 Bugfix:
 * listen on connection close/open

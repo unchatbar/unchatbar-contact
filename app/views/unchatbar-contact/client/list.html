@@ -7,7 +7,7 @@
                 <div class="pull-left list-contact">
                     <span class="contact-online" data-ng-show="clientOnlineMap[clientId]">online</span>
                     <br>
-                    <span>{{clientItem.label}}</span>
+                    <span>{{clientItem.label}}</span><span data-ng-show="clientItem.id !==clientItem.label">({{clientItem.id}})</span>
                 </div>
                 <div class="clearfix"></div>
             </a>
