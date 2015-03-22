@@ -1,0 +1,47 @@
+.un-profile-admin {
+  @extend .dropdown-menu, .dropdown-menu-right;
+
+  @media (min-width: $screen-sm-min) {
+    width: 500px;
+  }
+   .menu-header {
+    font-weight: 300;
+    line-height: 1.25;
+  }
+
+  .img-user {
+    overflow: hidden;
+    position: relative;
+  }
+  .fileUpload {
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    _cursor: hand;
+    margin: 0;
+    padding: 0;
+    width:80px;
+  }
+  .cropArea {
+    margin-left: 66.6667px;
+    margin-top: 70px;
+  }
+  .menu-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+  }
+
+  .menu-footer {
+    padding: 15px;
+  }
+
+  .menu-header {
+    @extend .dropdown-header;
+  }
+}

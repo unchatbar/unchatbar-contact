@@ -1,0 +1,29 @@
+/* VENDOR - Default fall-backs and external files.
+========================================================================== */
+
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
+@import "components-font-awesome/scss/font-awesome";
+
+@import "unchatbar-connection/app/styles/components/_dialer";
+
+@import "unchatbar-user/app/styles/components/_profile";
+@import "unchatbar-user/app/styles/components/_profile-admin";
+
+/* Variable
+========================================================================== */
+@import "_variables";
+
+/* Layout
+========================================================================== */
+@import "_layout";
+
+
+/* components
+========================================================================== */
+
+@import "components/_client-list";
+@import "components/_client-selected";
+@import "components/_group-list";
+@import "components/_group-selected";
+@import "components/_group-add";
+

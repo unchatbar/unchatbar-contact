@@ -11,7 +11,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "                <div class=\"pull-left list-contact\">\n" +
     "                    <span class=\"contact-online\" data-ng-show=\"clientOnlineMap[clientId]\">online</span>\n" +
     "                    <br>\n" +
-    "                    <span>{{clientItem.label}}({{clientItem.id}})</span>\n" +
+    "                    <span>{{clientItem.label}}</span><span data-ng-show=\"clientItem.id !==clientItem.label\">({{clientItem.id}})</span>\n" +
     "                </div>\n" +
     "                <div class=\"clearfix\"></div>\n" +
     "            </a>\n" +
