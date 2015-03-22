@@ -26,7 +26,7 @@ describe('Controller: phoneBook', function () {
 
     describe('check methode', function () {
 
-        describe('getGroupMap', function () {
+        describe('getGroupList', function () {
             beforeEach(function () {
                 phoneBookCTRL();
                 spyOn(PhoneBookService, 'getGroupMap').and.returnValue(
@@ -36,8 +36,8 @@ describe('Controller: phoneBook', function () {
             });
 
             it('should return value from `PhoneBook.getGroupMap`', function () {
-                scope.getGroupMap();
-                expect(scope.groupMap).toEqual({'userGroupId': 'test'});
+                scope.getGroupList();
+                expect(scope.groupList).toEqual(['test']);
             });
         });
 
@@ -73,6 +73,21 @@ describe('Controller: phoneBook', function () {
                 scope.createGroup();
 
                 expect(PhoneBookService.addGroup).toHaveBeenCalledWith('newGroup');
+            });
+
+            it('should call `PhoneBook.addGroup` with `$scope.PhoneBook.addGroup and empty array', function () {
+                scope.newGroupName = 'newGroup';
+                scope.createGroup();
+
+                expect(scope.newGroupName).toBe('');
+            });
+
+
+            it('should not call `PhoneBook.addGroup` when `scope.newGroupName` is empty', function () {
+                scope.newGroupName = '';
+                scope.createGroup();
+
+                expect(PhoneBookService.addGroup).not.toHaveBeenCalled();
             });
 
         });

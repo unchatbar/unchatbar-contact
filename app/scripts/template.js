@@ -11,7 +11,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "    <a class=\"list-group-item\" ui-sref='contact.client({clientId: clientItem.id})'\n" +
     "       ng-repeat=\"clientItem in clientList | filter:clientFilter \">\n" +
     "        <span class=\"media-left\">\n" +
-    "            <img class=\"img-circle img-xs\" data-ng-src=\"{{clientItem.image}} alt=\"Profile Picture\">\n" +
+    "            <img class=\"img-circle img-xs\" data-ng-src=\"{{clientItem.image}}\" alt=\"Profile Picture\">\n" +
     "          </span>\n" +
     "        <div class=\"media-body\">\n" +
     "            <div class=\"text-lg\">{{clientItem.id}}</div>\n" +
@@ -32,76 +32,48 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
 
   $templateCache.put('views/unchatbar-contact/group/add.html',
-    "<form ng-submit=\"createGroup()\">\n" +
-    "    <div class=\"input-group\">\n" +
-    "        <input type=\"text\" class=\"form-control\" data-ng-model=\"newGroupName\"\n" +
-    "               placeholder=\"Groupname\">\n" +
-    "\n" +
-    "        <div data-ng-click=\"createGroup();newGroupName='';\" class=\"input-group-addon\">\n" +
-    "            <i class=\"fa fa-check fa-1x\"></i>\n" +
+    "<div class=\"un-contact-dialer\" >\n" +
+    "    <form ng-submit=\"createGroup()\" class=\"form-group\">\n" +
+    "        <label for=\"input-add\" class=\"sr-only\" translate>Add group</label>\n" +
+    "        <div class=\"input-group\">\n" +
+    "            <input type=\"text\" data-ng-model=\"newGroupName\" autocomplete=\"off\"\n" +
+    "                   placeholder=\"{{'Enter groupname name'|translate}}\" required=\"true\" id=\"input-add\"\n" +
+    "                   class=\"form-control input-sm\" required=\"true\">\n" +
+    "            <span class=\"input-group-btn\">\n" +
+    "              <button class=\"btn btn-success btn-sm un-connect-button-login\" type=\"button\"\n" +
+    "                      data-ng-click=\"createGroup()\">\n" +
+    "                  <i class=\"fa fa-plus\"></i>\n" +
+    "              </button>\n" +
+    "            </span>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    "</form>"
+    "    </form>\n" +
+    "</div>"
   );
 
 
   $templateCache.put('views/unchatbar-contact/group/list.html',
-    "<div class=\"list-group\">\n" +
-    "    <div class=\"row list-group-item\"\n" +
-    "         ng-repeat=\"(groupId,group) in groupMap\" ui-sref-active=\"active\">\n" +
-    "        <div class=\"col-xs-8\">\n" +
-    "            <a ui-sref='contact.group({groupId: groupId})'>\n" +
-    "                <div class=\"pull-left\"><img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/></div>\n" +
-    "                <div class=\"pull-left list-contact\">\n" +
-    "                    <br>\n" +
-    "                    <span>{{group.label}}</span>\n" +
-    "                </div>\n" +
-    "                <div class=\"clearfix\"></div>\n" +
-    "            </a>\n" +
+    "<div class=\"list-group un-contact-group-list\">\n" +
+    "    -->{{groupList}}\n" +
+    "    <a class=\"list-group-item\" ui-sref='contact.group({groupId: group.id})'\n" +
+    "       ng-repeat=\"group in groupList\">\n" +
+    "        <span class=\"media-left\">\n" +
+    "            <img class=\"img-circle img-xs\" data-ng-src=\"{{group.image}}\" alt=\"Profile Picture\">\n" +
+    "          </span>\n" +
+    "        <div class=\"media-body\">\n" +
+    "            <div class=\"text-lg\">{{group.label}}</div>\n" +
+    "            <span class=\"text-muted\">{{group.description}}</span>\n" +
     "        </div>\n" +
-    "        <div class=\"col-xs-4\">\n" +
-    "            <div class=\"removeUser\">\n" +
-    "                <i class=\" fa fa-trash fa-2x\" data-ng-click=\"removeGroup(groupId)\"></i>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n"
+    "    </a>\n" +
+    "</div>"
   );
 
 
   $templateCache.put('views/unchatbar-contact/group/selected.html',
-    "<div data-ng-show=\"group\">\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-xs-5\">\n" +
-    "            <img class=\"profile-image\" data-ng-src=\"{{group.image}}\"/>\n" +
-    "            <small>{{group.label}}</small>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-7\">\n" +
-    "            <span ng-if=\"group.editable === true\">\n" +
-    "                  <span ng-dropdown-multiselect=\"\"\n" +
-    "                        extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
-    "                        events=\"{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}\"\n" +
-    "                        options=\"clientMap | filter:ownPeerId\"\n" +
-    "                        translation-texts=\"{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}\"\n" +
-    "                        selected-model=\"group.users\">\n" +
+    "<div class=\"un-contact-group-selected\" data-ng-show=\"group.id\">\n" +
+    "    <img class=\"group-image profile-image\" data-ng-src=\"{{group.image}}\"/>\n" +
+    "    <div class=\"group-name\">{{group.label}}</div>\n" +
     "\n" +
-    "                  </span>\n" +
-    "            </span>\n" +
-    "            <span ng-if=\"group.editable === false\">\n" +
-    "                <div class=\"btn-group\" dropdown is-open=\"status.isopen\">\n" +
-    "                    <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" dropdown-toggle ng-disabled=\"disabled\">\n" +
-    "                        users <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "                    <ul class=\"dropdown-menu\" role=\"menu\" >\n" +
-    "                        <li data-ng-repeat=\"user in clientMap\">\n" +
-    "                            <img class=\"profile-image\" data-ng-src=\"{{user.image}}\"/> {{user.label}}\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </span>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>"
+    "</div>\n"
   );
 
 }]);

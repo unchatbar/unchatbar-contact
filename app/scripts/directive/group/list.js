@@ -20,15 +20,15 @@ angular.module('unchatbar-contact').directive('unContactGroupList', [
             link : function(scope){
 
                 scope.$on('$stateChangeSuccess',function(){
-                    scope.getGroupMap();
+                    scope.getGroupList();
                 });
 
                 scope.$on('PhoneBookUpdate', function () {
-                    scope.getGroupMap();
+                    scope.getGroupList();
 
                 });
 
-                scope.getGroupMap();
+                scope.getGroupList();
             }
         };
     }

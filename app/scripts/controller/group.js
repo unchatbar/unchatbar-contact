@@ -17,11 +17,11 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
 
         /**
          * @ngdoc property
-         * @name groupMap
+         * @name groupList
          * @propertyOf unchatbar-contact.controller:unContactGroup
-         * @returns {Object} map of groups
+         * @returns {Array} map of groups
          */
-        $scope.groupMap = $scope.groupMap || {};
+        $scope.groupList = $scope.groupList || [];
 
         /**
          * @ngdoc property
@@ -42,15 +42,18 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
 
         /**
          * @ngdoc methode
-         * @name getGroup
+         * @name getGroupList
          * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
          * get all groups
          *
          */
-        $scope.getGroupMap = function () {
-            $scope.groupMap = PhoneBook.getGroupMap();
+        $scope.getGroupList = function () {
+            $scope.groupList= [];
+            _.forEach(PhoneBook.getGroupMap(),function(group){
+                $scope.groupList.push(group);
+            });
         };
 
         /**
@@ -76,7 +79,10 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.createGroup = function () {
-            PhoneBook.addGroup($scope.newGroupName);
+            if($scope.newGroupName) {
+                PhoneBook.addGroup($scope.newGroupName);
+                $scope.newGroupName = '';
+            }
         };
 
 

@@ -20,7 +20,7 @@ angular.module('unchatbar-contact').directive('unContactGroupSelected', [
             link: function (scope) {
 
                 function updateScope() {
-                    scope.getGroup();
+                    scope.getGroupList();
                     scope.getClientMap();
                 }
 

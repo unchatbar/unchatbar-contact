@@ -1,32 +1,4 @@
-<div data-ng-show="group">
-    <div class="row">
-        <div class="col-xs-5">
-            <img class="profile-image" data-ng-src="{{group.image}}"/>
-            <small>{{group.label}}</small>
-        </div>
-        <div class="col-xs-7">
-            <span ng-if="group.editable === true">
-                  <span ng-dropdown-multiselect=""
-                        extra-settings="{showCheckAll:false,showUncheckAll : false}"
-                        events="{onItemSelect : addUserToGroup,onItemDeselect : removeUserFromGroup}"
-                        options="clientMap | filter:ownPeerId"
-                        translation-texts="{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}"
-                        selected-model="group.users">
-
-                  </span>
-            </span>
-            <span ng-if="group.editable === false">
-                <div class="btn-group" dropdown is-open="status.isopen">
-                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
-                        users <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" >
-                        <li data-ng-repeat="user in clientMap">
-                            <img class="profile-image" data-ng-src="{{user.image}}"/> {{user.label}}
-                        </li>
-                    </ul>
-                </div>
-            </span>
-        </div>
-    </div>
+<div class="un-contact-group-selected" data-ng-show="group.id">
+    <img class="group-image profile-image" data-ng-src="{{group.image}}"/>
+    <div class="group-name">{{group.label}}</div>
 </div>
