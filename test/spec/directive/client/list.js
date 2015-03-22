@@ -19,8 +19,7 @@ describe('Directive: unContactClientList', function () {
     describe('check init', function () {
         it('it should be an empty object', function () {
             var element = build();
-
-            expect(element.scope().clientMap).toEqual({});
+            expect(element.isolateScope().clientList).toEqual([]);
         });
     });
 
@@ -29,7 +28,7 @@ describe('Directive: unContactClientList', function () {
         beforeEach(function () {
             element = build();
 
-            element.scope().clientMap = [{label: 'userA'}, {label: 'userB'}]
+            element.isolateScope().clientList = [{label: 'userA'}, {label: 'userB'}];
         });
         it('should contain label from first user', inject(function ($rootScope) {
 

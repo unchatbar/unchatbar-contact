@@ -167,7 +167,7 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-client-selected></un-contact-client-selected>
+<un-contact-client-selected data-client-filter="[FILTEROBJECT]"></un-contact-client-selected>
 ```
 
 

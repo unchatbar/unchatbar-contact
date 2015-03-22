@@ -19,17 +19,9 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope', '$s
          * @ngdoc property
          * @name clientMap
          * @propertyOf unchatbar-contact.controller:unContactClient
-         * @returns {Object} list of clients
+         * @returns {Array} list of clients
          */
-        $scope.clientMap = $scope.clientMap || {};
-
-        /**
-         * @ngdoc property
-         * @name clientOnlineMap
-         * @propertyOf unchatbar-contact.controller:unContactClient
-         * @returns {Object} map of online clients
-         */
-        $scope.clientOnlineMap = $scope.clientOnlineMap || {};
+        $scope.clientList = $scope.clientList || [];
 
         /**
          * @ngdoc property
@@ -50,15 +42,16 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope', '$s
          *
          */
         $scope.getClientMap = function () {
-            $scope.clientMap = PhoneBook.getClientMap();
-            $scope.clientOnlineMap = DataConnection.getOpenConnectionMap();
-            _.forEach($scope.clientMap, function (user, peerId) {
-                if ($scope.clientOnlineMap[peerId]) {
-                    $scope.clientMap[peerId].online = true;
+            $scope.clientList = [];
+            var clientMap = PhoneBook.getClientMap();
+            var clientOnlineMap = DataConnection.getOpenConnectionMap();
+            _.forEach(clientMap, function (user, peerId) {
+                if (clientOnlineMap[peerId]) {
+                    clientMap[peerId].online = true;
                 } else {
-                    $scope.clientMap[peerId].online = false;
+                    clientMap[peerId].online = false;
                 }
-
+                $scope.clientList.push(clientMap[peerId]);
             });
         };
 

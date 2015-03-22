@@ -9,6 +9,7 @@
 @import "unchatbar-user/app/styles/components/_profile";
 @import "unchatbar-user/app/styles/components/_profile-admin";
 
+
 /* Variable
 ========================================================================== */
 @import "_variables";
@@ -23,7 +24,17 @@
 
 @import "components/_client-list";
 @import "components/_client-selected";
+@import "components/_client-count";
 @import "components/_group-list";
 @import "components/_group-selected";
 @import "components/_group-add";
 
+.badge-success {
+  background-color: #8cc152;
+}
+.badge-danger {
+  background-color: #e9573f;
+}
+.badge-info {
+  background-color: #3bb5e8;
+}

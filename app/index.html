@@ -13,40 +13,26 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
-<body ng-init="showAdminProfile=false;offcanvas= false">
-<nav class="navbar navbar-fixed-top navbar-inverse">
-
-    <div class="pull-left">
-        <div class="navbar-header">
-            <a ui-sref="contact" class="navbar-toggle collapsed" data-ng-click="offcanvas=!offcanvas"
-                    data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
-        </div>
-        <!-- /.nav-collapse -->
-    </div>
-    <div class="pull-right">
-        <un-profile-label data-ng-click="showAdminProfile=!showAdminProfile;offcanvas=false"></un-profile-label>
-    </div>
-
-    <!-- /.container -->
-</nav>
-<!-- /.navbar -->
+<body data-ng-init="showProfile=false">
+<div ng-click="showProfile=!showProfile">{{showProfile ? 'close' : 'open'}} Profile</div>
+<un-profile-admin data-ng-show="showProfile"></un-profile-admin>
 <div>
-
-
-    <div class="row contacts">
-        <div class="col-xs-12  col-sm-2" data-ng-class="{'hidden-xs': !offcanvas}">
-            <h3>users</h3>
+    <div class="container">
+        <div>
+            <h3>users <span><un-contact-client-count addition-class="'badge-info'"></un-contact-client-count></span></h3>
             <un-connection-dialer></un-connection-dialer>
             <br/>
-            <un-contact-client-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-client-list>
+            Clients online <span><un-contact-client-count
+                addition-class="'badge-success'"
+                data-client-filter="{online:true}">
+            </un-contact-client-count></span>
+            <un-contact-client-list data-client-filter="{online:true}"></un-contact-client-list>
             <br />
+
+            Clients offline<span><un-contact-client-count addition-class="'badge-danger'"
+                                                          data-client-filter="{online:false}"></un-contact-client-count></span>
+            <un-contact-client-list data-client-filter="{online:false}"></un-contact-client-list>
+
             <h3>groups</h3>
             <un-contact-group-add ></un-contact-group-add> <br />
             <un-contact-group-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-group-list>
@@ -56,11 +42,6 @@
 
                 <un-contact-client-selected></un-contact-client-selected>
                 <un-contact-group-selected></un-contact-group-selected>
-            </div>
-        </div>
-        <div lass="col-xs-12 col-sm-9" data-ng-show="showAdminProfile">
-            <div class="jumbotron">
-                <un-profile-admin></un-profile-admin>
             </div>
         </div>
     </div>
@@ -135,6 +116,7 @@
 <!-- directive -->
 <script src="scripts/directive/client/list.js"></script>
 <script src="scripts/directive/client/selected.js"></script>
+<script src="scripts/directive/client/count.js"></script>
 <script src="scripts/directive/group/list.js"></script>
 <script src="scripts/directive/group/add.js"></script>
 <script src="scripts/directive/group/selected.js"></script>

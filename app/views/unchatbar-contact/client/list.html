@@ -1,21 +1,12 @@
-<div class="list-group">
-    <div class="row list-group-item"
-         ng-repeat="(clientId,clientItem) in clientMap" ui-sref-active="active">
-        <div class="col-xs-8">
-            <a ui-sref='contact.client({clientId: clientId})'>
-                <div class="pull-left"><img class="profile-image" data-ng-src="{{clientItem.image}}"/></div>
-                <div class="pull-left list-contact">
-                    <span class="contact-online" data-ng-show="clientItem.online === true">online</span>
-                    <br>
-                    <span>{{clientItem.label}}</span><span data-ng-show="clientItem.id !==clientItem.label">({{clientItem.id}})</span>
-                </div>
-                <div class="clearfix"></div>
-            </a>
+<div class="list-group un-contact-client-list">
+    <a class="list-group-item" ui-sref='contact.client({clientId: clientItem.id})'
+       ng-repeat="clientItem in clientList | filter:clientFilter ">
+        <span class="media-left">
+            <img class="img-circle img-xs" data-ng-src="{{clientItem.image}} alt="Profile Picture">
+          </span>
+        <div class="media-body">
+            <div class="text-lg">{{clientItem.id}}</div>
+            <span class="text-muted">{{clientItem.description}}</span>
         </div>
-        <div class="col-xs-4">
-            <div class="removeUser">
-                <i class=" fa fa-trash fa-2x" data-ng-click="removeClient(clientId)"></i>
-            </div>
-        </div>
-    </div>
+    </a>
 </div>

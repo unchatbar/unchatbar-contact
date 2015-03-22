@@ -10,17 +10,28 @@
  * client list
  *
  */
-angular.module('unchatbar-contact').directive('unContactClientList', [
+angular.module('unchatbar-contact').directive('unContactClientCount', [
     function () {
         return {
             restrict: 'E',
             replace: false,
-            templateUrl:'views/unchatbar-contact/client/list.html',
+            templateUrl:'views/unchatbar-contact/client/count.html',
             controller: 'unContactClient',
             scope: {
-                clientFilter : '='
+                clientFilter : '=',
+                additionClass : '='
             },
             link : function(scope){
+                /**
+                 * @ngdoc property
+                 * @name userCount
+                 * @methodOf unchatbar-contact.directive:unContactClientList
+                 * @description
+                 *
+                 * count of clients
+                 *
+                 */
+                scope.userCount = 0;
 
                 /**
                  * @ngdoc methode
@@ -33,6 +44,8 @@ angular.module('unchatbar-contact').directive('unContactClientList', [
                  */
                 function updateScope (){
                     scope.getClientMap();
+                    scope.userCount = _.filter(scope.clientList, scope.clientFilter).length;
+
                 }
 
                 scope.$on('$stateChangeSuccess', function () {

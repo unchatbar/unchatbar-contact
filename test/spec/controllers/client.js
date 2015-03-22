@@ -46,19 +46,13 @@ describe('Controller: phoneBook', function () {
             it('should set `$scope.clientMap` to return value from `PhoneBook.getClientMap`', function () {
                 scope.getClientMap();
 
-                expect(scope.clientMap).toEqual(
-                    {
-                        peerIdUser: {name: 'test',online : true},
-                        peerIdUserA: {name: 'userA', online: false}
-                    }
+                expect(scope.clientList).toEqual(
+                    [
+                         {name: 'test',online : true},
+                        {name: 'userA', online: false}
+                    ]
                 );
             });
-
-            it('should set `$scope.clientOnlineMap` to return value from `PhoneBook.getClientOnlineMap`', function () {
-                scope.getClientMap();
-                expect(scope.clientOnlineMap).toEqual( {'peerIdUser': {name:'test'}});
-            });
-
 
         });
 
