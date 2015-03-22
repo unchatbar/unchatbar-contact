@@ -1,5 +1,9 @@
 <div class="un-contact-client-selected" data-ng-show="client.id">
-    <img class="client-image profile-image" data-ng-src="{{client.image}}"/>
-    <div class="client-name">{{client.label}}</div>
+    <span class="profile-image-box">
+        <img class="profile-image" data-ng-src="{{client.image}}"/>
+    </span>
 
+    <div class="profile-info-box">
+        <div class="client-name">{{client.label}}</div>
+    </div>
 </div>

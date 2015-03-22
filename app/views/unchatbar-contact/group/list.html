@@ -1,10 +1,10 @@
 <div class="list-group un-contact-group-list">
     <a class="list-group-item" ui-sref='contact.group({groupId: group.id})'
        ng-repeat="group in groupList">
-        <span class="media-left">
-            <img class="img-circle img-xs" data-ng-src="{{group.image}}" alt="Profile Picture">
+        <span class="profile-image-box">
+            <img class="profile-image" data-ng-src="{{group.image}}" alt="Profile Picture">
           </span>
-        <div class="media-body">
+        <div class="profile-info-box">
             <div class="text-lg">{{group.label}}</div>
             <span class="text-muted">{{group.description}}</span>
         </div>

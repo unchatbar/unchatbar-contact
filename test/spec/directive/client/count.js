@@ -1,4 +1,4 @@
-describe('Directive: unContactClientList', function () {
+describe('Directive: unContactClientcount', function () {
     var build = function () {
     };
 

@@ -33,7 +33,7 @@
                                                           data-client-filter="{online:false}"></un-contact-client-count></span>
             <un-contact-client-list data-client-filter="{online:false}"></un-contact-client-list>
 
-            <h3>groups</h3>
+            <h3>groups <span><un-contact-group-count addition-class="'badge-info'"></un-contact-group-count></span></h3>
             <un-contact-group-add ></un-contact-group-add> <br />
             <un-contact-group-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-group-list>
         </div>
@@ -118,6 +118,7 @@
 <script src="scripts/directive/group/list.js"></script>
 <script src="scripts/directive/group/add.js"></script>
 <script src="scripts/directive/group/selected.js"></script>
+<script src="scripts/directive/group/count.js"></script>
 
 <!-- run -->
 <script src="scripts/run.js"></script>

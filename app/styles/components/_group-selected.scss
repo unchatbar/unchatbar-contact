@@ -1,8 +1,13 @@
 .un-contact-group-selected {
-  .group-image{
-
+  .profile-image-box {
+    @extend .media-left;
   }
-  .group-name {
-
+  .profile-image {
+    @extend .img-circle;
+    height: 32px;
+    width: 32px;
+  }
+  .profile-info-box {
+    @extend .media-body;
   }
 }

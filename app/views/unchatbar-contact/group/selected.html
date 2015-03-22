@@ -1,4 +1,9 @@
-<div class="un-contact-group-selected" data-ng-show="group.id">
-    <img class="group-image profile-image" data-ng-src="{{group.image}}"/>
-    <div class="group-name">{{group.label}}</div>
+<div class="un-contact-group-selected" data-ng-show="group">
+    <span class="profile-image-box">
+        <img class="profile-image" data-ng-src="{{group.image}}"/>
+    </span>
+
+    <div class="profile-info-box">
+        <div class="group-name">{{group.label}}</div>
+    </div>
 </div>

@@ -1,0 +1,13 @@
+.un-contact-group-list {
+  .profile-image-box {
+    @extend .media-left;
+  }
+  .profile-image {
+    @extend .img-circle;
+    height: 32px;
+    width: 32px;
+  }
+  .profile-info-box {
+    @extend .media-body;
+  }
+}

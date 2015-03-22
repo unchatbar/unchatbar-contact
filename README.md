@@ -170,6 +170,13 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 <un-contact-client-selected data-client-filter="[FILTEROBJECT]"></un-contact-client-selected>
 ```
 
+* count client in list by filter
+
+>
+```html
+<un-contact-client-count addition-class="[CSS-CLASS]" data-client-filter="[FILTEROBJECT]"></un-contact-client-count>
+```
+
 
 * list of all groups
 
@@ -192,6 +199,13 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 >
 ```html
 <un-contact-group-add></un-contact-group-add>
+```
+
+* count groups
+
+>
+```html
+<un-contact-group-count addition-class="[CSS-CLASS]"></un-contact-group-count>
 ```
 
 
