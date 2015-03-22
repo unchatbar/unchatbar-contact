@@ -4,9 +4,9 @@ describe('Controller: phoneBook', function () {
 
     beforeEach(module('unchatbar-contact'));
 
-    var phoneBookCTRL, stateParams, scope, PhoneBookService, state,DataConnectionService;
+    var phoneBookCTRL, stateParams, scope, PhoneBookService, state, DataConnectionService;
 
-    beforeEach(inject(function ($controller, $rootScope, $state, PhoneBook,DataConnection) {
+    beforeEach(inject(function ($controller, $rootScope, $state, PhoneBook, DataConnection) {
         PhoneBookService = PhoneBook;
         stateParams = {};
         DataConnectionService = DataConnection;
@@ -32,25 +32,34 @@ describe('Controller: phoneBook', function () {
 
                 spyOn(PhoneBookService, 'getClientMap').and.returnValue(
                     {
-                        peerIdUser: 'test',
-                        peerIdUserA: 'test2'
+                        peerIdUser: {name: 'test'},
+                        peerIdUserA: {name: 'userA'}
                     }
+
                 );
 
                 spyOn(DataConnectionService, 'getOpenConnectionMap').and.returnValue(
-                    {'peerIdUser': 'test'}
+                    {'peerIdUser': {name:'test'}}
                 );
 
             });
             it('should set `$scope.clientMap` to return value from `PhoneBook.getClientMap`', function () {
                 scope.getClientMap();
-                expect(scope.clientMap).toEqual({peerIdUser: 'test', peerIdUserA: 'test2'});
+
+                expect(scope.clientMap).toEqual(
+                    {
+                        peerIdUser: {name: 'test',online : true},
+                        peerIdUserA: {name: 'userA', online: false}
+                    }
+                );
             });
 
             it('should set `$scope.clientOnlineMap` to return value from `PhoneBook.getClientOnlineMap`', function () {
                 scope.getClientMap();
-                expect(scope.clientOnlineMap).toEqual({'peerIdUser': 'test'});
+                expect(scope.clientOnlineMap).toEqual( {'peerIdUser': {name:'test'}});
             });
+
+
         });
 
         describe('getClient', function () {

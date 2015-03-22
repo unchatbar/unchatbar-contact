@@ -52,6 +52,14 @@ angular.module('unchatbar-contact').controller('unContactClient', ['$scope', '$s
         $scope.getClientMap = function () {
             $scope.clientMap = PhoneBook.getClientMap();
             $scope.clientOnlineMap = DataConnection.getOpenConnectionMap();
+            _.forEach($scope.clientMap, function (user, peerId) {
+                if ($scope.clientOnlineMap[peerId]) {
+                    $scope.clientMap[peerId].online = true;
+                } else {
+                    $scope.clientMap[peerId].online = false;
+                }
+
+            });
         };
 
         /**

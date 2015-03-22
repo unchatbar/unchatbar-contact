@@ -5,7 +5,7 @@
             <a ui-sref='contact.client({clientId: clientId})'>
                 <div class="pull-left"><img class="profile-image" data-ng-src="{{clientItem.image}}"/></div>
                 <div class="pull-left list-contact">
-                    <span class="contact-online" data-ng-show="clientOnlineMap[clientId]">online</span>
+                    <span class="contact-online" data-ng-show="clientItem.online === true">online</span>
                     <br>
                     <span>{{clientItem.label}}</span><span data-ng-show="clientItem.id !==clientItem.label">({{clientItem.id}})</span>
                 </div>

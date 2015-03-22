@@ -100,7 +100,7 @@ angular.module('unchatbar-contact')
                      *
                      */
                     getClientMap: function () {
-                        return this._storagePhoneBook.user;
+                        return _.cloneDeep(this._storagePhoneBook.user);
                     },
 
 
@@ -155,7 +155,7 @@ angular.module('unchatbar-contact')
 
                     /**
                      * @ngdoc methode
-                     * @name getClientMap
+                     * @name removeClient
                      * @methodOf unchatbar-contact.PhoneBook
                      * @params {String} id peerId from client
                      * @return {Object} map of all clients
