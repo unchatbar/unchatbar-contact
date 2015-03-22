@@ -26,6 +26,7 @@ Peer to peer chat application using WebRTC technologies
 * angularjs-dropdown-multiselect
 * unchatbar-connection
 * unchatbar-user
+* gettext
 
 ## Get Started
 ```javascript
