@@ -1,8 +1,9 @@
 .un-contact-client-admin {
   button {
     @extend .btn;
+    background-color:white;
   }
   .icon-remove {
-    @extend .fa, .fa-minus;
+    @extend .fa, .fa-times;
   }
 }
