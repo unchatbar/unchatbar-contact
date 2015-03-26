@@ -1,5 +1,4 @@
 .un-contact-client-admin {
-  @extend .dropdown-menu, .dropdown-menu-right;
   .remove {
     @extend .btn, .btn-sm, .btn-danger, .pull-left, .fa, .fa-trash;
     font-size: inherit;

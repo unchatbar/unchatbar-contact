@@ -209,6 +209,13 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 <un-contact-group-add></un-contact-group-add>
 ```
 
+* admin dialog for selected group
+
+>
+```html
+<un-contact-group-admin></un-contact-group-admin>
+```
+
 * count groups
 
 >

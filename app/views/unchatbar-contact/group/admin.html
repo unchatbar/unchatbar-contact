@@ -1,10 +1,10 @@
-<div role="menu" class="un-contact-group-admin" data-ng-show="group.id">
+<div role="menu" class="un-contact-group-admin" data-ng-show="group.id" >
     <div class="menu-header ">
         <span class="" translate>admin group</span>
     </div>
     <div class="divider mar-no"></div>
     <div class="menu-content">
-        <form class="" name="adminFormGroup">
+        <form name="adminFormGroup">
             <div class="image-group">
                 <div>
                     <input class="fileUpload" accept="image/*" type="file" file-model="newImage"/>
@@ -27,11 +27,12 @@
                        placeholder="{{'a short description' | translate}}"
                        id="user-description">
             </div>
-            <div class="user-group">
+            <div class="user-group" data-ng-if="group.users">
                 <label for="user-description" translate>users in group</label>
                 <p>
                    <span ng-dropdown-multiselect=""
                          extra-settings="{showCheckAll:false,showUncheckAll : false}"
+                         events="{onItemSelect : setFormDirty, onItemDeselect: setFormDirty}"
                          options="clientMap | filter:ownPeerId"
                          translation-texts="{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}"
                          selected-model="group.users">
