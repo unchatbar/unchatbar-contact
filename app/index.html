@@ -19,32 +19,39 @@
 <div>
     <div class="container">
         <div>
-            <h3>users <span><un-contact-client-count addition-class="'badge-info'"></un-contact-client-count></span></h3>
+            <h3>users <span><un-contact-client-count addition-class="'badge-info'"></un-contact-client-count></span>
+            </h3>
             <un-connection-dialer></un-connection-dialer>
             <br/>
             Clients online <span><un-contact-client-count
                 addition-class="'badge-success'"
                 data-client-filter="{online:true}">
-            </un-contact-client-count></span>
+        </un-contact-client-count></span>
             <un-contact-client-list data-client-filter="{online:true}"></un-contact-client-list>
-            <br />
+            <br/>
 
             Clients offline<span><un-contact-client-count addition-class="'badge-danger'"
                                                           data-client-filter="{online:false}"></un-contact-client-count></span>
             <un-contact-client-list data-client-filter="{online:false}"></un-contact-client-list>
 
             <h3>groups <span><un-contact-group-count addition-class="'badge-info'"></un-contact-group-count></span></h3>
-            <un-contact-group-add ></un-contact-group-add> <br />
+            <un-contact-group-add></un-contact-group-add>
+            <br/>
             <un-contact-group-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-group-list>
         </div>
         <div>
             <h3>selected Client/User</h3>
-            <div >
-                <un-contact-client-selected></un-contact-client-selected>
-                <un-contact-client-admin></un-contact-client-admin>
-            </div>
 
+            <div>
+                <un-contact-client-selected></un-contact-client-selected>
                 <un-contact-group-selected></un-contact-group-selected>
+            </div>
+            Admin Area
+            <div>
+
+                <un-contact-client-admin></un-contact-client-admin>
+                <un-contact-group-admin></un-contact-group-admin>
+            </div>
         </div>
     </div>
 </div>
@@ -124,6 +131,7 @@
 <script src="scripts/directive/group/add.js"></script>
 <script src="scripts/directive/group/selected.js"></script>
 <script src="scripts/directive/group/count.js"></script>
+<script src="scripts/directive/group/admin.js"></script>
 
 <!-- run -->
 <script src="scripts/run.js"></script>

@@ -1,0 +1,60 @@
+<div role="menu" class="un-contact-group-admin" data-ng-show="group.id">
+    <div class="menu-header ">
+        <span class="" translate>admin group</span>
+    </div>
+    <div class="divider mar-no"></div>
+    <div class="menu-content">
+        <form class="">
+            <div class="image-group">
+                <div>
+                    <input class="fileUpload" accept="image/*" type="file" file-model="newImage"/>
+                    <img class="img-circle img-user" ng-src="{{group.image}}"/>
+                </div>
+                <div class="cropArea" data-ng-if="newImage">
+                    <img-crop result-image-size="80" result-image-format="image/jpeg" image="newImage"
+                              result-image="group.image"></img-crop>
+                </div>
+            </div>
+            <div class="name-group">
+                <label for="display-name" translate>group name</label>
+                <input type="text" placeholder="{{'Enter display name' | translate}}" id="display-name"
+                       data-ng-model="group.label" required="true">
+
+            </div>
+            <div class="description-group">
+                <label for="user-description" translate>short description</label>
+                <input type="text" data-ng-model="group.description"
+                       placeholder="{{'a short description' | translate}}"
+                       id="user-description">
+            </div>
+            <div class="user-group">
+                <label for="user-description" translate>users in group</label>
+                <p>
+                    <div class="button-group" dropdown is-open="status.isopen">
+                        <button type="button" class="" dropdown-toggle
+                                ng-disabled="disabled">
+                            users<span class="caret"></span>
+                        </button>
+                        <ul role="menu">
+                            <li data-ng-repeat="user in clientMap">
+                                <img class="profile-image" data-ng-src="{{user.image}}"/> {{user.label}}
+                            </li>
+                        </ul>
+                    </div>
+                </p>
+            </div>
+
+        </form>
+    </div>
+    <div class="divider mar-no"></div>
+    <div class="menu-footer">
+        <div class="removeUser" data-ng-click="removeGroup(groupId)">
+            <span translate>remove</span>
+        </div>
+        <div class="save"
+             data-ng-click="update();newImage='';">
+            <span translate>Save</span>
+        </div>
+    </div>
+</div>
+

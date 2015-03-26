@@ -1,0 +1,81 @@
+.un-contact-group-admin {
+  @extend .dropdown-menu, .dropdown-menu-right;
+
+  @media (min-width: $screen-sm-min) {
+    width: 500px;
+  }
+  display: block;
+  position: relative;
+  .menu-header {
+    font-weight: 300;
+    line-height: 1.25;
+  }
+  .menu-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+
+    .image-group {
+      @extend .form-group;
+      .img-user {
+        overflow: hidden;
+        position: relative;
+      }
+      .fileUpload {
+        z-index: 999;
+        line-height: 0;
+        font-size: 50px;
+        position: absolute;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -ms-filter: "alpha(opacity=0)";
+        cursor: pointer;
+        _cursor: hand;
+        margin: 0;
+        padding: 0;
+        width: 80px;
+      }
+      .cropArea {
+        margin-left: 66.6667px;
+        margin-top: 70px;
+      }
+    }
+    .name-group {
+      @extend .form-group;
+      input {
+        @extend .form-control;
+      }
+    }
+    .description-group {
+      @extend .form-group;
+      input {
+        @extend .form-control;
+      }
+    }
+    .user-group {
+      @extend .form-group;
+      .button-group {
+        @extend .btn-group;
+        button {
+          @extend .btn, .btn-primary, .dropdown-toggle;
+        }
+        ul {
+          @extend .dropdown-menu;
+        }
+      }
+    }
+  }
+  .menu-footer {
+    padding: 15px;
+    .removeUser {
+      @extend .btn, .btn-sm, .btn-danger, .pull-left, .fa, .fa-trash;
+    }
+    .save {
+      @extend .btn, .btn-sm, .btn-success, .pull-right, .fa, .fa-save;
+    }
+  }
+
+  .menu-header {
+    @extend .dropdown-header;
+  }
+}
