@@ -1,5 +1,5 @@
 <div class="un-contact-client-list">
-    <a ui-sref='contact.client({clientId: clientItem.id})'
+    <a ui-sref='contact.channel({channel: clientItem.channel})'
        ng-repeat="clientItem in clientList | filter:clientFilter ">
         <span class="profile-image-box">
             <img class="profile-image" data-ng-src="{{clientItem.image}}" alt="Profile Picture">

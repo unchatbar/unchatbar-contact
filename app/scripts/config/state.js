@@ -20,6 +20,17 @@ angular.module('unchatbar-contact')
                     parent: 'contact',
                     url: '/group/{groupId}'
 
+                })
+                .state('contact.channel', {
+                    parent: 'contact',
+                    url: '/{channel}',
+                    resolve:{
+                        getPeerId: ['$stateParams','PhoneBook',function( $stateParams,PhoneBook){
+                            $stateParams.clientId = PhoneBook.getClientByChannel($stateParams.channel).id || null;
+                            $stateParams.groupId = PhoneBook.getGroupByChannel($stateParams.channel).id || null;
+                        }]
+
+                    }
                 });
         }
     ]);

@@ -38,10 +38,10 @@ angular.module('unchatbar-contact')
          * phonebook
          *
          */
-        this.$get = ['$rootScope', '$sessionStorage', '$localStorage', 'Broker','Profile',
-            function ($rootScope, $sessionStorage, $localStorage, Broker,Profile) {
+        this.$get = ['$rootScope', '$sessionStorage', '$localStorage', 'Broker', 'Profile',
+            function ($rootScope, $sessionStorage, $localStorage, Broker, Profile) {
 
-                var api =  {
+                var api = {
                     /**
                      * @ngdoc methode
                      * @name _storagePhoneBook
@@ -50,7 +50,7 @@ angular.module('unchatbar-contact')
                      * @returns {Object} user/group storage
                      *
                      */
-                    _storagePhoneBook:{
+                    _storagePhoneBook: {
                         user: {},
                         groups: {}
                     },
@@ -63,7 +63,7 @@ angular.module('unchatbar-contact')
                      *
                      * init storage
                      */
-                    initStorage : function(){
+                    initStorage: function () {
                         var storage = useLocalStorage ? $localStorage : $sessionStorage;
                         this._storagePhoneBook = storage.$default({
                             phoneBook: {
@@ -87,6 +87,36 @@ angular.module('unchatbar-contact')
                      */
                     getClient: function (clientId) {
                         return this._storagePhoneBook.user[clientId] || '';
+                    },
+
+                    /**
+                     * @ngdoc methode
+                     * @name getClientOrUserByChannel
+                     * @methodOf unchatbar-contact.PhoneBook
+                     * @params {String} channelId id of channel
+                     * @return {Object} client/group object
+                     * @description
+                     *
+                     * get client by channel id
+                     *
+                     */
+                    getClientByChannel: function (channelId) {
+                        return _.find(this._storagePhoneBook.user,{channel:channelId}) || {};
+                    },
+
+                    /**
+                     * @ngdoc methode
+                     * @name getGroupByChannel
+                     * @methodOf unchatbar-contact.PhoneBook
+                     * @params {String} channelId id of channel
+                     * @return {Object} client/group object
+                     * @description
+                     *
+                     * get group by channel id
+                     *
+                     */
+                    getGroupByChannel: function (channelId) {
+                        return _.find(this._storagePhoneBook.groups, {channel: channelId}) || {};
                     },
 
                     /**
@@ -117,11 +147,13 @@ angular.module('unchatbar-contact')
                      */
                     addClient: function (id, profile) {
                         var addUser = false;
-                        if(!this._storagePhoneBook.user[id] &&
+                        if (!this._storagePhoneBook.user[id] &&
                             id !== Broker.getPeerId()) {
+
+                            profile.channel = this._getChannel(id);
                             profile.id = id;
                             this._storagePhoneBook.user[id] = profile;
-                            if(!this._storagePhoneBook.user[id].image) {
+                            if (!this._storagePhoneBook.user[id].image) {
                                 this._storagePhoneBook.user[id].image = Profile._getIdenticons(id);
                             }
                             addUser = true;
@@ -145,7 +177,7 @@ angular.module('unchatbar-contact')
                     updateClient: function (id, profile) {
                         this._storagePhoneBook.user[id] = profile;
                         this._storagePhoneBook.user[id].id = id;
-                        if(!this._storagePhoneBook.user[id].label) {
+                        if (!this._storagePhoneBook.user[id].label) {
                             this._storagePhoneBook.user[id].label = id;
                         }
                         this._sendUpdateEvent();
@@ -180,17 +212,17 @@ angular.module('unchatbar-contact')
                      *
                      */
                     copyGroupFromPartner: function (id, option) {
-                        if (_.findIndex(option.users,{id: Broker.getPeerId()}) !== -1) {
+                        if (_.findIndex(option.users, {id: Broker.getPeerId()}) !== -1) {
                             option.editable = false;
                             this._storagePhoneBook.groups[id] = option;
-                            _.forEach(this._storagePhoneBook.groups[id].users, function(user){
-                                if(Broker.getPeerId() !== user.id) {
+                            _.forEach(this._storagePhoneBook.groups[id].users, function (user) {
+                                if (Broker.getPeerId() !== user.id) {
                                     Broker.connect(user.id);
                                 }
                             }.bind(this));
                             this._sendUpdateEvent();
                         } else {
-                            if(this._storagePhoneBook.groups[id]) {
+                            if (this._storagePhoneBook.groups[id]) {
                                 delete this._storagePhoneBook.groups[id];
                                 this._sendUpdateEvent();
                             }
@@ -209,15 +241,16 @@ angular.module('unchatbar-contact')
                      */
                     addGroup: function (name) {
                         var peerId = Broker.getPeerId();
-                        var user = [{id : Broker.getPeerId()}];
+                        var user = [{id: Broker.getPeerId()}];
                         if (peerId) {
                             var id = this.createNewGroupId();
                             this._storagePhoneBook.groups[id] = {
                                 label: name,
                                 users: user,
-                                image : Profile._getIdenticons(id),
+                                image: Profile._getIdenticons(id),
                                 owner: peerId,
                                 editable: true,
+                                channel: id,
                                 id: id
                             };
                         }
@@ -249,8 +282,8 @@ angular.module('unchatbar-contact')
                      * create new unique group id
                      *
                      */
-                    createNewGroupId : function() {
-                        return  Broker.getPeerId() + new Date().getTime();
+                    createNewGroupId: function () {
+                        return Broker.getPeerId() + new Date().getTime();
                     },
                     /**
                      * @ngdoc methode
@@ -292,12 +325,12 @@ angular.module('unchatbar-contact')
                      * remove group from phone book only run by remove event from other clients
                      *
                      */
-                    removeGroupByClient: function (clientPeer,roomId) {
+                    removeGroupByClient: function (clientPeer, roomId) {
                         if (this._storagePhoneBook.groups[roomId].owner === clientPeer) {
                             delete this._storagePhoneBook.groups[roomId];
                         } else {
-                            var userIndex = _.findIndex(this._storagePhoneBook.groups[roomId].users,{id : clientPeer});
-                            if(userIndex !== -1) {
+                            var userIndex = _.findIndex(this._storagePhoneBook.groups[roomId].users, {id: clientPeer});
+                            if (userIndex !== -1) {
                                 this._storagePhoneBook.groups[roomId].users.splice(userIndex, 1);
                             }
                         }
@@ -340,7 +373,27 @@ angular.module('unchatbar-contact')
                          *
                          */
                         $rootScope.$broadcast('PhoneBookUpdate', {});
-                    }
+                    },
+
+                    /**
+                     * @ngdoc methode
+                     * @name _getChannel
+                     * @methodOf unchatbar-contact.PhoneBook
+                     * @params {String} id peerId from client
+                     * @return {String} unique channel name
+                     * @description
+                     *
+                     * get channelName for user
+                     *
+                     */
+                    _getChannel: function (peerId) {
+                        var clientList = [
+                                {'peerId': Broker.getPeerId()},
+                                {'peerId': peerId}
+                            ],
+                            clientMap = _.pluck(_.sortBy(clientList, 'peerId'), 'peerId');
+                        return clientMap.toString().replace(',', '');
+                    },
                 };
 
                 return api;

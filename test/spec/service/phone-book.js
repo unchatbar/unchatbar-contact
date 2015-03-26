@@ -36,8 +36,9 @@ describe('Serivce: phoneBook', function () {
         });
 
         describe('addClient', function () {
-            beforeEach(function(){
-                spyOn(ProfileService,'_getIdenticons').and.returnValue('identicon');
+            beforeEach(function () {
+                spyOn(ProfileService, '_getIdenticons').and.returnValue('identicon');
+                spyOn(PhoneBookService, '_getChannel').and.returnValue('channelName');
             });
             it('should set id , image from `_getIdenticons` and label to `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {};
@@ -48,7 +49,8 @@ describe('Serivce: phoneBook', function () {
                     {
                         peerId: {
                             id: 'peerId',
-                            image : 'identicon',
+                            channel: 'channelName',
+                            image: 'identicon',
                             label: 'testLabel'
                         }
                     }
@@ -58,13 +60,14 @@ describe('Serivce: phoneBook', function () {
             it('should set id , image from profile and label to `_storagePhoneBook.user`', function () {
                 PhoneBookService._storagePhoneBook.user = {};
 
-                PhoneBookService.addClient('peerId', {label: 'testLabel',image: 'ownImage'});
+                PhoneBookService.addClient('peerId', {label: 'testLabel', image: 'ownImage'});
 
                 expect(PhoneBookService._storagePhoneBook.user).toEqual(
                     {
                         peerId: {
                             id: 'peerId',
-                            image : 'ownImage',
+                            channel: 'channelName',
+                            image: 'ownImage',
                             label: 'testLabel'
                         }
                     }
@@ -89,6 +92,20 @@ describe('Serivce: phoneBook', function () {
                 PhoneBookService.addClient('peerId', 'testLabel');
 
                 expect(PhoneBookService._sendUpdateEvent).toHaveBeenCalled();
+            });
+        });
+
+        describe('_getChannel' , function() {
+            it('should return `clientPeermyPeer` for ownChannel ' , function(){
+                spyOn(BrokerService, 'getPeerId').and.returnValue('myPeer');
+
+                expect(PhoneBookService._getChannel('clientPeer')).toBe('clientPeermyPeer');
+            });
+
+            it('should return `clientPeermyPeer` for client channel ' , function(){
+                spyOn(BrokerService, 'getPeerId').and.returnValue('clientPeer');
+
+                expect(PhoneBookService._getChannel('myPeer')).toBe('clientPeermyPeer');
             });
         });
 
@@ -225,7 +242,7 @@ describe('Serivce: phoneBook', function () {
                 beforeEach(function () {
                     spyOn(BrokerService, 'getPeerId').and.returnValue('peerId');
                     spyOn(PhoneBookService, 'createNewGroupId').and.returnValue('groupId');
-                    spyOn(ProfileService,'_getIdenticons').and.returnValue('identicon');
+                    spyOn(ProfileService, '_getIdenticons').and.returnValue('identicon');
                 });
 
                 it('should set id and label to `_storagePhoneBook.user`', function () {
@@ -238,9 +255,10 @@ describe('Serivce: phoneBook', function () {
                             groupId: {
                                 label: 'groupName',
                                 users: [{id: 'peerId'}],
-                                image : 'identicon',
+                                image: 'identicon',
                                 owner: 'peerId',
                                 editable: true,
+                                channel: 'groupId',
                                 id: 'groupId'
                             }
                         }
@@ -262,6 +280,28 @@ describe('Serivce: phoneBook', function () {
             it('should return single group `_storagePhoneBook.group`', function () {
                 PhoneBookService._storagePhoneBook.groups = {'testId': 'xx'};
                 expect(PhoneBookService.getGroup('testId')).toBe('xx');
+            });
+        });
+
+        describe('getClientByChannel', function () {
+            it('should return user from `channelGroupB`', function () {
+                PhoneBookService._storagePhoneBook = {
+                    user : {'userA' : {channel:'channelUserA'},'userB' : {channel:'channelUserB'}}
+                };
+
+                expect(PhoneBookService.getClientByChannel('channelUserA')).toEqual({channel:'channelUserA'});
+            });
+
+
+        });
+
+        describe('getClientByChannel', function () {
+            it('should return group from `channelUserA`', function () {
+                PhoneBookService._storagePhoneBook = {
+                    groups : {'groupA' : {channel:'channelGroupA'},'userB' : {channel:'channelGroupB'}}
+                };
+
+                expect(PhoneBookService.getGroupByChannel('channelGroupB')).toEqual({channel:'channelGroupB'});
             });
         });
 
