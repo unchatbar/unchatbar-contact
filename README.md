@@ -54,7 +54,19 @@ configure route see below
 .state('contact.group', {
     parent: 'contact',
     url: '/group/{groupId}'
-});
+})
+.state('contact.channel', {
+                    parent: 'contact',
+                    url: '/{channel}',
+                    resolve:{
+                        getPeerId: ['$stateParams','PhoneBook',function( $stateParams,PhoneBook){
+                            $stateParams.clientId = PhoneBook.getClientByChannel($stateParams.channel).id || null;
+                            $stateParams.groupId = PhoneBook.getGroupByChannel($stateParams.channel).id || null;
+                        }]
+
+                    }
+                })
+;
 ```
 
 * store PhoneBook Data in local Storage

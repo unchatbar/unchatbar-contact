@@ -296,7 +296,7 @@ angular.module('unchatbar-contact')
                      *
                      */
                     getGroup: function (groupId) {
-                        return this._storagePhoneBook.groups[groupId];
+                        return _.cloneDeep(this._storagePhoneBook.groups[groupId]);
                     },
 
                     /**

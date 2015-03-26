@@ -2,7 +2,7 @@
     <a class="list-group-item" ui-sref='contact.channel({channel: group.id})'
        ng-repeat="group in groupList">
         <span class="profile-image-box">
-            <img class="profile-image" data-ng-src="{{group.image}}" alt="Profile Picture">
+            <img class="profile-image" data-ng-src="{{group.image}}" alt="{{'Profile Picture' | translate}}">
           </span>
         <div class="profile-info-box">
             <div class="text-lg">{{group.label}}</div>

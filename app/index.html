@@ -112,6 +112,8 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/translations.js"></script>
+
 <script src="scripts/constants.js"></script>
 <script src="scripts/app.js"></script>
 <!-- Provider -->
@@ -139,9 +141,10 @@
 
 
 <script>
-    angular.module('unchatbar-contact').run(['$state', 'Broker',
-        function ($state, Broker) {
+    angular.module('unchatbar-contact').run(['$state','gettextCatalog', 'Broker',
+        function ($state,gettextCatalog, Broker) {
             Broker.connectServer();
+            gettextCatalog.setCurrentLanguage('de');
 
         }]);
 </script>

@@ -7,7 +7,8 @@
         <form name="adminFormGroup">
             <div class="image-group">
                 <div>
-                    <input class="fileUpload" accept="image/*" type="file" file-model="newImage"/>
+                    <input type="hidden" data-ng-model="newImage">
+                    <input class="fileUpload" accept="image/*" type="file"  data-ng-click="adminFormGroup.$dirty  = true;" file-model="newImage"/>
                     <img class="img-circle img-user" ng-src="{{group.image}}"/>
                 </div>
                 <div class="cropArea" data-ng-if="newImage">
@@ -17,7 +18,7 @@
             </div>
             <div class="name-group">
                 <label for="display-name" translate>group name</label>
-                <input type="text" placeholder="{{'Enter display name' | translate}}" id="display-name"
+                <input type="text" placeholder="{{'Enter groupname name' | translate}}" id="display-name"
                        data-ng-model="group.label" required="true">
 
             </div>

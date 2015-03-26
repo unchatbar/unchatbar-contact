@@ -15,6 +15,7 @@ angular.module('unchatbar-contact', [
     'angularjs-dropdown-multiselect',
     'ngStorage',
     'unchatbar-connection',
-    'unchatbar-user'
+    'unchatbar-user',
+    'gettext'
 ]);
 
