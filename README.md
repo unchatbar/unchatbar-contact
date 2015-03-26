@@ -170,6 +170,14 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 <un-contact-client-selected data-client-filter="[FILTEROBJECT]"></un-contact-client-selected>
 ```
 
+
+* admin dialog for active client
+
+>
+```html
+<un-contact-client-admin></un-contact-client-admin>
+```
+
 * count client in list by filter
 
 >
