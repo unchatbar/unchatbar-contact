@@ -1,9 +1,7 @@
 .un-contact-client-admin {
-  button {
-    @extend .btn;
-    background-color:white;
-  }
-  .icon-remove {
-    @extend .fa, .fa-times;
+  @extend .dropdown-menu, .dropdown-menu-right;
+  .remove {
+    @extend .btn, .btn-sm, .btn-danger, .pull-left, .fa, .fa-trash;
+    font-size: inherit;
   }
 }

@@ -4,7 +4,7 @@
     </div>
     <div class="divider mar-no"></div>
     <div class="menu-content">
-        <form class="">
+        <form class="" name="adminFormGroup">
             <div class="image-group">
                 <div>
                     <input class="fileUpload" accept="image/*" type="file" file-model="newImage"/>
@@ -30,17 +30,12 @@
             <div class="user-group">
                 <label for="user-description" translate>users in group</label>
                 <p>
-                    <div class="button-group" dropdown is-open="status.isopen">
-                        <button type="button" class="" dropdown-toggle
-                                ng-disabled="disabled">
-                            users<span class="caret"></span>
-                        </button>
-                        <ul role="menu">
-                            <li data-ng-repeat="user in clientMap">
-                                <img class="profile-image" data-ng-src="{{user.image}}"/> {{user.label}}
-                            </li>
-                        </ul>
-                    </div>
+                   <span ng-dropdown-multiselect=""
+                         extra-settings="{showCheckAll:false,showUncheckAll : false}"
+                         options="clientMap | filter:ownPeerId"
+                         translation-texts="{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}"
+                         selected-model="group.users">
+                   </span>
                 </p>
             </div>
 
@@ -51,10 +46,17 @@
         <div class="removeUser" data-ng-click="removeGroup(groupId)">
             <span translate>remove</span>
         </div>
-        <div class="save"
-             data-ng-click="update();newImage='';">
-            <span translate>Save</span>
+
+        <div class="save" data-ng-disabled="!group.editable"
+             data-ng-class="{'disabled' : !group.editable, 'allowed' :group.editable ,'data-change' : adminFormGroup.$dirty && group.editable}"
+             data-ng-click="update();adminFormGroup.$setPristine();newImage='';">
+            <span translate>Update</span>
+
+            <div data-ng-hide="group.editable" class="access-info" translate>
+                only group admin can update a group
+            </div>
         </div>
+
     </div>
 </div>
 

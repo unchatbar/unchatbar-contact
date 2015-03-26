@@ -106,14 +106,14 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
 
         /**
          * @ngdoc methode
-         * @name addUserToGroup
+         * @name update
          * @methodOf unchatbar-contact.controller:unContactGroup
          * @description
          *
-         * add new user to group
+         * update group
          *
          */
-        $scope.addUserToGroup = function () {
+        $scope.update = function () {
             if ($stateParams.groupId) {
                 var group = $scope.group;
                 _.forEach(group.users, function (user) {

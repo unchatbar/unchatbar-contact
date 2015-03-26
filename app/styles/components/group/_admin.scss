@@ -71,8 +71,21 @@
       @extend .btn, .btn-sm, .btn-danger, .pull-left, .fa, .fa-trash;
     }
     .save {
-      @extend .btn, .btn-sm, .btn-success, .pull-right, .fa, .fa-save;
+      @extend .btn, .btn-sm, .pull-right, .fa, .fa-save;
+      .access-info {
+        @extend .text-info;
+      }
     }
+    .allowed {
+
+    }
+    .data-change {
+      @extend .btn-success
+    }
+    .disabled {
+
+    }
+
   }
 
   .menu-header {

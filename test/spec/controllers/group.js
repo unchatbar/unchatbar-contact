@@ -120,7 +120,7 @@ describe('Controller: phoneBook', function () {
             });
         });
 
-        describe('addUserToGroup', function () {
+        describe('update', function () {
 
             beforeEach(function () {
                 phoneBookCTRL();
@@ -135,7 +135,7 @@ describe('Controller: phoneBook', function () {
                     };
 
                 stateParams.groupId = 'roomId';
-                scope.addUserToGroup();
+                scope.update();
                 expect(DataConnectionService.send).toHaveBeenCalledWith(
                     'userA', '', 'updateGroup', {
                         roomId: 'roomId', group: {
@@ -152,7 +152,7 @@ describe('Controller: phoneBook', function () {
                     name: 'room'
                 };
                 stateParams.groupId = 'roomId';
-                scope.addUserToGroup('roomId');
+                scope.update('roomId');
 
                 expect(PhoneBookService.updateGroup).toHaveBeenCalledWith('roomId', {
                     name: 'room'
@@ -161,7 +161,7 @@ describe('Controller: phoneBook', function () {
 
             it('should not call `MessageText.sendGroupUpdateToUsers` with roomId, when `$scope.selectedGroup` is empty', function () {
                 stateParams.groupId = '';
-                scope.addUserToGroup('roomId');
+                scope.update('roomId');
 
                 expect(DataConnectionService.send).not.toHaveBeenCalled();
             });
