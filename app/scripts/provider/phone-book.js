@@ -120,7 +120,6 @@ angular.module('unchatbar-contact')
                         if(!this._storagePhoneBook.user[id] &&
                             id !== Broker.getPeerId()) {
                             profile.id = id;
-
                             this._storagePhoneBook.user[id] = profile;
                             if(!this._storagePhoneBook.user[id].image) {
                                 this._storagePhoneBook.user[id].image = Profile._getIdenticons(id);

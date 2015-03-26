@@ -3,7 +3,7 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-contact.directive:unContactClientList
+ * @name unchatbar-contact.directive:unContactCount
  * @restrict E
  * @description
  *
@@ -25,7 +25,7 @@ angular.module('unchatbar-contact').directive('unContactClientCount', [
                 /**
                  * @ngdoc property
                  * @name userCount
-                 * @methodOf unchatbar-contact.directive:unContactClientList
+                 * @methodOf unchatbar-contact.directive:unContactCount
                  * @description
                  *
                  * count of clients
@@ -36,7 +36,7 @@ angular.module('unchatbar-contact').directive('unContactClientCount', [
                 /**
                  * @ngdoc methode
                  * @name init
-                 * @methodOf unchatbar-contact.directive:unContactClientList
+                 * @methodOf unchatbar-contact.directive:unContactCount
                  * @description
                  *
                  * init directive

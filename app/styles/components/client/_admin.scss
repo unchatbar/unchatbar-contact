@@ -1,0 +1,8 @@
+.un-contact-client-admin {
+  button {
+    @extend .btn;
+  }
+  .icon-remove {
+    @extend .fa, .fa-minus;
+  }
+}

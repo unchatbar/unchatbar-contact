@@ -1,4 +1,8 @@
-.un-contact-client-list {
+.un-contact-group-list {
+  @extend .list-group;
+  a {
+    @extend .list-group-item;
+  }
   .profile-image-box {
     @extend .media-left;
   }

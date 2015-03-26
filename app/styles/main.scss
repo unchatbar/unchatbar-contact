@@ -22,13 +22,14 @@
 /* components
 ========================================================================== */
 
-@import "components/_client-list";
-@import "components/_client-selected";
-@import "components/_client-count";
-@import "components/_group-list";
-@import "components/_group-selected";
-@import "components/_group-add";
-@import "components/_group-count";
+@import "components/client/_list";
+@import "components/client/_selected";
+@import "components/client/_count";
+@import "components/client/_admin";
+@import "components/group/_list";
+@import "components/group/_selected";
+@import "components/group/_add";
+@import "components/group/_count";
 
 .badge-success {
   background-color: #8cc152;

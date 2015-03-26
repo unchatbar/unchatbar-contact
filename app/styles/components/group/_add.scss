@@ -1,0 +1,12 @@
+.un-contact-dialer {
+  .un-connect-button-login {
+    @extend .btn, .btn-success, .btn-sm;
+  }
+  input {
+    @extend .form-control, .input-sm;
+  }
+  .icon-add {
+    @extend .fa, .fa-plus
+  }
+
+}

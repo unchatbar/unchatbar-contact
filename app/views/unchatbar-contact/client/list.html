@@ -1,9 +1,9 @@
-<div class="list-group un-contact-client-list">
-    <a class="list-group-item" ui-sref='contact.client({clientId: clientItem.id})'
+<div class="un-contact-client-list">
+    <a ui-sref='contact.client({clientId: clientItem.id})'
        ng-repeat="clientItem in clientList | filter:clientFilter ">
         <span class="profile-image-box">
             <img class="profile-image" data-ng-src="{{clientItem.image}}" alt="Profile Picture">
-          </span>
+        </span>
         <div class="profile-info-box">
             <div class="text-lg">{{clientItem.id}}</div>
             <span class="text-muted">{{clientItem.description}}</span>

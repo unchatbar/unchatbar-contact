@@ -3,7 +3,7 @@
 /**
  * @author Lars Wiedemann
  * @ngdoc directive
- * @name unchatbar-contact.directive:unContactGroupList
+ * @name unchatbar-contact.directive:unContactGroupCount
  * @restrict E
  * @description
  *
