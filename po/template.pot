@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: app/views/unchatbar-contact/group/add.html:3
+msgid "Add group"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/add.html:6
+#: app/views/unchatbar-contact/group/admin.html:20
+msgid "Enter groupname name"
+msgstr ""
+
+#: app/views/unchatbar-contact/client/list.html:5
+#: app/views/unchatbar-contact/group/list.html:5
+msgid "Profile Picture"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:54
+msgid "Update"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:27
+msgid "a short description"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:3
+msgid "admin group"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:19
+msgid "group name"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:56
+msgid "only group admin can update a group"
+msgstr ""
+
+#: app/views/unchatbar-contact/client/admin.html:3
+#: app/views/unchatbar-contact/group/admin.html:48
+msgid "remove"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:25
+msgid "short description"
+msgstr ""
+
+#: app/views/unchatbar-contact/group/admin.html:31
+msgid "users in group"
+msgstr ""

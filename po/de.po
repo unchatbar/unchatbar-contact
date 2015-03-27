@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: unchatbar-contact\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: app/views/unchatbar-contact/group/add.html:3
+msgid "Add group"
+msgstr "Gruppe hinzufügen"
+
+#: app/views/unchatbar-contact/group/add.html:6
+#: app/views/unchatbar-contact/group/admin.html:20
+msgid "Enter groupname name"
+msgstr "Gib hier den Gruppenname an"
+
+#: app/views/unchatbar-contact/client/list.html:5
+#: app/views/unchatbar-contact/group/list.html:5
+msgid "Profile Picture"
+msgstr "Profilebild"
+
+#: app/views/unchatbar-contact/group/admin.html:54
+msgid "Update"
+msgstr "Ändern"
+
+#: app/views/unchatbar-contact/group/admin.html:27
+msgid "a short description"
+msgstr "Kurzbeschreibung"
+
+#: app/views/unchatbar-contact/group/admin.html:3
+msgid "admin group"
+msgstr "Gruppen Administration"
+
+#: app/views/unchatbar-contact/group/admin.html:19
+msgid "group name"
+msgstr "Gruppenname"
+
+#: app/views/unchatbar-contact/group/admin.html:56
+msgid "only group admin can update a group"
+msgstr "Nur Gruppen-Administratoren können Änderungen an der Gruppe vornehmen"
+
+#: app/views/unchatbar-contact/client/admin.html:3
+#: app/views/unchatbar-contact/group/admin.html:48
+msgid "remove"
+msgstr "löschen"
+
+#: app/views/unchatbar-contact/group/admin.html:25
+msgid "short description"
+msgstr "Kurzbeschreibung"
+
+#: app/views/unchatbar-contact/group/admin.html:31
+msgid "users in group"
+msgstr "Nutzer in Gruppe"
+
+#~ msgid "Enter display name"
+#~ msgstr "Gib hier den "
