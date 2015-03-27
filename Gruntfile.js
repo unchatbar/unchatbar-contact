@@ -500,10 +500,8 @@ module.exports = function (grunt) {
                 cwd: 'app',
                 src: 'views/**/*.html',
                 dest: 'app/scripts/template.js',
-                options:  {
-                    bootstrap:  function() {
-                        return '//no templates';
-                    }
+                options: {
+                    module: '<%= yeoman.appName %>'
                 }
             }
         },
