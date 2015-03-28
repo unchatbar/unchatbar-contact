@@ -1,9 +1,7 @@
 .un-contact-group-admin {
   @extend .dropdown-menu, .dropdown-menu-right;
+  width: 100%;
 
-  @media (min-width: $screen-sm-min) {
-    width: 500px;
-  }
   display: block;
   position: relative;
   .menu-header {
