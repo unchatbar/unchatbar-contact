@@ -21,7 +21,7 @@ angular.module('unchatbar-contact')
                     url: '/group/{groupId}'
 
                 })
-                .state('contact.channel', {
+                .state('channel', {
                     parent: 'contact',
                     url: '/{channel}',
                     resolve:{

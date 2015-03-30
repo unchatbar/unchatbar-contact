@@ -55,7 +55,7 @@ configure route see below
     parent: 'contact',
     url: '/group/{groupId}'
 })
-.state('contact.channel', {
+.state('channel', {
                     parent: 'contact',
                     url: '/{channel}',
                     resolve:{
