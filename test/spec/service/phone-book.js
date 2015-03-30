@@ -95,14 +95,14 @@ describe('Serivce: phoneBook', function () {
             });
         });
 
-        describe('_getChannel' , function() {
-            it('should return `clientPeermyPeer` for ownChannel ' , function(){
+        describe('_getChannel', function () {
+            it('should return `clientPeermyPeer` for ownChannel ', function () {
                 spyOn(BrokerService, 'getPeerId').and.returnValue('myPeer');
 
                 expect(PhoneBookService._getChannel('clientPeer')).toBe('clientPeermyPeer');
             });
 
-            it('should return `clientPeermyPeer` for client channel ' , function(){
+            it('should return `clientPeermyPeer` for client channel ', function () {
                 spyOn(BrokerService, 'getPeerId').and.returnValue('clientPeer');
 
                 expect(PhoneBookService._getChannel('myPeer')).toBe('clientPeermyPeer');
@@ -110,16 +110,18 @@ describe('Serivce: phoneBook', function () {
         });
 
         describe('updateClient', function () {
+            beforeEach(function(){
+                PhoneBookService._storagePhoneBook.user = {'peerId': {label: 'changeMe', channel: 'testChannel'}};
+            });
             it('should change  label from `_storagePhoneBook.user`', function () {
-                PhoneBookService._storagePhoneBook.user = {'peerId': {label: 'changeMe'}};
-
                 PhoneBookService.updateClient('peerId', {label: 'testLabel'});
 
                 expect(PhoneBookService._storagePhoneBook.user).toEqual(
                     {
                         peerId: {
                             label: 'testLabel',
-                            id: 'peerId'
+                            id: 'peerId',
+                            channel: 'testChannel'
                         }
                     }
                 );
@@ -286,10 +288,10 @@ describe('Serivce: phoneBook', function () {
         describe('getClientByChannel', function () {
             it('should return user from `channelGroupB`', function () {
                 PhoneBookService._storagePhoneBook = {
-                    user : {'userA' : {channel:'channelUserA'},'userB' : {channel:'channelUserB'}}
+                    user: {'userA': {channel: 'channelUserA'}, 'userB': {channel: 'channelUserB'}}
                 };
 
-                expect(PhoneBookService.getClientByChannel('channelUserA')).toEqual({channel:'channelUserA'});
+                expect(PhoneBookService.getClientByChannel('channelUserA')).toEqual({channel: 'channelUserA'});
             });
 
 
@@ -298,10 +300,10 @@ describe('Serivce: phoneBook', function () {
         describe('getClientByChannel', function () {
             it('should return group from `channelUserA`', function () {
                 PhoneBookService._storagePhoneBook = {
-                    groups : {'groupA' : {channel:'channelGroupA'},'userB' : {channel:'channelGroupB'}}
+                    groups: {'groupA': {channel: 'channelGroupA'}, 'userB': {channel: 'channelGroupB'}}
                 };
 
-                expect(PhoneBookService.getGroupByChannel('channelGroupB')).toEqual({channel:'channelGroupB'});
+                expect(PhoneBookService.getGroupByChannel('channelGroupB')).toEqual({channel: 'channelGroupB'});
             });
         });
 

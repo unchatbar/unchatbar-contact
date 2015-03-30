@@ -86,7 +86,7 @@ angular.module('unchatbar-contact')
                      *
                      */
                     getClient: function (clientId) {
-                        return this._storagePhoneBook.user[clientId] || '';
+                        return _.cloneDeep(this._storagePhoneBook.user[clientId] || '');
                     },
 
                     /**
@@ -101,7 +101,7 @@ angular.module('unchatbar-contact')
                      *
                      */
                     getClientByChannel: function (channelId) {
-                        return _.find(this._storagePhoneBook.user,{channel:channelId}) || {};
+                        return _.cloneDeep(_.find(this._storagePhoneBook.user,{channel:channelId}) || {});
                     },
 
                     /**
@@ -116,7 +116,7 @@ angular.module('unchatbar-contact')
                      *
                      */
                     getGroupByChannel: function (channelId) {
-                        return _.find(this._storagePhoneBook.groups, {channel: channelId}) || {};
+                        return _.cloneDeep(_.find(this._storagePhoneBook.groups, {channel: channelId}) || {});
                     },
 
                     /**
@@ -175,8 +175,10 @@ angular.module('unchatbar-contact')
                      *
                      */
                     updateClient: function (id, profile) {
+                        var channel = this._storagePhoneBook.user[id].channel || '';
                         this._storagePhoneBook.user[id] = profile;
                         this._storagePhoneBook.user[id].id = id;
+                        this._storagePhoneBook.user[id].channel = channel;
                         if (!this._storagePhoneBook.user[id].label) {
                             this._storagePhoneBook.user[id].label = id;
                         }
@@ -393,7 +395,7 @@ angular.module('unchatbar-contact')
                             ],
                             clientMap = _.pluck(_.sortBy(clientList, 'peerId'), 'peerId');
                         return clientMap.toString().replace(',', '');
-                    },
+                    }
                 };
 
                 return api;
