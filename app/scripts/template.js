@@ -46,17 +46,17 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
 
   $templateCache.put('views/unchatbar-contact/group/add.html',
-    "<div class=\"un-contact-dialer\" >\n" +
-    "    <form ng-submit=\"createGroup()\" class=\"form-group\">\n" +
-    "        <label for=\"input-add\" class=\"sr-only\" translate>Add group</label>\n" +
-    "        <div class=\"input-group\">\n" +
+    "<div class=\"un-contact-group-add\" >\n" +
+    "    <form data-ng-submit=\"createGroup()\" >\n" +
+    "        <label for=\"input-add\" translate>Add group</label>\n" +
+    "        <div class=\"dialer-group\">\n" +
     "            <input type=\"text\" data-ng-model=\"newGroupName\" autocomplete=\"off\"\n" +
     "                   placeholder=\"{{'Enter groupname name'|translate}}\" required=\"true\" id=\"input-add\"\n" +
-    "                   class=\"\" required=\"true\">\n" +
-    "            <span class=\"input-group-btn\">\n" +
-    "              <button class=\"un-connect-button-login\" type=\"button\"\n" +
+    "                    required=\"true\">\n" +
+    "            <span class=\"button-group\">\n" +
+    "              <button type=\"button\" data-ng-disabled=\"!newGroupName\"\n" +
     "                      data-ng-click=\"createGroup()\">\n" +
-    "                  <i class=\"icon-add\"></i>\n" +
+    "                  <i ></i>\n" +
     "              </button>\n" +
     "            </span>\n" +
     "        </div>\n" +
@@ -72,7 +72,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "    </div>\n" +
     "    <div class=\"divider mar-no\"></div>\n" +
     "    <div class=\"menu-content\">\n" +
-    "        <form name=\"adminFormGroup\">\n" +
+    "        <form name=\"adminFormGroup\" >\n" +
     "            <div class=\"image-group\">\n" +
     "                <div>\n" +
     "                    <input type=\"hidden\" data-ng-model=\"newImage\">\n" +
@@ -108,7 +108,6 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "                   </span>\n" +
     "                </p>\n" +
     "            </div>\n" +
-    "\n" +
     "        </form>\n" +
     "    </div>\n" +
     "    <div class=\"divider mar-no\"></div>\n" +

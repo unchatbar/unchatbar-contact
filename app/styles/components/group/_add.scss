@@ -1,12 +1,25 @@
-.un-contact-dialer {
-  .un-connect-button-login {
+.un-contact-group-add {
+  form {
+    @extend .form-group;
+  }
+  label {
+    @extend .sr-only;
+  }
+  .dialer-group{
+    @extend .input-group;
+  }
+  .button-group {
+    @extend .input-group-btn;
+  }
+  button {
     @extend .btn, .btn-success, .btn-sm;
+    i {
+      @extend .fa, .fa-plus
+    }
   }
   input {
     @extend .form-control, .input-sm;
   }
-  .icon-add {
-    @extend .fa, .fa-plus
-  }
+
 
 }

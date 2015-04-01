@@ -1,14 +1,14 @@
-<div class="un-contact-dialer" >
-    <form ng-submit="createGroup()" class="form-group">
-        <label for="input-add" class="sr-only" translate>Add group</label>
-        <div class="input-group">
+<div class="un-contact-group-add" >
+    <form data-ng-submit="createGroup()" >
+        <label for="input-add" translate>Add group</label>
+        <div class="dialer-group">
             <input type="text" data-ng-model="newGroupName" autocomplete="off"
                    placeholder="{{'Enter groupname name'|translate}}" required="true" id="input-add"
-                   class="" required="true">
-            <span class="input-group-btn">
-              <button class="un-connect-button-login" type="button"
+                    required="true">
+            <span class="button-group">
+              <button type="button" data-ng-disabled="!newGroupName"
                       data-ng-click="createGroup()">
-                  <i class="icon-add"></i>
+                  <i ></i>
               </button>
             </span>
         </div>
