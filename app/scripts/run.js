@@ -24,19 +24,19 @@ angular.module('unchatbar-contact').run(['$rootScope', 'PhoneBook', 'Profile','D
 
         $rootScope.$on('BrokerPeerConnection', function (event, data) {
             if(PhoneBook.addClient(data.connection.peer, {label: data.connection.peer})) {
-                DataConnection.send(data.connection.peer, '', 'updateProfile', {profile: Profile.get()});
+                DataConnection.send(data.connection.peer,  'updateProfile', {profile: Profile.get()});
             }
         });
 
         $rootScope.$on('profileUpdate', function (event, data) {
             _.forEach( PhoneBook.getClientMap(), function (user) {
-                DataConnection.send(user.id, '', 'updateProfile', {profile: Profile.get()});
+                DataConnection.send(user.id, 'updateProfile', {profile: Profile.get()});
             });
         });
 
         $rootScope.$on('BrokerPeerOpen', function (event, data) {
             _.forEach( PhoneBook.getClientMap(), function (user) {
-                DataConnection.send(user.id, '', 'ping', {profile: Profile.get()});
+                DataConnection.send(user.id,  'ping', {profile: Profile.get()});
             });
         });
 

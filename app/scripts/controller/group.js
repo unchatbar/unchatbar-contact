@@ -50,8 +50,8 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.getGroupList = function () {
-            $scope.groupList= [];
-            _.forEach(PhoneBook.getGroupMap(),function(group){
+            $scope.groupList = [];
+            _.forEach(PhoneBook.getGroupMap(), function (group) {
                 $scope.groupList.push(group);
             });
         };
@@ -79,7 +79,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.createGroup = function () {
-            if($scope.newGroupName) {
+            if ($scope.newGroupName) {
                 PhoneBook.addGroup($scope.newGroupName);
                 $scope.newGroupName = '';
             }
@@ -97,8 +97,8 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
          *
          */
         $scope.removeGroup = function (roomId) {
-            _.forEach( PhoneBook.getGroup(roomId).users, function (user) {
-                DataConnection.send(user.id, '', 'removeGroup', {roomId: roomId});
+            _.forEach(PhoneBook.getGroup(roomId).users, function (user) {
+                DataConnection.send(user.id, 'removeGroup', {roomId: roomId});
             });
             PhoneBook.removeGroup(roomId);
             $state.go('contact');
@@ -117,7 +117,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
             if ($stateParams.groupId) {
                 var group = $scope.group;
                 _.forEach(group.users, function (user) {
-                    DataConnection.send(user.id, '', 'updateGroup',
+                    DataConnection.send(user.id, 'updateGroup',
                         {
                             roomId: $stateParams.groupId,
                             group: group
@@ -143,7 +143,7 @@ angular.module('unchatbar-contact').controller('unContactGroup', ['$scope', '$st
             if ($stateParams.groupId) {
                 var group = $scope.group;
                 _.forEach(group.users, function (user) {
-                    DataConnection.send(user.id, '', 'updateGroup',
+                    DataConnection.send(user.id, 'updateGroup',
                         {
                             roomId: $stateParams.groupId,
                             group: group

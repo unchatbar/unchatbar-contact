@@ -104,7 +104,7 @@ describe('Controller: phoneBook', function () {
             it('should call `DataConnection.sendRemoveGroup` with `user-id`,empty text,`removeGroup`, and roomId', function () {
                 scope.removeGroup('roomId');
                 expect(DataConnectionService.send).toHaveBeenCalledWith(
-                    'userId', '', 'removeGroup', {roomId: 'roomId'}
+                    'userId',  'removeGroup', {roomId: 'roomId'}
                 );
             });
 
@@ -137,7 +137,7 @@ describe('Controller: phoneBook', function () {
                 stateParams.groupId = 'roomId';
                 scope.update();
                 expect(DataConnectionService.send).toHaveBeenCalledWith(
-                    'userA', '', 'updateGroup', {
+                    'userA',  'updateGroup', {
                         roomId: 'roomId', group: {
                             name: 'room',
                             users: [{id: 'userA'}]
@@ -183,7 +183,7 @@ describe('Controller: phoneBook', function () {
                 stateParams.groupId = 'roomId';
                 scope.removeUserFromGroup();
                 expect(DataConnectionService.send).toHaveBeenCalledWith(
-                    'userA', '', 'updateGroup', {
+                    'userA',  'updateGroup', {
                         roomId: 'roomId', group: {
                             name: 'room',
                             users: [{id: 'userA'}]
