@@ -1,14 +1,11 @@
-<div role="menu" class="un-contact-group-admin" data-ng-show="group.id" >
-    <div class="menu-header ">
-        <span class="" translate>admin group</span>
-    </div>
-    <div class="divider mar-no"></div>
+<div role="menu" class="un-contact-group-admin" data-ng-show="group.id">
     <div class="menu-content">
-        <form name="adminFormGroup" >
+        <form name="adminFormGroup">
             <div class="image-group">
                 <div>
                     <input type="hidden" data-ng-model="newImage">
-                    <input class="fileUpload" accept="image/*" type="file"  data-ng-click="adminFormGroup.$dirty  = true;" file-model="newImage"/>
+                    <input class="fileUpload" accept="image/*" type="file"
+                           data-ng-click="adminFormGroup.$dirty  = true;" file-model="newImage"/>
                     <img class="img-circle img-user" ng-src="{{group.image}}"/>
                 </div>
                 <div class="cropArea" data-ng-if="newImage">
@@ -30,6 +27,7 @@
             </div>
             <div class="user-group" data-ng-if="group.users">
                 <label for="user-description" translate>users in group</label>
+
                 <p>
                    <span ng-dropdown-multiselect=""
                          extra-settings="{showCheckAll:false,showUncheckAll : false}"

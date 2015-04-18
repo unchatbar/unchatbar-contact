@@ -66,17 +66,14 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
 
   $templateCache.put('views/unchatbar-contact/group/admin.html',
-    "<div role=\"menu\" class=\"un-contact-group-admin\" data-ng-show=\"group.id\" >\n" +
-    "    <div class=\"menu-header \">\n" +
-    "        <span class=\"\" translate>admin group</span>\n" +
-    "    </div>\n" +
-    "    <div class=\"divider mar-no\"></div>\n" +
+    "<div role=\"menu\" class=\"un-contact-group-admin\" data-ng-show=\"group.id\">\n" +
     "    <div class=\"menu-content\">\n" +
-    "        <form name=\"adminFormGroup\" >\n" +
+    "        <form name=\"adminFormGroup\">\n" +
     "            <div class=\"image-group\">\n" +
     "                <div>\n" +
     "                    <input type=\"hidden\" data-ng-model=\"newImage\">\n" +
-    "                    <input class=\"fileUpload\" accept=\"image/*\" type=\"file\"  data-ng-click=\"adminFormGroup.$dirty  = true;\" file-model=\"newImage\"/>\n" +
+    "                    <input class=\"fileUpload\" accept=\"image/*\" type=\"file\"\n" +
+    "                           data-ng-click=\"adminFormGroup.$dirty  = true;\" file-model=\"newImage\"/>\n" +
     "                    <img class=\"img-circle img-user\" ng-src=\"{{group.image}}\"/>\n" +
     "                </div>\n" +
     "                <div class=\"cropArea\" data-ng-if=\"newImage\">\n" +
@@ -98,6 +95,7 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "            </div>\n" +
     "            <div class=\"user-group\" data-ng-if=\"group.users\">\n" +
     "                <label for=\"user-description\" translate>users in group</label>\n" +
+    "\n" +
     "                <p>\n" +
     "                   <span ng-dropdown-multiselect=\"\"\n" +
     "                         extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
