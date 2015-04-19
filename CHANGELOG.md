@@ -1,3 +1,8 @@
+## 0.1.0
+Feature:
+* add sass
+* add translation
+
 ## 0.0.7
 Feature:
 * show phonenumber in clientlist, if is ne user.label
