@@ -67,36 +67,35 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
 
   $templateCache.put('views/unchatbar-contact/group/admin.html',
     "<div role=\"menu\" class=\"un-contact-group-admin\" data-ng-show=\"group.id\">\n" +
-    "    <div class=\"menu-content\">\n" +
-    "        <form name=\"adminFormGroup\">\n" +
-    "            <div class=\"image-group\">\n" +
-    "                <div>\n" +
-    "                    <input type=\"hidden\" data-ng-model=\"newImage\">\n" +
-    "                    <input class=\"fileUpload\" accept=\"image/*\" type=\"file\"\n" +
-    "                           data-ng-click=\"adminFormGroup.$dirty  = true;\" file-model=\"newImage\"/>\n" +
-    "                    <img class=\"img-circle img-user\" ng-src=\"{{group.image}}\"/>\n" +
-    "                </div>\n" +
-    "                <div class=\"cropArea\" data-ng-if=\"newImage\">\n" +
-    "                    <img-crop result-image-size=\"80\" result-image-format=\"image/jpeg\" image=\"newImage\"\n" +
-    "                              result-image=\"group.image\"></img-crop>\n" +
-    "                </div>\n" +
+    "    <form name=\"adminFormGroup\">\n" +
+    "        <div class=\"image-group\">\n" +
+    "            <div>\n" +
+    "                <input type=\"hidden\" data-ng-model=\"newImage\">\n" +
+    "                <input class=\"fileUpload\" accept=\"image/*\" type=\"file\"\n" +
+    "                       data-ng-click=\"adminFormGroup.$dirty  = true;\" file-model=\"newImage\"/>\n" +
+    "                <img class=\"img-circle img-user\" ng-src=\"{{group.image}}\"/>\n" +
     "            </div>\n" +
-    "            <div class=\"name-group\">\n" +
-    "                <label for=\"display-name\" translate>group name</label>\n" +
-    "                <input type=\"text\" placeholder=\"{{'Enter groupname name' | translate}}\" id=\"display-name\"\n" +
-    "                       data-ng-model=\"group.label\" required=\"true\">\n" +
+    "            <div class=\"cropArea\" data-ng-if=\"newImage\">\n" +
+    "                <img-crop result-image-size=\"80\" result-image-format=\"image/jpeg\" image=\"newImage\"\n" +
+    "                          result-image=\"group.image\"></img-crop>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"name-group\">\n" +
+    "            <label for=\"display-name\" translate>group name</label>\n" +
+    "            <input type=\"text\" placeholder=\"{{'Enter groupname name' | translate}}\" id=\"display-name\"\n" +
+    "                   data-ng-model=\"group.label\" required=\"true\">\n" +
     "\n" +
-    "            </div>\n" +
-    "            <div class=\"description-group\">\n" +
-    "                <label for=\"user-description\" translate>short description</label>\n" +
-    "                <input type=\"text\" data-ng-model=\"group.description\"\n" +
-    "                       placeholder=\"{{'a short description' | translate}}\"\n" +
-    "                       id=\"user-description\">\n" +
-    "            </div>\n" +
-    "            <div class=\"user-group\" data-ng-if=\"group.users\">\n" +
-    "                <label for=\"user-description\" translate>users in group</label>\n" +
+    "        </div>\n" +
+    "        <div class=\"description-group\">\n" +
+    "            <label for=\"user-description\" translate>short description</label>\n" +
+    "            <input type=\"text\" data-ng-model=\"group.description\"\n" +
+    "                   placeholder=\"{{'a short description' | translate}}\"\n" +
+    "                   id=\"user-description\">\n" +
+    "        </div>\n" +
+    "        <div class=\"user-group\" data-ng-if=\"group.users\">\n" +
+    "            <label for=\"user-description\" translate>users in group</label>\n" +
     "\n" +
-    "                <p>\n" +
+    "            <p>\n" +
     "                   <span ng-dropdown-multiselect=\"\"\n" +
     "                         extra-settings=\"{showCheckAll:false,showUncheckAll : false}\"\n" +
     "                         events=\"{onItemSelect : setFormDirty, onItemDeselect: setFormDirty}\"\n" +
@@ -104,10 +103,9 @@ angular.module('unchatbar-contact').run(['$templateCache', function($templateCac
     "                         translation-texts=\"{buttonDefaultText: group.label,dynamicButtonTextSuffix: 'users'}\"\n" +
     "                         selected-model=\"group.users\">\n" +
     "                   </span>\n" +
-    "                </p>\n" +
-    "            </div>\n" +
-    "        </form>\n" +
-    "    </div>\n" +
+    "            </p>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
     "    <div class=\"divider mar-no\"></div>\n" +
     "    <div class=\"menu-footer\">\n" +
     "        <div class=\"removeUser\" data-ng-click=\"removeGroup(group.id)\">\n" +
