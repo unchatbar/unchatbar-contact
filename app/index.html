@@ -1,70 +1,72 @@
 <!doctype html>
 <html class="no-js" ng-app="unchatbar-contact">
 <head>
-    <meta charset="utf-8">
-    <base href="/">
-    <title>unchatbar connection</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- build:css(.) styles/vendor.css -->
-
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+  <meta charset="utf-8">
+  <base href="/">
+  <title>unchatbar connection</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 </head>
 <body data-ng-init="showProfile=false">
 <div ng-click="showProfile=!showProfile">{{showProfile ? 'close' : 'open'}} Profile</div>
 <un-profile-admin data-ng-show="showProfile"></un-profile-admin>
 <div>
-    <div class="container">
-        <div>
-            <h3>users <span><un-contact-client-count addition-class="'badge-info'"></un-contact-client-count></span>
-            </h3>
-            <un-connection-dialer></un-connection-dialer>
-            <br/>
-            Clients online <span><un-contact-client-count
-                addition-class="'badge-success'"
-                data-client-filter="{online:true}">
-        </un-contact-client-count></span>
-            <un-contact-client-list data-client-filter="{online:true}"></un-contact-client-list>
-            <br/>
+  <div class="container">
+    <div>
+      <h3>users <span><un-contact-client-count addition-class="'badge-info'"></un-contact-client-count></span>
+      </h3>
+      <un-connection-dialer></un-connection-dialer>
+      <br/>
+      Clients online <span><un-contact-client-count
+      addition-class="'badge-success'"
+      data-client-filter="{online:true}">
+    </un-contact-client-count></span>
+      <un-contact-client-list data-client-filter="{online:true}"></un-contact-client-list>
+      <br/>
 
-            Clients offline<span><un-contact-client-count addition-class="'badge-danger'"
-                                                          data-client-filter="{online:false}"></un-contact-client-count></span>
-            <un-contact-client-list data-client-filter="{online:false}"></un-contact-client-list>
+      Clients offline<span><un-contact-client-count addition-class="'badge-danger'"
+                                                    data-client-filter="{online:false}"></un-contact-client-count></span>
+      <un-contact-client-list data-client-filter="{online:false}"></un-contact-client-list>
 
-            <h3>groups <span><un-contact-group-count addition-class="'badge-info'"></un-contact-group-count></span></h3>
-            <un-contact-group-add></un-contact-group-add>
-            <br/>
-            <un-contact-group-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-group-list>
-        </div>
-        <div>
-            <h3>selected Client/User</h3>
-
-            <div>
-                <un-contact-client-selected></un-contact-client-selected>
-                <un-contact-group-selected></un-contact-group-selected>
-            </div>
-            Admin Area
-            <div>
-
-                <un-contact-client-admin></un-contact-client-admin>
-                <un-contact-group-admin></un-contact-group-admin>
-            </div>
-        </div>
+      <h3>groups <span><un-contact-group-count addition-class="'badge-info'"></un-contact-group-count></span></h3>
+      <un-contact-group-add></un-contact-group-add>
+      <br/>
+      <un-contact-group-list data-ng-click="showAdminProfile=false;offcanvas=false"></un-contact-group-list>
     </div>
+    <div>
+      <h3>selected Client/User</h3>
+
+      <div>
+        <un-contact-client-selected></un-contact-client-selected>
+        <un-contact-group-selected></un-contact-group-selected>
+      </div>
+      Admin Area
+      <div>
+
+        <un-contact-client-admin></un-contact-client-admin>
+        <un-contact-group-admin></un-contact-group-admin>
+      </div>
+    </div>
+  </div>
 </div>
 <!--/row-->
 
 <hr>
 
 <footer>
-    <p>&copy; unchatbar 2015</p>
+  <p>&copy; unchatbar 2015</p>
 </footer>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
+  your browser</a> to improve your experience.</p>
 <![endif]-->
 
 
@@ -79,20 +81,21 @@
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/ngstorage/ngStorage.js"></script>
-<script src="bower_components/lodash/dist/lodash.compat.js"></script>
-<script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-gettext/dist/angular-gettext.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
+<script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
 <script src="bower_components/peerjs/peer.js"></script>
+<script src="bower_components/dexie/dist/latest/Dexie.min.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/app.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/run.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/template.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/translations.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/provider/broker.js"></script>
-<script src="bower_components/unchatbar-connection/app/scripts/provider/data-connection.js"></script>
+<script src="bower_components/unchatbar-connection/app/scripts/service/data-connection.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/service/peer.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/directive/dialer.js"></script>
 <script src="bower_components/unchatbar-connection/app/scripts/directive/login.js"></script>
@@ -101,7 +104,6 @@
 <script src="bower_components/blockies/blockies.js"></script>
 <script src="bower_components/unchatbar-user/app/scripts/app.js"></script>
 <script src="bower_components/unchatbar-user/app/scripts/run.js"></script>
-<script src="bower_components/unchatbar-user/app/scripts/template.js"></script>
 <script src="bower_components/unchatbar-user/app/scripts/translations.js"></script>
 <script src="bower_components/unchatbar-user/app/scripts/provider/profile.js"></script>
 <script src="bower_components/unchatbar-user/app/scripts/controller/profile.js"></script>
@@ -141,12 +143,12 @@
 
 
 <script>
-    angular.module('unchatbar-contact').run(['$state','gettextCatalog', 'Broker',
-        function ($state,gettextCatalog, Broker) {
-            Broker.connectServer();
-            gettextCatalog.setCurrentLanguage('de');
+  angular.module('unchatbar-contact').run(['$state', 'gettextCatalog', 'Broker',
+    function ($state, gettextCatalog, Broker) {
+      Broker.connectServer();
+      gettextCatalog.setCurrentLanguage('de');
 
-        }]);
+    }]);
 </script>
 </body>
 </html>

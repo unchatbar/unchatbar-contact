@@ -1,43 +1,29 @@
-/* VENDOR - Default fall-backs and external files.
+/* Vendors
 ========================================================================== */
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "components-font-awesome/scss/font-awesome.scss";
+@import "unchatbar-connection/app/styles/main.scss";
+@import "unchatbar-user/app/styles/main.scss";
+// endbower
 
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap";
-@import "components-font-awesome/scss/font-awesome";
-
-@import "unchatbar-connection/app/styles/components/_dialer";
-
-@import "unchatbar-user/app/styles/components/_profile";
-@import "unchatbar-user/app/styles/components/_profile-admin";
-
-
-/* Variable
+/* Variables
 ========================================================================== */
-@import "_variables";
+@import "variables";
 
-/* Layout
+/* Layouts
 ========================================================================== */
-@import "_layout";
+@import "layout";
 
-
-/* components
+/* Components
 ========================================================================== */
-
-@import "components/client/_list";
-@import "components/client/_selected";
-@import "components/client/_count";
-@import "components/client/_admin";
-@import "components/group/_list";
-@import "components/group/_selected";
-@import "components/group/_add";
-@import "components/group/_count";
-@import "components/group/_admin";
-
-.badge-success {
-  background-color: #8cc152;
-}
-.badge-danger {
-  background-color: #e9573f;
-}
-.badge-info {
-  background-color: #3bb5e8;
-}
+@import "components/client/admin";
+@import "components/client/count";
+@import "components/client/list";
+@import "components/client/selected";
+@import "components/group/add";
+@import "components/group/admin";
+@import "components/group/count";
+@import "components/group/list";
+@import "components/group/selected";
+@import "components/badges";
