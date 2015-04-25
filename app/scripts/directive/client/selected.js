@@ -15,7 +15,12 @@ angular.module('unchatbar-contact').directive('unContactClientSelected', [
         return {
             restrict: 'E',
             replace: false,
-            templateUrl:'views/unchatbar-contact/client/selected.html',
+            templateUrl: function(element,scope){
+                return scope.customTemplateUrl || 'views/unchatbar-contact/client/selected.html';
+            },
+            scope : {
+                customTemplateUrl: '@'
+            },
             controller: 'unContactClient',
             link : function(scope){
 

@@ -172,7 +172,7 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-client-list></un-contact-client-list>
+<un-contact-client-list data-custom-template-url="[CUSTOM-TEMPLATEPATH]"></un-contact-client-list>
 ```
 
 
@@ -180,7 +180,7 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-client-selected data-client-filter="[FILTEROBJECT]"></un-contact-client-selected>
+<un-contact-client-selected data-custom-template-url="[CUSTOM-TEMPLATEPATH]" data-client-filter="[FILTEROBJECT]"></un-contact-client-selected>
 ```
 
 
@@ -188,14 +188,14 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-client-admin></un-contact-client-admin>
+<un-contact-client-admin data-custom-template-url="[CUSTOM-TEMPLATEPATH]"></un-contact-client-admin>
 ```
 
 * count client in list by filter
 
 >
 ```html
-<un-contact-client-count addition-class="[CSS-CLASS]" data-client-filter="[FILTEROBJECT]"></un-contact-client-count>
+<un-contact-client-count data-custom-template-url="[CUSTOM-TEMPLATEPATH]" addition-class="[CSS-CLASS]" data-client-filter="[FILTEROBJECT]"></un-contact-client-count>
 ```
 
 
@@ -203,7 +203,7 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-group-list></un-contact-group-list>
+<un-contact-group-list data-custom-template-url="[CUSTOM-TEMPLATEPATH]"></un-contact-group-list>
 ```
 
 
@@ -211,7 +211,7 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-group-selected></un-contact-group-selected>
+<un-contact-group-selected data-custom-template-url="[CUSTOM-TEMPLATEPATH]"></un-contact-group-selected>
 ```
 
 
@@ -219,21 +219,21 @@ PhoneBook.removeGroupByClient([PEERID],[GROUP]);
 
 >
 ```html
-<un-contact-group-add></un-contact-group-add>
+<un-contact-group-add data-custom-template-url="[CUSTOM-TEMPLATEPATH]"></un-contact-group-add>
 ```
 
 * admin dialog for selected group
 
 >
 ```html
-<un-contact-group-admin></un-contact-group-admin>
+<un-contact-group-admin data-custom-template-url="[CUSTOM-TEMPLATEPATH]"></un-contact-group-admin>
 ```
 
 * count groups
 
 >
 ```html
-<un-contact-group-count addition-class="[CSS-CLASS]"></un-contact-group-count>
+<un-contact-group-count data-custom-template-url="[CUSTOM-TEMPLATEPATH]" addition-class="[CSS-CLASS]"></un-contact-group-count>
 ```
 
 
