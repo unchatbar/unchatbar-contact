@@ -27,6 +27,7 @@ describe('Directive: unContactClientAdmin', function () {
         it('should contain label of user', inject(function ($rootScope) {
 
             $rootScope.$digest();
+            console.log(element.html());
             expect(element.html()).toContain("clientId");
         }));
     });

@@ -15,14 +15,14 @@ angular.module('unchatbar-contact').directive('unContactClientCount', [
         return {
             restrict: 'E',
             replace: false,
-            templateUrl: function(element,scope){
-                return scope.customTemplateUrl || 'views/unchatbar-contact/client/count.html';
+            templateUrl: function(element){
+                return element.attr('data-custom-template-url') || 'views/unchatbar-contact/client/count.html';
             },
             controller: 'unContactClient',
             scope: {
                 clientFilter : '=',
-                additionClass : '=',
-                customTemplateUrl: '@'
+                additionClass : '='
+
             },
             link : function(scope){
                 /**
